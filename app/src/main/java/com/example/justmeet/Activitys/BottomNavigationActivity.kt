@@ -1,6 +1,7 @@
 package com.example.justmeet.Activitys
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -18,6 +19,12 @@ class BottomNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityBottomNavigationBinding.inflate(layoutInflater)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                )
         setContentView(binding.root)
         this.supportActionBar?.hide()
 

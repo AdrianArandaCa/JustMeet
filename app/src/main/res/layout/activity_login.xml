@@ -39,9 +39,10 @@
             android:id="@+id/logoUser"
             android:src="@drawable/asset_profile_original"
             android:layout_marginEnd="50dp"
+            android:padding="5dp"
             />
         <EditText
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:id="@+id/etUserName"
             android:hint="Nom d'usuari"
@@ -49,7 +50,7 @@
             android:textColorHint="@color/dark_gold"
             android:textAlignment="center"
             android:layout_marginEnd="10dp"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:backgroundTint="@color/dark_gold"
             />
 
@@ -74,9 +75,10 @@
             android:id="@+id/logoPassword"
             android:src="@drawable/asset_password"
             android:layout_marginEnd="50dp"
+            android:padding="5dp"
             />
         <EditText
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:id="@+id/etPassword"
             android:hint="Password"
@@ -92,8 +94,8 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnLogin"
         app:layout_constraintTop_toBottomOf="@+id/linearPassword"
@@ -102,6 +104,7 @@
         android:layout_marginTop="70dp"
         android:textColor="@color/black"
         android:text="Iniciar sessión"
+        android:textAllCaps="false"
         android:background="@drawable/border_button"
         />
 
@@ -121,8 +124,8 @@
         android:id="@+id/txtRegister"
         />
 
-    <Button
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnRegister"
         app:layout_constraintTop_toBottomOf="@+id/txtRegister"
@@ -131,6 +134,7 @@
       android:layout_marginTop="10dp"
         android:textColor="@color/black"
         android:text="Registrarse"
+        android:textAllCaps="false"
         android:background="@drawable/border_button"
         />
 

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".Activitys.GameActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/ivLogoGame"
+        android:src="@drawable/justgame"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ivLogoGame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/linearTimer"
+        android:orientation="horizontal"
+
+
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/logoTimerStart"
+            android:src="@drawable/asset_timer"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etUserName"
+          android:text="10"
+            android:textColor="@color/dark_gold"
+            android:textColorHint="@color/dark_gold"
+            android:textAlignment="center"
+            android:layout_marginEnd="10dp"
+            android:textSize="35dp"
+            app:layout_constraintStart_toEndOf="@id/logoTimerStart"
+            app:layout_constraintEnd_toStartOf="@id/logoTimerEnd"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/logoTimerEnd"
+            android:src="@drawable/asset_timer"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Que tipo de musica te gusta más?"
+        android:textColor="@color/dark_gold"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/linearTimer"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18dp"
+        android:layout_marginTop="10dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
