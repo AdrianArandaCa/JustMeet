@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/playFragment">
+
+
+    <fragment
+        android:id="@+id/premiumFragment"
+        android:name="com.example.justmeet.Fragments.PremiumFragment"
+        android:label="fragment_premium"
+        tools:layout="@layout/fragment_premium" />
+    <fragment
+        android:id="@+id/playFragment"
+        android:name="com.example.justmeet.Fragments.PlayFragment"
+        android:label="fragment_play"
+        tools:layout="@layout/fragment_play" />
+    <fragment
+        android:id="@+id/comunicationFragment"
+        android:name="com.example.justmeet.Fragments.ComunicationFragment"
+        android:label="fragment_comunication"
+        tools:layout="@layout/fragment_comunication" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.justmeet.Fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>
