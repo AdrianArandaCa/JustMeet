@@ -11,25 +11,27 @@ data class User(
     var photo : Int,
     var description : String,
     var premium : Boolean,
-    var idSetting : Int
+    var settings : Setting,
+    var location: Location
 )
 
 data class Location(
     var idLocation : Int,
     var longitud : Double,
-    var latitud : Double,
-    var idUser : Int
+    var latitud : Double
 )
 
 data class UserGame(
-    var idGame : Int,
+    var idGame : Game,
     var idUser: Int
 )
 
 data class Game(
     var idGame: Int,
     var registrationDate : String,
-    var match : Boolean
+    var match : Boolean,
+    var usuaris : List<User>,
+    var questions : List<Question>
 )
 
 data class QuestionGame(
@@ -43,7 +45,7 @@ data class Setting(
     var minAge : Int,
     var maxAge : Int,
     var genre : String,
-    var idGameType : Int
+    var gameType : GameType
 )
 
 data class GameType(
@@ -52,10 +54,10 @@ data class GameType(
 )
 
 data class UserAnswer(
-    var idGame: Int,
-    var idUser: Int,
-    var idQuestion: Int,
-    var idAnswer: Int
+    var game: Game,
+    var user: User,
+    var question: Question,
+    var answer: Answer
 )
 
 data class Answer(
@@ -63,13 +65,11 @@ data class Answer(
     var answer : String
 )
 
-data class QuestionAnswer(
-    var idQuestion: Int,
-    var idAnswer: Int
-)
+
 
 data class Question(
     var idQuestion: Int,
     var question : String,
-    var idGameType: Int
+    var idGameType: Int,
+    var respostes : List<Answer>
 )
