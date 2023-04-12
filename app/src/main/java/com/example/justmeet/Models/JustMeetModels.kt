@@ -1,5 +1,8 @@
 package com.example.justmeet.Models
 
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManagerFactory
+
 
 data class User(
     var idUser : Int,
@@ -73,3 +76,9 @@ data class Question(
     var idGameType: Int,
     var respostes : List<Answer>
 )
+
+lateinit var llistaUsers: ArrayList<User>
+
+lateinit var tmf: TrustManagerFactory
+lateinit var sslContext: SSLContext
+lateinit var algorithm: String
