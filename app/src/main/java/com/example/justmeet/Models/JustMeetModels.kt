@@ -65,16 +65,17 @@ data class UserAnswer(
 
 data class Answer(
     var idAnswer: Int,
-    var answer : String
+    var answer1 : String
 )
 
 
 
 data class Question(
     var idQuestion: Int,
-    var question : String,
+    var question1 : String,
     var idGameType: Int,
-    var respostes : List<Answer>
+    var gameType : GameType,
+    var answers : List<Answer>
 )
 
 lateinit var llistaUsers: ArrayList<User>
