@@ -74,10 +74,10 @@ class PlayFragment : Fragment() {
 //        })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        webSocket.close(1000, null)
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        webSocket.close(1000, null)
+//    }
     }
 
 

@@ -5,7 +5,7 @@ import javax.net.ssl.TrustManagerFactory
 
 
 data class User(
-    var idUser : Int,
+    var idUser : Int?,
     var name : String,
     var password : String,
     var email : String,
@@ -14,12 +14,12 @@ data class User(
     var photo : Int,
     var description : String,
     var premium : Boolean,
-    var settings : Setting,
+    var idSettingNavigation : Setting,
     var location: Location
 )
 
 data class Location(
-    var idLocation : Int,
+    var idLocation : Int?,
     var longitud : Double,
     var latitud : Double
 )
@@ -43,16 +43,16 @@ data class QuestionGame(
 )
 
 data class Setting(
-    var idSetting: Int,
+    var idSetting: Int?,
     var maxDistance : Int,
     var minAge : Int,
     var maxAge : Int,
     var genre : String,
-    var gameType : GameType
+    var idGameTypeNavigation : GameType?
 )
 
 data class GameType(
-    var idGameType: Int,
+    var idGameType: Int?,
     var type : String
 )
 

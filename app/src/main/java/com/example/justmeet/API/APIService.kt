@@ -12,7 +12,7 @@ interface APIService {
     @GET("user/{id}")
     suspend fun getOneUser(@Path("id") id: Int): User
 
-    @POST("usuaris/")
+    @POST("user")
     suspend fun insertUsuari(@Body usuari: User): Response<User>
 
     @PUT("/usuaris/")
