@@ -60,7 +60,7 @@ class RegisterActivity : AppCompatActivity(),CoroutineScope {
                 if(passWord.equals(passWordConfirm)) {
                     //Guardas usuario
                     var passWordEncrypt = encryptPassword(passWord)
-                    var user = User(null,nomUser,passWordEncrypt,email,dateOfBirthday,genre,0,"",false,
+                    var user = User(null,nomUser,passWordEncrypt,email,dateOfBirthday,genre,0,"",false,null,
                         Setting(null,10,18,30,genre, null), Location(null,0.0,0.0))
                     runBlocking {
                         val crudApi = CrudApi()

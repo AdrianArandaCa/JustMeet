@@ -59,14 +59,15 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                     runBlocking {
                         var corrutina = launch {
                             listQuestion = gson.fromJson(text, listType)
-                            for (question in listQuestion) {
-                                println(question.question1)
-                            }
+
                         }
                         corrutina.join()
-                        runOnUiThread {
-                            binding.progressBar.visibility = View.GONE
-                        }
+//                        runOnUiThread {
+//                            binding.progressBar.visibility = View.GONE
+//                        }
+                    }
+                    for (question in listQuestion) {
+                        println(question.question1)
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()

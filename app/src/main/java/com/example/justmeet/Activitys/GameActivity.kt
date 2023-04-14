@@ -20,16 +20,15 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        for(i in 0..listQuestion.size - 1) {
-            Handler().postDelayed(
-                {
-                    binding.txtQuestion.setText(listQuestion[i].question1)
-                    adapter = AdapterAnswer(listQuestion[i].answers)
+        //for(i in 0..listQuestion.size - 1) {
+
+                    binding.txtQuestion.setText(listQuestion[0].question1)
+                    adapter = AdapterAnswer(listQuestion[0].answers)
                     binding.rvAnswers.adapter = adapter
                     binding.rvAnswers.layoutManager = LinearLayoutManager(this)
 
-                }, 3000
-            )
-        }
+
+
+        //}
     }
 }
