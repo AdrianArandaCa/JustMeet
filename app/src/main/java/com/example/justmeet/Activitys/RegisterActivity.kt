@@ -22,7 +22,7 @@ import kotlin.coroutines.CoroutineContext
 class RegisterActivity : AppCompatActivity(),CoroutineScope {
     private lateinit var binding : ActivityRegisterBinding
     var job = Job()
-    var userInserit : Boolean = false
+    var userPosted : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         var isMale : Boolean = false
         var isFemale : Boolean = true
@@ -64,16 +64,16 @@ class RegisterActivity : AppCompatActivity(),CoroutineScope {
                     runBlocking {
                         val crudApi = CrudApi()
                         val corrutina = launch {
-                             userInserit = crudApi.addUserToAPI(user)
+                            userPosted = crudApi.addUserToAPI(user)
                         }
                         corrutina.join()
-                        if(userInserit) {
+                        if(userPosted) {
                             Toast.makeText(applicationContext,"Usuari inserit amb èxit",Toast.LENGTH_LONG).show()
                             finish()
                         } else {
                             Toast.makeText(applicationContext,"Ja existeix un usuari amb aquest nom",Toast.LENGTH_LONG).show()
                         }
-                        println("Usuari inserit: "+userInserit.toString())
+                        println("Usuari inserit: "+userPosted.toString())
                     }
                 } else {
                     Toast.makeText(this,"Les contrasenyes no coincideixen",Toast.LENGTH_LONG).show()
