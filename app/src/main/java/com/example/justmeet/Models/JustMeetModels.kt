@@ -65,7 +65,8 @@ data class UserAnswer(
 
 data class Answer(
     var idAnswer: Int,
-    var answer1 : String
+    var answer1 : String,
+    var selected : Int
 )
 
 
