@@ -6,4 +6,29 @@
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logoLogin">logo just meet login</string>
+    <string name="imagecontact">imageContact</string>
+    <string name="nomusuari">Nom d\'usuari</string>
+    <string name="imagepadlock">imagePadlock</string>
+    <string name="password">Contrasenya</string>
+    <string name="startsesion">Iniciar sessión</string>
+    <string name="textRegister">¿Aún no te has registrado? Registrate!!</string>
+    <string name="register">Registrarse</string>
+    <string name="confirmpassword">Confirmar contraseña</string>
+    <string name="email">E-mail</string>
+    <string name="birthday">Fecha Nacimiento</string>
+    <string name="women">Mujer</string>
+    <string name="nameuser">Nom d\'usuari</string>
+    <string name="men">Hombre</string>
+    <string name="logoregister">logoRegister</string>
+    <string name="imageatsing">imageAtSing</string>
+    <string name="imagebirthday">imageBirthday</string>
+    <string name="imagemen">imageMen</string>
+    <string name="imagewomen">imageWomen</string>
+    <string name="logogame">logoGame</string>
+    <string name="imageclock">imageClock</string>
+    <string name="time">10</string>
+    <string name="question">Que tipo de musica te gusta más?</string>
+    <string name="answer">resposta sense seleccionar</string>
+    <string name="logoplay">logoPlay</string>
 </resources>

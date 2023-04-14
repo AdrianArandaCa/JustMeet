@@ -11,12 +11,12 @@
         android:id="@+id/ivLogoLogin"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:contentDescription="@string/logoregister"
         android:scaleType="centerCrop"
         android:src="@drawable/justregister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <LinearLayout
         android:id="@+id/linearUser"
@@ -33,22 +33,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"
+            android:contentDescription="@string/imagecontact"
             android:padding="5dp"
             android:src="@drawable/asset_profile_original" />
 
         <EditText
             android:id="@+id/etUserName"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:hint="Nom d'usuari"
+            android:hint="@string/nameuser"
+            android:inputType="text"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:textSize="18dp" />
-
-
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -67,21 +67,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"
+            android:contentDescription="@string/imagepadlock"
             android:padding="5dp"
             android:src="@drawable/asset_password" />
 
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:hint="Contrasenya"
+            android:hint="@string/password"
+            android:inputType="textPassword"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:inputType="textPassword"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -100,21 +101,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"
+            android:contentDescription="@string/imagepadlock"
             android:padding="5dp"
             android:src="@drawable/asset_password" />
 
         <EditText
             android:id="@+id/etPasswordConfirm"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:hint="Confirmar contraseña"
+            android:hint="@string/confirmpassword"
+            android:inputType="textPassword"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:inputType="textPassword"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -133,20 +135,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"
+            android:contentDescription="@string/imageatsing"
             android:padding="5dp"
             android:src="@drawable/asset_email" />
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:hint="E-mail"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -165,20 +169,21 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"
+            android:contentDescription="@string/imagebirthday"
             android:padding="5dp"
             android:src="@drawable/baseline_cake_24" />
 
         <EditText
             android:id="@+id/etBirthday"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:hint="Fecha Nacimiento"
+            android:hint="@string/birthday"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -196,6 +201,7 @@
             android:id="@+id/logoGenre"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:contentDescription="@string/imagemen"
             android:padding="5dp"
             android:src="@drawable/asset_male_simbol" />
 
@@ -205,16 +211,17 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:text="Hombre"
+            android:text="@string/men"
             android:textAlignment="center"
             android:textColor="@color/light_gold"
             android:textColorHint="@color/dark_gold"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/logoFemale"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:contentDescription="@string/imagewomen"
             android:padding="5dp"
             android:src="@drawable/asset_female_simbol" />
 
@@ -224,11 +231,11 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:text="Mujer"
+            android:text="@string/women"
             android:textAlignment="center"
             android:textColor="@color/light_gold"
             android:textColorHint="@color/dark_gold"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -237,7 +244,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/border_button"
-        android:text="Registrarse"
+        android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"

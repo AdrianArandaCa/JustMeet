@@ -1,55 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     tools:context=".Fragments.PlayFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <ImageView
+        android:id="@+id/ivJustplay"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-      app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/ivJustplay"
-        android:src="@drawable/justplay"
+        android:contentDescription="@string/logoplay"
         android:scaleType="centerCrop"
-
-        />
+        android:src="@drawable/justplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBuscarPartida"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:id="@+id/btnBuscarPartida"
-        app:layout_constraintTop_toBottomOf="@id/ivJustplay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="30dp"
-        android:textColor="@color/black"
-        android:textAllCaps="false"
-        android:text="Buscar partida"
         android:background="@drawable/border_button"
-        />
+        android:text="Buscar partida"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivJustplay" />
+
     <TextView
+        android:id="@+id/txtRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:padding="8dp"
-        android:textColor="@color/light_gold"
-        android:textStyle="italic"
-        android:textSize="17dp"
-        android:text="¡Te deseamos lo mejor!"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBuscarPartida"
         android:layout_margin="10dp"
-        android:id="@+id/txtRegister"
-        />
-
-
+        android:padding="8dp"
+        android:text="¡Te deseamos lo mejor!"
+        android:textAlignment="center"
+        android:textColor="@color/light_gold"
+        android:textSize="17dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBuscarPartida" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
