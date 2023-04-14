@@ -3,6 +3,7 @@ package com.example.justmeet.Activitys
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import com.example.justmeet.API.CrudApi
@@ -69,7 +70,10 @@ class RegisterActivity : AppCompatActivity(),CoroutineScope {
                         corrutina.join()
                         if(userPosted) {
                             Toast.makeText(applicationContext,"Usuari inserit amb èxit",Toast.LENGTH_LONG).show()
-                            finish()
+                            Handler().postDelayed({
+                                finish()
+                            },3000)
+
                         } else {
                             Toast.makeText(applicationContext,"Ja existeix un usuari amb aquest nom",Toast.LENGTH_LONG).show()
                         }
