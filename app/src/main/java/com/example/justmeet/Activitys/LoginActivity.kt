@@ -40,49 +40,49 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         setContentView(binding.root)
         putFullScreen()
         getPermissionsApi()
-//
-//        val client = OkHttpClient()
-//        val request = Request.Builder().url("ws://172.16.24.123:45456/ws/2").build()
-//
-//        webSocket = client.newWebSocket(request, object : WebSocketListener() {
-//
-//            override fun onOpen(webSocket: WebSocket, response: Response) {
-//                super.onOpen(webSocket, response)
-//
-//            }
-//
-//            override fun onMessage(webSocket: WebSocket, text: String) {
-//                super.onMessage(webSocket, text)
-//                val gson = Gson()
-//                val listType = object : TypeToken<List<Question>>() {}.type
-//                try {
-//                    runBlocking {
-//                        var corrutina = launch {
-//                            val data: List<Question> = gson.fromJson(text, listType)
-//                            for (question in data) {
-//                                println(question.question1)
-//                            }
-//                        }
-//                        corrutina.join()
-//                        runOnUiThread {
-//                            binding.progressBar.visibility = View.GONE
-//                        }
-//                    }
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-//
-//            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-//                super.onClosing(webSocket, code, reason)
-//
-//            }
-//
-//            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-//                super.onFailure(webSocket, t, response)
-//
-//            }
-//        })
+
+        val client = OkHttpClient()
+        val request = Request.Builder().url("ws://172.16.24.123:45456/ws/2").build()
+
+        webSocket = client.newWebSocket(request, object : WebSocketListener() {
+
+            override fun onOpen(webSocket: WebSocket, response: Response) {
+                super.onOpen(webSocket, response)
+
+            }
+
+            override fun onMessage(webSocket: WebSocket, text: String) {
+                super.onMessage(webSocket, text)
+                val gson = Gson()
+                val listType = object : TypeToken<ArrayList<Question>>() {}.type
+                try {
+                    runBlocking {
+                        var corrutina = launch {
+                            listQuestion = gson.fromJson(text, listType)
+                            for (question in listQuestion) {
+                                println(question.question1)
+                            }
+                        }
+                        corrutina.join()
+                        runOnUiThread {
+                            binding.progressBar.visibility = View.GONE
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
+                super.onClosing(webSocket, code, reason)
+
+            }
+
+            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+                super.onFailure(webSocket, t, response)
+
+            }
+        })
 
 //        runBlocking {
 //
