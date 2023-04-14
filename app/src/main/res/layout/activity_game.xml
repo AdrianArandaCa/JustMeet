@@ -75,6 +75,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/txtQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Que tipo de musica te gusta más?"
@@ -86,6 +87,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="18dp"
         android:layout_marginTop="10dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/txtQuestion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

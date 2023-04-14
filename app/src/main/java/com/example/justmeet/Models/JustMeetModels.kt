@@ -3,7 +3,8 @@ package com.example.justmeet.Models
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManagerFactory
 
-
+var listQuestion: ArrayList<Question> = arrayListOf()
+var listAnswer: ArrayList<Answer> = arrayListOf()
 data class User(
     var idUser : Int?,
     var name : String,
@@ -76,7 +77,7 @@ data class Question(
     var question1 : String,
     var idGameType: Int,
     var gameType : GameType,
-    var answers : List<Answer>
+    var answers : ArrayList<Answer>
 )
 
 lateinit var llistaUsers: ArrayList<User>
