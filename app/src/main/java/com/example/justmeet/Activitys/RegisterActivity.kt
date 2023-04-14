@@ -3,6 +3,7 @@ package com.example.justmeet.Activitys
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import com.example.justmeet.API.CrudApi
@@ -59,7 +60,7 @@ class RegisterActivity : AppCompatActivity(),CoroutineScope {
                 if(passWord.equals(passWordConfirm)) {
                     //Guardas usuario
                     var passWordEncrypt = encryptPassword(passWord)
-                    var user = User(null,nomUser,passWordEncrypt,email,dateOfBirthday,genre,0,"",false,
+                    var user = User(null,nomUser,passWordEncrypt,email,dateOfBirthday,genre,0,"",false,null,
                         Setting(null,10,18,30,genre, null), Location(null,0.0,0.0))
                     runBlocking {
                         val crudApi = CrudApi()
@@ -69,7 +70,10 @@ class RegisterActivity : AppCompatActivity(),CoroutineScope {
                         corrutina.join()
                         if(userPosted) {
                             Toast.makeText(applicationContext,"Usuari inserit amb èxit",Toast.LENGTH_LONG).show()
-                            finish()
+                            Handler().postDelayed({
+                                finish()
+                            },3000)
+
                         } else {
                             Toast.makeText(applicationContext,"Ja existeix un usuari amb aquest nom",Toast.LENGTH_LONG).show()
                         }

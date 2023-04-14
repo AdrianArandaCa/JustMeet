@@ -1,10 +1,13 @@
 package com.example.justmeet.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.justmeet.Activitys.GameActivity
+import com.example.justmeet.Activitys.RegisterActivity
 import com.example.justmeet.Models.User
 import com.example.justmeet.R
 import com.example.justmeet.databinding.FragmentPlayBinding
@@ -31,6 +34,10 @@ class PlayFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentPlayBinding.inflate(inflater,container,false)
+        binding.btnBuscarPartida.setOnClickListener {
+            val intento = Intent(context, GameActivity::class.java)
+            startActivity(intento)
+        }
         return binding.root
 
     }

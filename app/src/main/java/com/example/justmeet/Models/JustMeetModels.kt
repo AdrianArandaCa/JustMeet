@@ -7,16 +7,17 @@ var listQuestion: ArrayList<Question> = arrayListOf()
 var listAnswer: ArrayList<Answer> = arrayListOf()
 data class User(
     var idUser : Int?,
-    var name : String,
-    var password : String,
-    var email : String,
-    var birthday : String,
-    var genre : String,
-    var photo : Int,
-    var description : String,
-    var premium : Boolean,
-    var idSettingNavigation : Setting,
-    var location: Location
+    var name : String?,
+    var password : String?,
+    var email : String?,
+    var birthday : String?,
+    var genre : String?,
+    var photo : Int?,
+    var description : String?,
+    var premium : Boolean?,
+    var idSetting: Int?,
+    var idSettingNavigation : Setting?,
+    var location: Location?
 )
 
 data class Location(

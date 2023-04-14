@@ -4,8 +4,10 @@ import android.content.Intent
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.animation.Animation
+import android.widget.Toast
 import androidx.constraintlayout.motion.widget.Key.VISIBILITY
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.*
@@ -16,7 +18,10 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
 import okhttp3.*
 import java.io.InputStream
+import java.math.BigInteger
 import java.security.KeyStore
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import java.security.cert.Certificate
 import java.security.cert.CertificateFactory
 import javax.net.ssl.SSLContext
@@ -28,13 +33,14 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     private var job: Job = Job()
     lateinit var user: User
     private lateinit var webSocket: WebSocket
+    lateinit var userLogged : User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
         getPermissionsApi()
-        binding.progressBar.visibility = View.VISIBLE
+
         val client = OkHttpClient()
         val request = Request.Builder().url("ws://172.16.24.123:45456/ws/2").build()
 
@@ -48,19 +54,20 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             override fun onMessage(webSocket: WebSocket, text: String) {
                 super.onMessage(webSocket, text)
                 val gson = Gson()
-                val listType = object : TypeToken<List<Question>>() {}.type
+                val listType = object : TypeToken<ArrayList<Question>>() {}.type
                 try {
                     runBlocking {
                         var corrutina = launch {
-                            val data: List<Question> = gson.fromJson(text, listType)
-                            for (question in data) {
-                                println(question.question1)
-                            }
+                            listQuestion = gson.fromJson(text, listType)
+
                         }
                         corrutina.join()
-                        runOnUiThread {
-                            binding.progressBar.visibility = View.GONE
-                        }
+//                        runOnUiThread {
+//                            binding.progressBar.visibility = View.GONE
+//                        }
+                    }
+                    for (question in listQuestion) {
+                        println(question.question1)
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -99,8 +106,35 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
 
         binding.btnLogin.setOnClickListener {
-            val intento = Intent(this, BottomNavigationActivity::class.java)
-            startActivity(intento)
+            var userName = binding.etUserName.text.toString()
+
+            runBlocking {
+                val crudApi = CrudApi()
+                val corrutina = launch {
+                    userLogged = crudApi.getOneUserByName(userName)
+                }
+                corrutina.join()
+
+            }
+            if(userLogged!= null) {
+                var passWord = encryptPassword(binding.etPassword.text.toString())
+                if(passWord.equals(userLogged.password)){
+                    binding.progressBar.visibility = View.VISIBLE
+                    Toast.makeText(this,"Login Correcte",Toast.LENGTH_LONG).show()
+                    binding.progressBar.visibility = View.GONE
+                    Handler().postDelayed({
+                        val intento = Intent(this, BottomNavigationActivity::class.java)
+                        startActivity(intento)
+                    },3000)
+
+                } else {
+                    Toast.makeText(this,"Contrasenya incorrecte",Toast.LENGTH_LONG).show()
+                }
+
+            } else{
+                Toast.makeText(this,"Aquest nom d'usuari no està registrat",Toast.LENGTH_LONG).show()
+            }
+
 
         }
     }
@@ -134,6 +168,20 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
 
         } finally {
             inputStream.close()
+        }
+    }
+    fun encryptPassword(input: String): String {
+        return try {
+            val md = MessageDigest.getInstance("SHA-256")
+            val messageDigest = md.digest(input.toByteArray())
+            val no = BigInteger(1, messageDigest)
+            var hashtext = no.toString(16)
+            while (hashtext.length < 32) {
+                hashtext = "0$hashtext"
+            }
+            hashtext
+        } catch (e: NoSuchAlgorithmException) {
+            throw RuntimeException(e)
         }
     }
 

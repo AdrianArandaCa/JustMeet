@@ -72,6 +72,10 @@ class CrudApi(): CoroutineScope {
         val call = getRetrofit().create(APIService::class.java).getOneUser(codi)
         return call!!
     }
+    suspend fun getOneUserByName(name: String): User {
+        val call = getRetrofit().create(APIService::class.java).getOneUserByName(name)
+        return call!!
+    }
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
