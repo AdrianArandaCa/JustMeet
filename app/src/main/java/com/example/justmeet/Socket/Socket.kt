@@ -25,17 +25,23 @@ class Socket(user: User) : WebSocketListener(), CoroutineScope {
 
     override fun onMessage(webSocket: WebSocket, text: String) {
         super.onMessage(webSocket, text)
-                listQuestion = gson.fromJson(text, listType)
+        output(text)
+//                listQuestion = gson.fromJson(text, listType)
+//
 
-        for (question in listQuestion) {
-            println(question.question1)
-        }
 
 
     }
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
+     fun output(text:String) {
+         listQuestion = gson.fromJson(text, listType)
+         for (question in listQuestion) {
+             println(question.question1)
+         }
+
+    }
 }
 
 

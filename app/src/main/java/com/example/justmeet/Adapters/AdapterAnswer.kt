@@ -43,6 +43,7 @@ class AdapterAnswer(var list: java.util.ArrayList<Answer>) :
                     list [i].selected = 0
                 }
             }
+
             notifyDataSetChanged()
         }
     }

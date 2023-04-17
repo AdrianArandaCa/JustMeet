@@ -18,6 +18,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.*
 import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,58 +46,40 @@ class PlayFragment : Fragment(), CoroutineScope {
         // Inflate the layout for this fragment
         binding = FragmentPlayBinding.inflate(inflater, container, false)
         binding.btnBuscarPartida.setOnClickListener {
+//            runBlocking {
+//                GlobalScope.launch  {
+//                    var socket = Socket(userLog)
+//                    val client = OkHttpClient.Builder().readTimeout(3, TimeUnit.SECONDS).build()
+//                    val request = Request.Builder().url(socket.urlServer + userLog.idUser).build()
+//                    val webSocket = client.newWebSocket(request, socket)
+//                    client.dispatcher.executorService.shutdown()
+//                    activity?.runOnUiThread {
+//                        val intento = Intent(context, GameActivity::class.java)
+//                        startActivity(intento)
+//                    }
+//                }
+//
+//
+//            }
             var socket = Socket(userLog)
-            val client = OkHttpClient()
+            val client = OkHttpClient.Builder().readTimeout(3, TimeUnit.SECONDS).build()
             val request = Request.Builder().url(socket.urlServer + userLog.idUser).build()
-            client.newWebSocket(request, socket)
+            val webSocket = client.newWebSocket(request, socket)
+            client.dispatcher.executorService.shutdown()
+
+
             Handler().postDelayed({
                 if (!listQuestion.isEmpty()) {
-                    val intento = Intent(context, GameActivity::class.java)
-                    startActivity(intento)
+            activity?.runOnUiThread {
+                val intento = Intent(context, GameActivity::class.java)
+                startActivity(intento)
+            }
+
                 }
-            },3000)
+            }, 3000)
 
         }
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-//        val client = OkHttpClient()
-//
-//        val request = Request.Builder().url("ws://172.16.24.123:45456:6666/ws/2").build()
-//
-//        webSocket = client.newWebSocket(request, object : WebSocketListener() {
-//
-//            override fun onOpen(webSocket: WebSocket, response: Response) {
-//                super.onOpen(webSocket, response)
-//
-//            }
-//
-//            override fun onMessage(webSocket: WebSocket, text: String) {
-//                super.onMessage(webSocket, text)
-//                val gson = Gson()
-//                try {
-//                    val data = gson.fromJson(text, User::class.java)
-//
-//
-//                    activity?.runOnUiThread {
-//                        binding.txtPruebaSocket.setText("Valor 1: ${data.name}\nValor 2: ${data.password}")
-//                    }
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-//            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-//                super.onClosing(webSocket, code, reason)
-//
-//            }
-//
-//            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-//                super.onFailure(webSocket, t, response)
-//
-//            }
-//        })
     }
 
     override val coroutineContext: CoroutineContext
