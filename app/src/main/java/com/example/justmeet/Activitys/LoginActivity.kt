@@ -12,6 +12,7 @@ import androidx.constraintlayout.motion.widget.Key.VISIBILITY
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.*
 import com.example.justmeet.R
+import com.example.justmeet.Socket.Socket
 import com.example.justmeet.databinding.ActivityLoginBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -33,7 +34,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     private var job: Job = Job()
     lateinit var user: User
     private lateinit var webSocket: WebSocket
-    lateinit var userIsLogged : User
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -41,49 +42,50 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         putFullScreen()
         getPermissionsApi()
 
-        val client = OkHttpClient()
-        val request = Request.Builder().url("ws://172.16.24.123:45456/ws/2").build()
 
-        webSocket = client.newWebSocket(request, object : WebSocketListener() {
-
-            override fun onOpen(webSocket: WebSocket, response: Response) {
-                super.onOpen(webSocket, response)
-
-            }
-
-            override fun onMessage(webSocket: WebSocket, text: String) {
-                super.onMessage(webSocket, text)
-                val gson = Gson()
-                val listType = object : TypeToken<ArrayList<Question>>() {}.type
-                try {
-                    runBlocking {
-                        var corrutina = launch {
-                            listQuestion = gson.fromJson(text, listType)
-
-                        }
-                        corrutina.join()
-//                        runOnUiThread {
-//                            binding.progressBar.visibility = View.GONE
+//        val client = OkHttpClient()
+//        val request = Request.Builder().url("ws://172.16.24.123:45456/ws/2").build()
+//
+//        webSocket = client.newWebSocket(request, object : WebSocketListener() {
+//
+//            override fun onOpen(webSocket: WebSocket, response: Response) {
+//                super.onOpen(webSocket, response)
+//
+//            }
+//
+//            override fun onMessage(webSocket: WebSocket, text: String) {
+//                super.onMessage(webSocket, text)
+//                val gson = Gson()
+//                val listType = object : TypeToken<ArrayList<Question>>() {}.type
+//                try {
+//                    runBlocking {
+//                        var corrutina = launch {
+//                            listQuestion = gson.fromJson(text, listType)
+//
 //                        }
-                    }
-                    for (question in listQuestion) {
-                        println(question.question1)
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-
-            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-                super.onClosing(webSocket, code, reason)
-
-            }
-
-            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-                super.onFailure(webSocket, t, response)
-
-            }
-        })
+//                        corrutina.join()
+////                        runOnUiThread {
+////                            binding.progressBar.visibility = View.GONE
+////                        }
+//                    }
+//                    for (question in listQuestion) {
+//                        println(question.question1)
+//                    }
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                }
+//            }
+//
+//            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
+//                super.onClosing(webSocket, code, reason)
+//
+//            }
+//
+//            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+//                super.onFailure(webSocket, t, response)
+//
+//            }
+//        })
 
 //        runBlocking {
 //
@@ -111,21 +113,21 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             runBlocking {
                 val crudApi = CrudApi()
                 val corrutina = launch {
-                    userIsLogged = crudApi.getOneUserByName(userName)
+                    userLog = crudApi.getOneUserByName(userName)
                 }
                 corrutina.join()
 
             }
-            if(userIsLogged!= null) {
+            if(userLog!= null) {
                 var passWord = encryptPassword(binding.etPassword.text.toString())
-                if(passWord.equals(userIsLogged.password)){
+                if(passWord.equals(userLog.password)){
                     binding.progressBar.visibility = View.VISIBLE
                     Toast.makeText(this,"Login Correcte",Toast.LENGTH_LONG).show()
                     binding.progressBar.visibility = View.GONE
                     Handler().postDelayed({
                         val intento = Intent(this, BottomNavigationActivity::class.java)
                         startActivity(intento)
-                    },3000)
+                    },0)
 
                 } else {
                     Toast.makeText(this,"Contrasenya incorrecte",Toast.LENGTH_LONG).show()
@@ -185,10 +187,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        webSocket.close(1000,null)
-    }
+
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job

@@ -86,4 +86,5 @@ lateinit var llistaUsers: ArrayList<User>
 lateinit var tmf: TrustManagerFactory
 lateinit var sslContext: SSLContext
 lateinit var algorithm: String
-var userLog : User? = null
+lateinit var userLog : User
+var listQuestionAux: ArrayList<Question> = arrayListOf()
