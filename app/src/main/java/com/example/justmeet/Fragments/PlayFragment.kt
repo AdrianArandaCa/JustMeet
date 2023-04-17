@@ -2,15 +2,20 @@ package com.example.justmeet.Fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.justmeet.Activitys.BottomNavigationActivity
 import com.example.justmeet.Activitys.GameActivity
 import com.example.justmeet.Models.*
 import com.example.justmeet.Socket.Socket
 import com.example.justmeet.databinding.FragmentPlayBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import okhttp3.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -25,7 +30,9 @@ var job = Job()
 class PlayFragment : Fragment(), CoroutineScope {
     // TODO: Rename and change types of parameters
 
-
+    val gson = Gson()
+    val listType = object : TypeToken<ArrayList<Question>>() {}.type
+    var urlServer = "ws://172.16.24.123:45456/ws/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,21 +49,15 @@ class PlayFragment : Fragment(), CoroutineScope {
             val client = OkHttpClient()
             val request = Request.Builder().url(socket.urlServer + userLog.idUser).build()
             client.newWebSocket(request, socket)
+            Handler().postDelayed({
+                if (!listQuestion.isEmpty()) {
+                    val intento = Intent(context, GameActivity::class.java)
+                    startActivity(intento)
+                }
+            },3000)
 
-            Log.i("question",listQuestion[0].question1.toString())
-
-            }
-
-
-            // Log.i("question",listQuestion[0].question1.toString())
-
-
-              //val intento = Intent(context, GameActivity::class.java)
-               //startActivity(intento)
-
-
+        }
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

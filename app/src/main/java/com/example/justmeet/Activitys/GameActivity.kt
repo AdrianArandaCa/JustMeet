@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.justmeet.Adapters.AdapterAnswer
 import com.example.justmeet.Models.Question
@@ -17,44 +18,79 @@ import kotlinx.coroutines.runBlocking
 class GameActivity : AppCompatActivity() {
     private lateinit var binding : ActivityGameBinding
     private lateinit var adapter : AdapterAnswer
-    lateinit var listQuestion2 : ArrayList<Question>
+    private var currentQuestionIndex = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.txtQuestion.setText(listQuestion[0].question1)
-        adapter = AdapterAnswer(listQuestion[0].answers)
-        binding.rvAnswers.adapter = adapter
-        binding.rvAnswers.layoutManager = LinearLayoutManager(this)
-//        for (i in 1.. listQuestion.size-1) {
-//            val countDownTimer = object: CountDownTimer(10000, 1000) {
-//                override fun onTick(millisUntilFinished: Long) {
-//                    val seconds = millisUntilFinished / 1000
-//                    binding.tvTime.text = seconds.toString()
-//
-//                }
-//
-//                override fun onFinish() {
-//                    binding.txtQuestion.setText(listQuestion[i].question1)
-//                    adapter = AdapterAnswer(listQuestion[i].answers)
-//                    binding.rvAnswers.adapter = adapter
-//                    binding.rvAnswers.layoutManager = LinearLayoutManager(applicationContext)
-//                }
-//            }
-//
-//            countDownTimer.start()
-//        }
+        putFullScreen()
+        if (listQuestion != null) {
+            binding.numberQuestion.setText("Pregunta ${(currentQuestionIndex+1)}/${listQuestion.size}")
+            binding.txtQuestion.text = listQuestion[currentQuestionIndex].question1
+            adapter = AdapterAnswer(listQuestion[currentQuestionIndex].answers)
+            binding.rvAnswers.adapter = adapter
+            binding.rvAnswers.layoutManager = LinearLayoutManager(this)
 
+            // Se implementa el temporizador
+            val countDownTimer = object: CountDownTimer(4000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val seconds = millisUntilFinished / 1000
+                    binding.tvTime.text = seconds.toString()
+                }
 
+                override fun onFinish() {
+                    // Se actualiza la pregunta y las respuestas
+                    currentQuestionIndex++
+                    if (currentQuestionIndex < listQuestion.size) {
+                        binding.txtQuestion.text = listQuestion[currentQuestionIndex].question1
+                        adapter = AdapterAnswer(listQuestion[currentQuestionIndex].answers)
+                        binding.rvAnswers.adapter = adapter
+                        binding.rvAnswers.layoutManager = LinearLayoutManager(applicationContext)
 
+                        // Se reinicia el temporizador
+                        binding.numberQuestion.setText("Pregunta ${(currentQuestionIndex+1)}/${listQuestion.size}")
+                        startTimer()
+                    }
+                }
+            }
 
+            // Se inicia el temporizador por primera vez
+            countDownTimer.start()
+        }
 
-        //for(i in 0..listQuestion.size - 1) {
+    }
+    private fun startTimer() {
+        val countDownTimer = object: CountDownTimer(4000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val seconds = millisUntilFinished / 1000
+                binding.tvTime.text = seconds.toString()
+            }
 
+            override fun onFinish() {
+                // Se actualiza la pregunta y las respuestas
+                currentQuestionIndex++
+                if (currentQuestionIndex < listQuestion.size) {
+                    binding.txtQuestion.text = listQuestion[currentQuestionIndex].question1
+                    adapter = AdapterAnswer(listQuestion[currentQuestionIndex].answers)
+                    binding.rvAnswers.adapter = adapter
+                    binding.rvAnswers.layoutManager = LinearLayoutManager(applicationContext)
 
+                    // Se reinicia el temporizador
+                    binding.numberQuestion.setText("Pregunta ${(currentQuestionIndex+1)}/${listQuestion.size}")
+                    startTimer()
+                }
+            }
+        }
 
-
-
-        //}
+        countDownTimer.start()
+    }
+    fun putFullScreen() {
+        this.supportActionBar?.hide()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                )
     }
 }
