@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     private var job: Job = Job()
     lateinit var user: User
     private lateinit var webSocket: WebSocket
-    lateinit var userLogged : User
+    lateinit var userIsLogged : User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -111,14 +111,14 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             runBlocking {
                 val crudApi = CrudApi()
                 val corrutina = launch {
-                    userLogged = crudApi.getOneUserByName(userName)
+                    userIsLogged = crudApi.getOneUserByName(userName)
                 }
                 corrutina.join()
 
             }
-            if(userLogged!= null) {
+            if(userIsLogged!= null) {
                 var passWord = encryptPassword(binding.etPassword.text.toString())
-                if(passWord.equals(userLogged.password)){
+                if(passWord.equals(userIsLogged.password)){
                     binding.progressBar.visibility = View.VISIBLE
                     Toast.makeText(this,"Login Correcte",Toast.LENGTH_LONG).show()
                     binding.progressBar.visibility = View.GONE
@@ -183,6 +183,11 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         } catch (e: NoSuchAlgorithmException) {
             throw RuntimeException(e)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        webSocket.close(1000,null)
     }
 
     override val coroutineContext: CoroutineContext
