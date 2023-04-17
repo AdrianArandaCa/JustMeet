@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".Fragments.ComunicationFragment">
-    
+
     <ImageView
         android:id="@+id/ivJustplay"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:contentDescription="logoChat"
+        android:contentDescription="@string/logochat"
         android:scaleType="centerCrop"
         android:src="@drawable/justchat"
         app:layout_constraintEnd_toEndOf="parent"

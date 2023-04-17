@@ -31,4 +31,15 @@
     <string name="question">Que tipo de musica te gusta más?</string>
     <string name="answer">resposta sense seleccionar</string>
     <string name="logoplay">logoPlay</string>
+    <string name="userAgustin">Agustin,27</string>
+    <string name="logoprofile">logoProfile</string>
+    <string name="imagesetting">imageSetting</string>
+    <string name="imageuser">imageUser</string>
+    <string name="aboutme">Sobre mi</string>
+    <string name="descriptionuser">Hola soy Agustin y estoy desarrollado junto con Adrian esta pedazo de aplicación para el proyecto final de DAM del IES Carles Vallbona. Espero que os guste!</string>
+    <string name="editsetting">Editar Perfil</string>
+    <string name="logopremium">logoPremium</string>
+    <string name="searchgame">Buscar partida</string>
+    <string name="wish">¡Te deseamos lo mejor!</string>
+    <string name="logochat">logoChat</string>
 </resources>
