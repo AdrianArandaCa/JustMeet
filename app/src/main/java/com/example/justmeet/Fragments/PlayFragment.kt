@@ -2,41 +2,27 @@ package com.example.justmeet.Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.justmeet.Activitys.BottomNavigationActivity
 import com.example.justmeet.Activitys.GameActivity
 import com.example.justmeet.Models.*
-import com.example.justmeet.Socket.Socket
+import com.example.justmeet.Socket.MessageListener
+import com.example.justmeet.Socket.WebSocketManager
 import com.example.justmeet.databinding.FragmentPlayBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import okhttp3.*
-import kotlinx.coroutines.*
-import java.util.concurrent.TimeUnit
-import kotlin.coroutines.CoroutineContext
+import kotlin.concurrent.thread
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 private lateinit var binding: FragmentPlayBinding
-private lateinit var webSocket: WebSocket
-var job = Job()
 
-class PlayFragment : Fragment(), CoroutineScope {
-    // TODO: Rename and change types of parameters
-
-    val gson = Gson()
-    val listType = object : TypeToken<ArrayList<Question>>() {}.type
-    var urlServer = "ws://172.16.24.123:45456/ws/"
+class PlayFragment : Fragment(), MessageListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -45,51 +31,67 @@ class PlayFragment : Fragment(), CoroutineScope {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentPlayBinding.inflate(inflater, container, false)
+        binding.btnJugar.visibility = View.GONE
+        val serverUrl = "ws://172.16.24.123:45456/ws/${userLog.idUser}"
+        WebSocketManager.init(serverUrl, this)
         binding.btnBuscarPartida.setOnClickListener {
-//            runBlocking {
-//                GlobalScope.launch  {
-//                    var socket = Socket(userLog)
-//                    val client = OkHttpClient.Builder().readTimeout(3, TimeUnit.SECONDS).build()
-//                    val request = Request.Builder().url(socket.urlServer + userLog.idUser).build()
-//                    val webSocket = client.newWebSocket(request, socket)
-//                    client.dispatcher.executorService.shutdown()
-//                    activity?.runOnUiThread {
-//                        val intento = Intent(context, GameActivity::class.java)
-//                        startActivity(intento)
-//                    }
-//                }
-//
-//
-//            }
-            var socket = Socket(userLog)
-            val client = OkHttpClient.Builder().readTimeout(3, TimeUnit.SECONDS).build()
-            val request = Request.Builder().url(socket.urlServer + userLog.idUser).build()
-            val webSocket = client.newWebSocket(request, socket)
-            client.dispatcher.executorService.shutdown()
-
-
-            Handler().postDelayed({
-                if (!listQuestion.isEmpty()) {
-            activity?.runOnUiThread {
-                val intento = Intent(context, GameActivity::class.java)
-                startActivity(intento)
-            }
-
+            thread {
+                kotlin.run {
+                    WebSocketManager.connect()
                 }
-            }, 3000)
-
+            }
+            binding.btnJugar.visibility = View.VISIBLE
         }
+        binding.btnJugar.setOnClickListener {
+            if ( WebSocketManager .sendMessage( " Client send " )) {
+                val intent = Intent(requireContext(), GameActivity::class.java)
+                startActivity(intent)
+                //addText( " Send from the client \n " )
+            }
+        }
+        /*closeConnectionBtn.setOnClickListener {
+            WebSocketManager.close()
+        }*/
         return binding.root
     }
 
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + job
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 
+    override fun onConnectSuccess() {
+        addText( " Connected successfully \n " )
+    }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        webSocket.close(1000, null)
-//    }
+    override fun onConnectFailed() {
+        addText( " Connection failed \n " )
+    }
+
+    override fun onClose() {
+        addText( " Closed successfully \n " )
+    }
+
+    override fun onMessage(text: String?) {
+        val gson = Gson()
+        val listType = object : TypeToken<ArrayList<Question>>() {}.type
+        if (text != null) {
+            if(text.startsWith("-", 1,false)){
+                addText( " Receive message: $text \n " )
+            } else {
+                listQuestion = gson.fromJson(text, listType)
+            }
+        }
+    }
+
+    private fun addText(text: String?) {
+        activity?.runOnUiThread {
+            //contentEt.text.append(text)
+        }
+    }
+
+    override fun onDestroy() {
+        super .onDestroy ()
+        WebSocketManager.close()
+    }
+
 }
-
-
