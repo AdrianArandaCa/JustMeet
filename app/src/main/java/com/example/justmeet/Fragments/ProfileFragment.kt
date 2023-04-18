@@ -1,11 +1,13 @@
 package com.example.justmeet.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.justmeet.Activitys.SettingsActivity
 import com.example.justmeet.R
 import com.example.justmeet.databinding.FragmentPlayBinding
 import com.example.justmeet.databinding.FragmentProfileBinding
@@ -38,6 +40,8 @@ class ProfileFragment : Fragment() {
 
         binding.ibSettings.setOnClickListener {
             Toast.makeText(context,"has fet click al buttó de settings",Toast.LENGTH_LONG).show()
+            val intento = Intent(context,SettingsActivity::class.java)
+            startActivity(intento)
         }
         return binding.root
     }

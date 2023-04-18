@@ -108,34 +108,37 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
 
         binding.btnLogin.setOnClickListener {
-            var userName = binding.etUserName.text.toString()
 
-            runBlocking {
-                val crudApi = CrudApi()
-                val corrutina = launch {
-                    userLog = crudApi.getOneUserByName(userName)
-                }
-                corrutina.join()
-
-            }
-            if(userLog!= null) {
-                var passWord = encryptPassword(binding.etPassword.text.toString())
-                if(passWord.equals(userLog.password)){
-                    binding.progressBar.visibility = View.VISIBLE
-                    Toast.makeText(this,"Login Correcte",Toast.LENGTH_LONG).show()
-                    binding.progressBar.visibility = View.GONE
-                    Handler().postDelayed({
-                        val intento = Intent(this, BottomNavigationActivity::class.java)
-                        startActivity(intento)
-                    },0)
-
-                } else {
-                    Toast.makeText(this,"Contrasenya incorrecte",Toast.LENGTH_LONG).show()
-                }
-
-            } else{
-                Toast.makeText(this,"Aquest nom d'usuari no està registrat",Toast.LENGTH_LONG).show()
-            }
+            val intento = Intent(this, BottomNavigationActivity::class.java)
+            startActivity(intento)
+//            var userName = binding.etUserName.text.toString()
+//
+//            runBlocking {
+//                val crudApi = CrudApi()
+//                val corrutina = launch {
+//                    userLog = crudApi.getOneUserByName(userName)
+//                }
+//                corrutina.join()
+//
+//            }
+//            if(userLog!= null) {
+//                var passWord = encryptPassword(binding.etPassword.text.toString())
+//                if(passWord.equals(userLog.password)){
+//                    binding.progressBar.visibility = View.VISIBLE
+//                    Toast.makeText(this,"Login Correcte",Toast.LENGTH_LONG).show()
+//                    binding.progressBar.visibility = View.GONE
+//                    Handler().postDelayed({
+//                        val intento = Intent(this, BottomNavigationActivity::class.java)
+//                        startActivity(intento)
+//                    },0)
+//
+//                } else {
+//                    Toast.makeText(this,"Contrasenya incorrecte",Toast.LENGTH_LONG).show()
+//                }
+//
+//            } else{
+//                Toast.makeText(this,"Aquest nom d'usuari no està registrat",Toast.LENGTH_LONG).show()
+//            }
 
 
         }
