@@ -10,23 +10,11 @@ import com.example.justmeet.R
 import com.example.justmeet.databinding.FragmentPlayBinding
 import com.example.justmeet.databinding.FragmentProfileBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private lateinit var binding: FragmentProfileBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-private lateinit var binding : FragmentProfileBinding
 class ProfileFragment : Fragment() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -34,13 +22,11 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentProfileBinding.inflate(inflater,container,false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         binding.ibSettings.setOnClickListener {
-            Toast.makeText(context,"has fet click al buttó de settings",Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "has fet click al buttó de settings", Toast.LENGTH_LONG).show()
         }
         return binding.root
     }
-
-
 }

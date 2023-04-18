@@ -40,13 +40,14 @@ class AdapterAnswer(var list: java.util.ArrayList<Answer>) :
                         list[i].selected = 0
                     }
                 } else {
-                    list [i].selected = 0
+                    list[i].selected = 0
                 }
             }
 
             notifyDataSetChanged()
         }
     }
+
     override fun getItemCount() = list.size
 
     override fun getItemViewType(position: Int) = list[position].selected.toInt()

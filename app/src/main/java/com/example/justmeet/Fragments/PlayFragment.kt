@@ -43,7 +43,7 @@ class PlayFragment : Fragment(), MessageListener {
 
         }
         binding.btnJugar.setOnClickListener {
-            if ( WebSocketManager .sendMessage( " Client send " )) {
+            if (WebSocketManager.sendMessage(" Client send ")) {
                 val intent = Intent(requireContext(), GameActivity::class.java)
                 startActivity(intent)
                 //addText( " Send from the client \n " )
@@ -60,31 +60,31 @@ class PlayFragment : Fragment(), MessageListener {
     }
 
     override fun onConnectSuccess() {
-        addText( " Connected successfully \n " )
+        addText(" Connected successfully \n ")
     }
 
     override fun onConnectFailed() {
-        addText( " Connection failed \n " )
+        addText(" Connection failed \n ")
     }
 
     override fun onClose() {
-        addText( " Closed successfully \n " )
+        addText(" Closed successfully \n ")
     }
 
     override fun onMessage(text: String?) {
         val gson = Gson()
 
         if (text != null) {
-            if(text.startsWith("Game",false)){
-               var textSubstring = text.substring(4)
+            if (text.startsWith("Game", false)) {
+                var textSubstring = text.substring(4)
                 val listType = object : TypeToken<Game>() {}.type
                 gameFromSocket = gson.fromJson(textSubstring, listType)
                 println("GAME TYPE :" + gameFromSocket.idGame)
-                addText( " Receive message: $text \n " )
+                addText(" Receive message: $text \n ")
             } else {
                 val listType = object : TypeToken<ArrayList<Question>>() {}.type
                 listQuestion = gson.fromJson(text, listType)
-                activity?.runOnUiThread{
+                activity?.runOnUiThread {
                     binding.btnJugar.visibility = View.VISIBLE
                 }
             }
@@ -98,7 +98,7 @@ class PlayFragment : Fragment(), MessageListener {
     }
 
     override fun onDestroy() {
-        super .onDestroy ()
+        super.onDestroy()
         WebSocketManager.close()
     }
 

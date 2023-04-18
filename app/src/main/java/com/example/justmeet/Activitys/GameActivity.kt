@@ -15,12 +15,12 @@ import com.example.justmeet.databinding.ActivityGameBinding
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class GameActivity : AppCompatActivity(),CoroutineScope {
+class GameActivity : AppCompatActivity(), CoroutineScope {
 
     private lateinit var binding: ActivityGameBinding
     private lateinit var adapter: AdapterAnswer
     private var currentQuestionIndex = 0
-    private var listUserAnswer : List<UserAnswer> = listOf()
+    private var listUserAnswer: List<UserAnswer> = listOf()
     var job = Job()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,14 +29,14 @@ class GameActivity : AppCompatActivity(),CoroutineScope {
         setContentView(binding.root)
         putFullScreen()
 
-                if (listQuestion != null) {
-                    setupViews()
-                    startTimer()
-                }
+        if (listQuestion != null) {
+            setupViews()
+            startTimer()
+        }
     }
 
     private fun setupViews() {
-        binding.numberQuestion.text = "Pregunta ${(currentQuestionIndex+1)}/${listQuestion.size}"
+        binding.numberQuestion.text = "Pregunta ${(currentQuestionIndex + 1)}/${listQuestion.size}"
         binding.txtQuestion.text = listQuestion[currentQuestionIndex].question1
         adapter = AdapterAnswer(listQuestion[currentQuestionIndex].answers)
         binding.rvAnswers.adapter = adapter
@@ -44,7 +44,7 @@ class GameActivity : AppCompatActivity(),CoroutineScope {
     }
 
     private fun startTimer() {
-        val countDownTimer = object: CountDownTimer(4000, 1000) {
+        val countDownTimer = object : CountDownTimer(4000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.tvTime.text = (millisUntilFinished / 1000).toString()
             }
@@ -56,19 +56,23 @@ class GameActivity : AppCompatActivity(),CoroutineScope {
                     adapter = AdapterAnswer(listQuestion[currentQuestionIndex].answers)
                     binding.rvAnswers.adapter = adapter
                     binding.rvAnswers.layoutManager = LinearLayoutManager(applicationContext)
-                    binding.numberQuestion.text = "Pregunta ${(currentQuestionIndex+1)}/${listQuestion.size}"
+                    binding.numberQuestion.text =
+                        "Pregunta ${(currentQuestionIndex + 1)}/${listQuestion.size}"
                     startTimer()
-
-                }else {
+                } else {
                     println("ELSE")
-
-                    for (res in listQuestion){
-                        for (ans in res.answers) {
-                            if(ans.selected==1) {
-                                var userAns = UserAnswer(gameFromSocket.idGame!!, userLog.idUser!!,res.idQuestion,ans.idAnswer)
-                                listUserAnswer+=userAns
-                                println("Pregunta " +res.question1)
-                                println("Respuesta seleccionada"+ans.answer1)
+                    for (question in listQuestion) {
+                        for (answer in question.answers) {
+                            if (answer.selected == 1) {
+                                var userAns = UserAnswer(
+                                    gameFromSocket.idGame!!,
+                                    userLog.idUser!!,
+                                    question.idQuestion,
+                                    answer.idAnswer
+                                )
+                                listUserAnswer += userAns
+                                println("Pregunta " + question.question1)
+                                println("Respuesta seleccionada" + answer.answer1)
 
                             }
                         }
@@ -82,13 +86,9 @@ class GameActivity : AppCompatActivity(),CoroutineScope {
                         corrutina.join()
                     }
                     println("USER ANSWER INSERIT!!!")
-
                 }
-
-
             }
         }
-
         countDownTimer.start()
     }
 

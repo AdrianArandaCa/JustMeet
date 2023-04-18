@@ -15,14 +15,15 @@ interface APIService {
 
     @GET("userByName/{name}")
     suspend fun getOneUserByName(@Path("name") name: String): User
+
     @POST("user")
-    suspend fun insertUsuari(@Body usuari: User): Response<User>
+    suspend fun insertUsuari(@Body user: User): Response<User>
 
-    @PUT("/usuaris/")
-    suspend fun updateUser(@Body usuari: User): Response<User>
+    @PUT("user/{id}")
+    suspend fun updateUser(@Path("id") id: Int, @Body user: User): Response<User>
 
-    @DELETE("/usuaris/")
-    suspend fun deleteUser(@Query("codi") codi: Int): Response<User>
+    @DELETE("user/{id}")
+    suspend fun deleteUser(@Path("id") id: Int): Response<User>
 
 
     // UserAnswers requests

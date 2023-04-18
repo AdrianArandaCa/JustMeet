@@ -35,66 +35,6 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         setContentView(binding.root)
         putFullScreen()
         getPermissionsApi()
-
-
-//        val client = OkHttpClient()
-//        val request = Request.Builder().url("ws://172.16.24.123:45456/ws/2").build()
-//
-//        webSocket = client.newWebSocket(request, object : WebSocketListener() {
-//
-//            override fun onOpen(webSocket: WebSocket, response: Response) {
-//                super.onOpen(webSocket, response)
-//
-//            }
-//
-//            override fun onMessage(webSocket: WebSocket, text: String) {
-//                super.onMessage(webSocket, text)
-//                val gson = Gson()
-//                val listType = object : TypeToken<ArrayList<Question>>() {}.type
-//                try {
-//                    runBlocking {
-//                        var corrutina = launch {
-//                            listQuestion = gson.fromJson(text, listType)
-//
-//                        }
-//                        corrutina.join()
-////                        runOnUiThread {
-////                            binding.progressBar.visibility = View.GONE
-////                        }
-//                    }
-//                    for (question in listQuestion) {
-//                        println(question.question1)
-//                    }
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-//
-//            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-//                super.onClosing(webSocket, code, reason)
-//
-//            }
-//
-//            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-//                super.onFailure(webSocket, t, response)
-//
-//            }
-//        })
-
-//        runBlocking {
-//
-//            val crudApi = CrudApi()
-//            val corrutina = launch {
-//                 llistaUsers  = crudApi.getAllUsersFromAPI()
-//            }
-//            corrutina.join()
-//        }
-//
-//        for(user in llistaUsers) {
-//            println(user.name)
-//        }
-
-
         binding.btnRegister.setOnClickListener {
 
             val intento = Intent(this, RegisterActivity::class.java)
@@ -110,28 +50,29 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                     userLog = crudApi.getOneUserByName(userName)
                 }
                 corrutina.join()
-
             }
-            if(userLog!= null) {
+
+            if (userLog != null) {
                 var passWord = encryptPassword(binding.etPassword.text.toString())
-                if(passWord.equals(userLog.password)){
-                    binding.progressBar.visibility = View.VISIBLE
-                    Toast.makeText(this,"Login Correcte",Toast.LENGTH_LONG).show()
-                    binding.progressBar.visibility = View.GONE
+                if (passWord.equals(userLog.password)) {
+                    runOnUiThread {
+                        binding.progressBar.visibility = View.VISIBLE
+                        Toast.makeText(this, "Login Correcte", Toast.LENGTH_LONG).show()
+                        binding.progressBar.visibility = View.GONE
+                    }
                     Handler().postDelayed({
                         val intento = Intent(this, BottomNavigationActivity::class.java)
                         startActivity(intento)
-                    },0)
+                    }, 0)
 
                 } else {
-                    Toast.makeText(this,"Contrasenya incorrecte",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Contrasenya incorrecte", Toast.LENGTH_LONG).show()
                 }
 
-            } else{
-                Toast.makeText(this,"Aquest nom d'usuari no està registrat",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Aquest nom d'usuari no està registrat", Toast.LENGTH_LONG)
+                    .show()
             }
-
-
         }
     }
 
@@ -166,6 +107,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             inputStream.close()
         }
     }
+
     fun encryptPassword(input: String): String {
         return try {
             val md = MessageDigest.getInstance("SHA-256")
@@ -181,10 +123,5 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-
-
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + job
-
-
+    override val coroutineContext: CoroutineContext get() = Dispatchers.Main + job
 }
