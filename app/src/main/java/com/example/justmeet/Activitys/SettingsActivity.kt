@@ -10,12 +10,24 @@ import com.example.justmeet.databinding.ActivitySettingsBinding
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySettingsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        var isMale : Boolean = false
+        var isFemale : Boolean = true
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
         binding.backButtonSettings.setOnClickListener {
             onBackPressed()
+        }
+        binding.rbMale.setOnClickListener {
+            binding.rbFemale.isChecked = false
+            isMale = true
+            isFemale = false
+        }
+        binding.rbFemale.setOnClickListener {
+            binding.rbMale.isChecked = false
+            isFemale = true
+            isMale = false
         }
 
         val seekBarChangeListener = object : SeekBar.OnSeekBarChangeListener {
