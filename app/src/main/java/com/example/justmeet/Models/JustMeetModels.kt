@@ -1,7 +1,10 @@
 package com.example.justmeet.Models
 
+
+import java.util.*
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManagerFactory
+import kotlin.collections.ArrayList
 
 var listQuestion: ArrayList<Question> = arrayListOf()
 var listAnswer: ArrayList<Answer> = arrayListOf()
@@ -32,11 +35,11 @@ data class UserGame(
 )
 
 data class Game(
-    var idGame: Int,
+    var idGame: Int?,
     var registrationDate : String,
-    var match : Boolean,
-    var usuaris : List<User>,
-    var questions : List<Question>
+    var match : Boolean
+//    var usuaris : List<User>,
+//    var questions : List<Question>
 )
 
 data class QuestionGame(
@@ -59,10 +62,10 @@ data class GameType(
 )
 
 data class UserAnswer(
-    var game: Game,
-    var user: User,
-    var question: Question,
-    var answer: Answer
+    var idGame: Int,
+    var idUser: Int,
+    var idQuestion: Int,
+    var idAnswer: Int?
 )
 
 data class Answer(
@@ -88,3 +91,4 @@ lateinit var sslContext: SSLContext
 lateinit var algorithm: String
 lateinit var userLog : User
 var listQuestionAux: ArrayList<Question> = arrayListOf()
+lateinit var gameFromSocket : Game

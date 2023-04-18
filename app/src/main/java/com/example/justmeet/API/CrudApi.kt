@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import com.example.justmeet.Models.User
+import com.example.justmeet.Models.UserAnswer
 import com.example.justmeet.Models.sslContext
 import com.example.justmeet.Models.tmf
 import com.example.justmeet.R
@@ -76,6 +77,13 @@ class CrudApi(): CoroutineScope {
         val call = getRetrofit().create(APIService::class.java).getOneUserByName(name)
         return call!!
     }
+
+    // UserAnswersRequets
+    suspend fun addUserAnswerToAPI(listUserAnswer: List<UserAnswer>): Boolean {
+        val call = getRetrofit().create(APIService::class.java).insertUserAnswerList(listUserAnswer)
+        return call.isSuccessful
+    }
+
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job

@@ -1,6 +1,7 @@
 package com.example.justmeet.API
 
 import com.example.justmeet.Models.User
+import com.example.justmeet.Models.UserAnswer
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -22,4 +23,10 @@ interface APIService {
 
     @DELETE("/usuaris/")
     suspend fun deleteUser(@Query("codi") codi: Int): Response<User>
+
+
+    // UserAnswers requests
+    @POST("listUserAnswer")
+    suspend fun insertUserAnswerList(@Body usuari: List<UserAnswer>): Response<List<UserAnswer>>
+
 }

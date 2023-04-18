@@ -1,21 +1,15 @@
 package com.example.justmeet.Activitys
 
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.animation.Animation
 import android.widget.Toast
-import androidx.constraintlayout.motion.widget.Key.VISIBILITY
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.*
 import com.example.justmeet.R
-import com.example.justmeet.Socket.Socket
 import com.example.justmeet.databinding.ActivityLoginBinding
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
 import okhttp3.*
 import java.io.InputStream

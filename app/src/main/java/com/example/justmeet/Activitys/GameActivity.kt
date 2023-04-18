@@ -5,15 +5,23 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Adapters.AdapterAnswer
+import com.example.justmeet.Models.UserAnswer
+import com.example.justmeet.Models.gameFromSocket
 import com.example.justmeet.Models.listQuestion
+import com.example.justmeet.Models.userLog
 import com.example.justmeet.databinding.ActivityGameBinding
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-class GameActivity : AppCompatActivity() {
+class GameActivity : AppCompatActivity(),CoroutineScope {
 
     private lateinit var binding: ActivityGameBinding
     private lateinit var adapter: AdapterAnswer
     private var currentQuestionIndex = 0
+    private var listUserAnswer : List<UserAnswer> = listOf()
+    var job = Job()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,20 +29,10 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
         putFullScreen()
 
-        if (listQuestion != null) {
-            setupViews()
-            startTimer()
-        }
-        for (res in listQuestion){
-            for (ans in res.answers) {
-                if(ans.selected==1) {
-                    println("Pregunta " +res.question1)
-                    println("Respuesta seleccionada"+ans.answer1)
-
+                if (listQuestion != null) {
+                    setupViews()
+                    startTimer()
                 }
-            }
-        }
-
     }
 
     private fun setupViews() {
@@ -60,7 +58,34 @@ class GameActivity : AppCompatActivity() {
                     binding.rvAnswers.layoutManager = LinearLayoutManager(applicationContext)
                     binding.numberQuestion.text = "Pregunta ${(currentQuestionIndex+1)}/${listQuestion.size}"
                     startTimer()
+
+                }else {
+                    println("ELSE")
+
+                    for (res in listQuestion){
+                        for (ans in res.answers) {
+                            if(ans.selected==1) {
+                                var userAns = UserAnswer(gameFromSocket.idGame!!, userLog.idUser!!,res.idQuestion,ans.idAnswer)
+                                listUserAnswer+=userAns
+                                println("Pregunta " +res.question1)
+                                println("Respuesta seleccionada"+ans.answer1)
+
+                            }
+                        }
+                    }
+                    println("estamos")
+                    runBlocking {
+                        val crudApi = CrudApi()
+                        val corrutina = launch {
+                            crudApi.addUserAnswerToAPI(listUserAnswer)
+                        }
+                        corrutina.join()
+                    }
+                    println("USER ANSWER INSERIT!!!")
+
                 }
+
+
             }
         }
 
@@ -76,4 +101,7 @@ class GameActivity : AppCompatActivity() {
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
     }
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 }

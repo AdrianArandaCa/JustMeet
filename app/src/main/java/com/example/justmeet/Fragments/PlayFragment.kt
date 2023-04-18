@@ -40,7 +40,7 @@ class PlayFragment : Fragment(), MessageListener {
                     WebSocketManager.connect()
                 }
             }
-            binding.btnJugar.visibility = View.VISIBLE
+
         }
         binding.btnJugar.setOnClickListener {
             if ( WebSocketManager .sendMessage( " Client send " )) {
@@ -73,12 +73,20 @@ class PlayFragment : Fragment(), MessageListener {
 
     override fun onMessage(text: String?) {
         val gson = Gson()
-        val listType = object : TypeToken<ArrayList<Question>>() {}.type
+
         if (text != null) {
-            if(text.startsWith("-", 1,false)){
+            if(text.startsWith("Game",false)){
+               var textSubstring = text.substring(4)
+                val listType = object : TypeToken<Game>() {}.type
+                gameFromSocket = gson.fromJson(textSubstring, listType)
+                println("GAME TYPE :" + gameFromSocket.idGame)
                 addText( " Receive message: $text \n " )
             } else {
+                val listType = object : TypeToken<ArrayList<Question>>() {}.type
                 listQuestion = gson.fromJson(text, listType)
+                activity?.runOnUiThread{
+                    binding.btnJugar.visibility = View.VISIBLE
+                }
             }
         }
     }
