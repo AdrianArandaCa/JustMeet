@@ -24,8 +24,6 @@ import kotlin.coroutines.CoroutineContext
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 private lateinit var binding: FragmentPlayBinding
-private lateinit var webSocket: WebSocket
-var job = Job()
 
 class PlayFragment : Fragment(), MessageListener {
     override fun onCreate(savedInstanceState: Bundle?) {
