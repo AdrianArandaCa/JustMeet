@@ -15,6 +15,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityResumeNotMatch"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityResumeIsMatch"
+            android:exported="false" />
+        <activity
             android:name=".Activitys.SettingsActivity"
             android:exported="false" />
         <activity

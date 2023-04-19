@@ -44,8 +44,8 @@ class PlayFragment : Fragment(), MessageListener {
         }
         binding.btnJugar.setOnClickListener {
             if (WebSocketManager.sendMessage(" Client send ")) {
-                val intent = Intent(requireContext(), GameActivity::class.java)
-                startActivity(intent)
+//                val intent = Intent(requireContext(), GameActivity::class.java)
+//                startActivity(intent)
                 //addText( " Send from the client \n " )
             }
         }
@@ -85,7 +85,9 @@ class PlayFragment : Fragment(), MessageListener {
                 val listType = object : TypeToken<ArrayList<Question>>() {}.type
                 listQuestion = gson.fromJson(text, listType)
                 activity?.runOnUiThread {
-                    binding.btnJugar.visibility = View.VISIBLE
+                   // binding.btnJugar.visibility = View.VISIBLE
+                    val intent = Intent(requireContext(), GameActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
