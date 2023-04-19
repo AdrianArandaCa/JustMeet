@@ -29,6 +29,9 @@ class SettingsActivity : AppCompatActivity() {
             isFemale = true
             isMale = false
         }
+        binding.btnGuardarCambios.setOnClickListener {
+
+        }
 
         val seekBarChangeListener = object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
