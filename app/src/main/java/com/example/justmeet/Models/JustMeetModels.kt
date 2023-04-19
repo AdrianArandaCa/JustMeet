@@ -37,7 +37,8 @@ data class UserGame(
 data class Game(
     var idGame: Int?,
     var registrationDate : String,
-    var match : Boolean
+    var match : Boolean,
+    var percentage : Float
 //    var usuaris : List<User>,
 //    var questions : List<Question>
 )

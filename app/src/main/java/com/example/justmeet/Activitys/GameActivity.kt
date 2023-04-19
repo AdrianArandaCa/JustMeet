@@ -44,7 +44,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
     }
 
     private fun startTimer() {
-        val countDownTimer = object : CountDownTimer(4000, 1000) {
+        val countDownTimer = object : CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.tvTime.text = (millisUntilFinished / 1000).toString()
             }
@@ -62,6 +62,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                 } else {
                     println("ELSE")
                     for (question in listQuestion) {
+                        var answerSelected = false
                         for (answer in question.answers) {
                             if (answer.selected == 1) {
                                 var userAns = UserAnswer(
@@ -71,20 +72,21 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                                     answer.idAnswer
                                 )
                                 listUserAnswer += userAns
-                                println("Pregunta " + question.question1)
-                                println("Respuesta seleccionada" + answer.answer1)
-
-                            } else {
-                                var userAns = UserAnswer(
-                                    gameFromSocket.idGame!!,
-                                    userLog.idUser!!,
-                                    question.idQuestion,
-                                    0
-                                )
-                                listUserAnswer += userAns
+                                answerSelected = true
                                 println("Pregunta " + question.question1)
                                 println("Respuesta seleccionada" + answer.answer1)
                             }
+                        }
+                        if (!answerSelected) {
+                            var userAns = UserAnswer(
+                                gameFromSocket.idGame!!,
+                                userLog.idUser!!,
+                                question.idQuestion,
+                                0
+                            )
+                            listUserAnswer += userAns
+//                            println("Pregunta " + question.question1)
+//                            println("Respuesta seleccionada: ninguna")
                         }
                     }
                     println("estamos")
