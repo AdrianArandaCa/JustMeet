@@ -74,6 +74,16 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                                 println("Pregunta " + question.question1)
                                 println("Respuesta seleccionada" + answer.answer1)
 
+                            } else {
+                                var userAns = UserAnswer(
+                                    gameFromSocket.idGame!!,
+                                    userLog.idUser!!,
+                                    question.idQuestion,
+                                    0
+                                )
+                                listUserAnswer += userAns
+                                println("Pregunta " + question.question1)
+                                println("Respuesta seleccionada" + answer.answer1)
                             }
                         }
                     }
