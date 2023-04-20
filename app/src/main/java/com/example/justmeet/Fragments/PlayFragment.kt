@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.justmeet.Activitys.ActivityResumeIsMatch
+import com.example.justmeet.Activitys.ActivityResumeNotMatch
 import com.example.justmeet.Activitys.GameActivity
 import com.example.justmeet.Models.*
 import com.example.justmeet.Socket.MessageListener
@@ -75,11 +77,25 @@ class PlayFragment : Fragment(), MessageListener {
         val gson = Gson()
 
         if (text != null) {
+            if (text.startsWith("GAMERESULT")) {
+                var textSubstring = text.substring(10)
+                val gameType = object : TypeToken<Game>() {}.type
+                gameFinishFromSocket = gson.fromJson(textSubstring, gameType)
+                println("GAME TYPE :" + gameFinishFromSocket.idGame)
+                addText(" Receive message: $text \n ")
+                if (gameFinishFromSocket.match) {
+                    val intento = Intent(requireContext(), ActivityResumeIsMatch::class.java)
+                    startActivity(intento)
+                } else {
+                    val intento = Intent(requireContext(), ActivityResumeNotMatch::class.java)
+                    startActivity(intento)
+                }
+            }
             if (text.startsWith("Game", false)) {
                 var textSubstring = text.substring(4)
                 val listType = object : TypeToken<Game>() {}.type
                 gameFromSocket = gson.fromJson(textSubstring, listType)
-                println("GAME TYPE :" + gameFromSocket.idGame)
+                println("ID GAME INICIO :" + gameFromSocket.idGame)
                 addText(" Receive message: $text \n ")
             } else {
                 val listType = object : TypeToken<ArrayList<Question>>() {}.type
@@ -101,7 +117,8 @@ class PlayFragment : Fragment(), MessageListener {
 
     override fun onDestroy() {
         super.onDestroy()
-        WebSocketManager.close()
+       // WebSocketManager.close()
     }
+
 
 }

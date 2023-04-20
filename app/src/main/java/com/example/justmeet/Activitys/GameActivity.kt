@@ -1,21 +1,27 @@
 package com.example.justmeet.Activitys
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Adapters.AdapterAnswer
-import com.example.justmeet.Models.UserAnswer
-import com.example.justmeet.Models.gameFromSocket
-import com.example.justmeet.Models.listQuestion
-import com.example.justmeet.Models.userLog
+import com.example.justmeet.Models.*
+import com.example.justmeet.Socket.MessageListener
+import com.example.justmeet.Socket.WebSocketManager
 import com.example.justmeet.databinding.ActivityGameBinding
+import com.example.justmeet.databinding.ActivityResumeNotMatchBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
+import kotlin.concurrent.thread
 import kotlin.coroutines.CoroutineContext
 
-class GameActivity : AppCompatActivity(), CoroutineScope {
+class GameActivity : AppCompatActivity(), CoroutineScope{
 
     private lateinit var binding: ActivityGameBinding
     private lateinit var adapter: AdapterAnswer
@@ -28,6 +34,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
+
 
         if (listQuestion != null) {
             setupViews()
@@ -62,7 +69,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                 } else {
                     println("ELSE")
                     for (question in listQuestion) {
-                        var answerSelected = false
+                        // var answerSelected = false
                         for (answer in question.answers) {
                             if (answer.selected == 1) {
                                 var userAns = UserAnswer(
@@ -72,21 +79,10 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                                     answer.idAnswer
                                 )
                                 listUserAnswer += userAns
-                                answerSelected = true
+                                //     answerSelected = true
                                 println("Pregunta " + question.question1)
                                 println("Respuesta seleccionada" + answer.answer1)
                             }
-                        }
-                        if (!answerSelected) {
-                            var userAns = UserAnswer(
-                                gameFromSocket.idGame!!,
-                                userLog.idUser!!,
-                                question.idQuestion,
-                                0
-                            )
-                            listUserAnswer += userAns
-//                            println("Pregunta " + question.question1)
-//                            println("Respuesta seleccionada: ninguna")
                         }
                     }
                     println("estamos")
@@ -98,6 +94,13 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                         corrutina.join()
                     }
                     println("USER ANSWER INSERIT!!!")
+                    //CODIGO AQUI
+                    thread {
+                        kotlin.run {
+                            WebSocketManager.sendMessage("GAMERESULT${gameFromSocket.idGame}")
+                        }
+                    }
+                    println("FINAL WEBSOCKET")
                 }
             }
         }
@@ -112,6 +115,12 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                         or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //WebSocketManager.close()
     }
 
     override val coroutineContext: CoroutineContext

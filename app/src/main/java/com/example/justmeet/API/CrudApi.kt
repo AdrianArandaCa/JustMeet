@@ -81,6 +81,7 @@ class CrudApi(): CoroutineScope {
     // UserAnswersRequets
     suspend fun addUserAnswerToAPI(listUserAnswer: List<UserAnswer>): Boolean {
         val call = getRetrofit().create(APIService::class.java).insertUserAnswerList(listUserAnswer)
+        println(call.message())
         return call.isSuccessful
     }
 
