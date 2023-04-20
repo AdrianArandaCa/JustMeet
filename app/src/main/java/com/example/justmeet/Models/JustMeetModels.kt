@@ -90,6 +90,6 @@ lateinit var llistaUsers: ArrayList<User>
 lateinit var tmf: TrustManagerFactory
 lateinit var sslContext: SSLContext
 lateinit var algorithm: String
-lateinit var userLog : User
+ var userLog = User(null,null,null,null,null,null,null,null,null,null,null,null)
 var listQuestionAux: ArrayList<Question> = arrayListOf()
 lateinit var gameFromSocket : Game

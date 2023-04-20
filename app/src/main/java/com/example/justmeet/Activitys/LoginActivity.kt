@@ -42,6 +42,8 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
 
         binding.btnLogin.setOnClickListener {
+            val intento = Intent(this, BottomNavigationActivity::class.java)
+            startActivity(intento)
             var userName = binding.etUserName.text.toString()
 
             runBlocking {

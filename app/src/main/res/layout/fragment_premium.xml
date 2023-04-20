@@ -1,21 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/black"
     tools:context=".Fragments.PremiumFragment">
 
     <ImageView
-        android:id="@+id/ivJustplay"
+        android:id="@+id/ivJustPremium"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:contentDescription="@string/logopremium"
         android:scaleType="centerCrop"
         android:src="@drawable/justpremium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecciona un plan"
+        android:textColor="@color/dark_gold"
+        android:textStyle="bold"
+        android:layout_margin="15dp"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:layout_margin="25dp"
+                app:cardCornerRadius="8dp"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:id="@+id/cardViewPremium1"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+
+                    android:background="@color/light_gold"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1 mes"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:layout_marginTop="20dp"
+                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="25,99 €/mes"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="8dp"
+                        android:textStyle="bold" />
+
+                    <!-- Agrega aquí la información de tu plan Premium 2, por ejemplo, precio, características, etc. -->
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:layout_margin="25dp"
+                app:cardCornerRadius="8dp"
+
+                android:id="@+id/cardViewPremium2"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+
+                    android:background="@color/light_gold"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="6 meses"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:layout_marginTop="20dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="12,49 €/mes"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="8dp"
+                        android:textStyle="bold" />
+
+                    <!-- Agrega aquí la información de tu plan Premium 2, por ejemplo, precio, características, etc. -->
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Ventajas de ser premium"
+    android:textColor="@color/dark_gold"
+    android:textStyle="bold"
+    android:layout_margin="15dp"
+    android:textSize="20sp"
+    android:textAlignment="center"
+    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearVentaja1"
+        android:orientation="horizontal"
+     android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/asset_visto_twentyfour"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Partidas ilimitadas"
+            android:textColor="@color/dark_gold"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearVentaja2"
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/asset_visto_twentyfour"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Ocultar anuncios"
+            android:textColor="@color/dark_gold"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearVentaja3"
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/asset_visto_twentyfour"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Logo premium"
+            android:textColor="@color/dark_gold"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
