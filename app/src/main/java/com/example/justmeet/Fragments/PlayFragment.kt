@@ -91,7 +91,7 @@ class PlayFragment : Fragment(), MessageListener {
                     startActivity(intento)
                 }
             }
-            if (text.startsWith("Game", false)) {
+            else if (text.startsWith("Game", false)) {
                 var textSubstring = text.substring(4)
                 val listType = object : TypeToken<Game>() {}.type
                 gameFromSocket = gson.fromJson(textSubstring, listType)
