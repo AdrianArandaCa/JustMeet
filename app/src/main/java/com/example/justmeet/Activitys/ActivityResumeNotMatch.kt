@@ -1,10 +1,12 @@
 package com.example.justmeet.Activitys
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.justmeet.Models.gameFinishFromSocket
 import com.example.justmeet.R
+import com.example.justmeet.Socket.WebSocketManager
 import com.example.justmeet.databinding.ActivityResumeNotMatchBinding
 
 class ActivityResumeNotMatch : AppCompatActivity() {
@@ -15,6 +17,11 @@ class ActivityResumeNotMatch : AppCompatActivity() {
         setContentView(binding.root)
         putFullScreen()
         binding.tvPorcentajeNum.setText(gameFinishFromSocket.percentage.toString()+"%")
+
+        binding.btnVolverInicio.setOnClickListener {
+            val intento = Intent(this,BottomNavigationActivity::class.java)
+            startActivity(intento)
+        }
     }
     fun putFullScreen() {
         this.supportActionBar?.hide()

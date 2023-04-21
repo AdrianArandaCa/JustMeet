@@ -94,3 +94,5 @@ lateinit var algorithm: String
 var listQuestionAux: ArrayList<Question> = arrayListOf()
 lateinit var gameFromSocket : Game
 lateinit var gameFinishFromSocket : Game
+//var userMatch = User(null,null,null,null,null,null,null,null,null,null,null,null)
+

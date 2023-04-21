@@ -23,6 +23,7 @@ import kotlin.concurrent.thread
 private lateinit var binding: FragmentPlayBinding
 
 class PlayFragment : Fragment(), MessageListener {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,21 +36,15 @@ class PlayFragment : Fragment(), MessageListener {
         binding = FragmentPlayBinding.inflate(inflater, container, false)
         binding.btnJugar.visibility = View.GONE
         val serverUrl = "ws://172.16.24.123:45456/ws/${userLog.idUser}"
+
         WebSocketManager.init(serverUrl, this)
         binding.btnBuscarPartida.setOnClickListener {
             thread {
                 kotlin.run {
-                    WebSocketManager.connect()
+                        WebSocketManager.connect()
                 }
             }
 
-        }
-        binding.btnJugar.setOnClickListener {
-            if (WebSocketManager.sendMessage(" Client send ")) {
-//                val intent = Intent(requireContext(), GameActivity::class.java)
-//                startActivity(intent)
-                //addText( " Send from the client \n " )
-            }
         }
         /*closeConnectionBtn.setOnClickListener {
             WebSocketManager.close()
@@ -71,6 +66,7 @@ class PlayFragment : Fragment(), MessageListener {
 
     override fun onClose() {
         addText(" Closed successfully \n ")
+        println("WEB SOCKET CERRADO PUTO")
     }
 
     override fun onMessage(text: String?) {
@@ -87,6 +83,8 @@ class PlayFragment : Fragment(), MessageListener {
                     val intento = Intent(requireContext(), ActivityResumeIsMatch::class.java)
                     startActivity(intento)
                 } else {
+                    //WebSocketManager.sendMessage("close")
+                    //WebSocketManager.close()
                     val intento = Intent(requireContext(), ActivityResumeNotMatch::class.java)
                     startActivity(intento)
                 }
@@ -116,8 +114,9 @@ class PlayFragment : Fragment(), MessageListener {
     }
 
     override fun onDestroy() {
+        WebSocketManager.close()
         super.onDestroy()
-       // WebSocketManager.close()
+
     }
 
 

@@ -92,14 +92,18 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                             crudApi.addUserAnswerToAPI(listUserAnswer)
                         }
                         corrutina.join()
+                       // WebSocketManager.sendMessage("GAMERESULT${gameFromSocket.idGame}")
                     }
                     println("USER ANSWER INSERIT!!!")
-                    //CODIGO AQUI
-                    thread {
-                        kotlin.run {
+
                             WebSocketManager.sendMessage("GAMERESULT${gameFromSocket.idGame}")
-                        }
-                    }
+
+//                    //CODIGO AQUI
+//                    thread {
+//                        kotlin.run {
+//                            WebSocketManager.sendMessage("GAMERESULT${gameFromSocket.idGame}")
+//                        }
+//                    }
                     println("FINAL WEBSOCKET")
                 }
             }
@@ -120,7 +124,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
 
     override fun onDestroy() {
         super.onDestroy()
-        //WebSocketManager.close()
+        WebSocketManager.close()
     }
 
     override val coroutineContext: CoroutineContext
