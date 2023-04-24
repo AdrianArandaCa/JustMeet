@@ -30,4 +30,9 @@ interface APIService {
     @POST("listUserAnswer")
     suspend fun insertUserAnswerList(@Body usuari: List<UserAnswer>): Response<List<UserAnswer>>
 
+    // UserMatches
+
+    @GET("userGameList/{idUser}")
+    suspend fun getUsersMatch(@Path("idUser") idUser : Int) : List<User>
+
 }

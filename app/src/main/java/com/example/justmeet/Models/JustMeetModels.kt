@@ -95,4 +95,6 @@ var listQuestionAux: ArrayList<Question> = arrayListOf()
 lateinit var gameFromSocket : Game
  var gameFinishFromSocket = Game(null,null,null,null)
 //var userMatch = User(null,null,null,null,null,null,null,null,null,null,null,null)
+var listUserMatches : ArrayList<User> = arrayListOf()
+
 

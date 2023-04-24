@@ -1,8 +1,5 @@
 package com.example.justmeet.API
 
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
 import com.example.justmeet.Models.User
 import com.example.justmeet.Models.UserAnswer
 import com.example.justmeet.Models.sslContext
@@ -85,6 +82,11 @@ class CrudApi(): CoroutineScope {
         return call.isSuccessful
     }
 
+    //UserMatchesRequets
+    suspend fun getUsersMatches(idUser: Int): List<User> {
+
+        return getRetrofit().create(APIService::class.java).getUsersMatch(idUser)
+    }
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
