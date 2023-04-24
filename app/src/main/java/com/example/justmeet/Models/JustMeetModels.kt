@@ -36,9 +36,9 @@ data class UserGame(
 
 data class Game(
     var idGame: Int?,
-    var registrationDate : String,
-    var match : Boolean,
-    var percentage : Float
+    var registrationDate : String?,
+    var match : Boolean?,
+    var percentage : Float?
 //    var usuaris : List<User>,
 //    var questions : List<Question>
 )
@@ -93,6 +93,6 @@ lateinit var algorithm: String
  var userLog = User(null,null,null,null,null,null,null,null,null,null,null,null)
 var listQuestionAux: ArrayList<Question> = arrayListOf()
 lateinit var gameFromSocket : Game
-lateinit var gameFinishFromSocket : Game
+ var gameFinishFromSocket = Game(null,null,null,null)
 //var userMatch = User(null,null,null,null,null,null,null,null,null,null,null,null)
 

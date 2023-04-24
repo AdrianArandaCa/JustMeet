@@ -20,6 +20,7 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
 import kotlin.concurrent.thread
 import kotlin.coroutines.CoroutineContext
+import kotlin.random.Random
 
 class GameActivity : AppCompatActivity(), CoroutineScope{
 
@@ -92,19 +93,15 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                             crudApi.addUserAnswerToAPI(listUserAnswer)
                         }
                         corrutina.join()
-                       // WebSocketManager.sendMessage("GAMERESULT${gameFromSocket.idGame}")
                     }
                     println("USER ANSWER INSERIT!!!")
-
+                    val randomDelay = Random.nextInt(0, 200)
+                    Thread.sleep(randomDelay.toLong())
                             WebSocketManager.sendMessage("GAMERESULT${gameFromSocket.idGame}")
-
-//                    //CODIGO AQUI
-//                    thread {
-//                        kotlin.run {
-//                            WebSocketManager.sendMessage("GAMERESULT${gameFromSocket.idGame}")
-//                        }
-//                    }
                     println("FINAL WEBSOCKET")
+                    WebSocketManager.sendMessage("CLOSE")
+                    println("PASSA POR CLOSE")
+
                 }
             }
         }
@@ -124,7 +121,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
 
     override fun onDestroy() {
         super.onDestroy()
-        WebSocketManager.close()
+      //  WebSocketManager.close()
     }
 
     override val coroutineContext: CoroutineContext

@@ -37,10 +37,11 @@ class PlayFragment : Fragment(), MessageListener {
         binding.btnJugar.visibility = View.GONE
         val serverUrl = "ws://172.16.24.123:45456/ws/${userLog.idUser}"
 
-        WebSocketManager.init(serverUrl, this)
+
         binding.btnBuscarPartida.setOnClickListener {
             thread {
                 kotlin.run {
+                    WebSocketManager.init(serverUrl, this)
                         WebSocketManager.connect()
                 }
             }
@@ -57,15 +58,14 @@ class PlayFragment : Fragment(), MessageListener {
     }
 
     override fun onConnectSuccess() {
-        addText(" Connected successfully \n ")
+        println("on connectSucces")
     }
 
     override fun onConnectFailed() {
-        addText(" Connection failed \n ")
+        println("on Connect Failed")
     }
 
     override fun onClose() {
-        addText(" Closed successfully \n ")
         println("WEB SOCKET CERRADO PUTO")
     }
 
@@ -77,9 +77,8 @@ class PlayFragment : Fragment(), MessageListener {
                 var textSubstring = text.substring(10)
                 val gameType = object : TypeToken<Game>() {}.type
                 gameFinishFromSocket = gson.fromJson(textSubstring, gameType)
-                println("GAME TYPE :" + gameFinishFromSocket.idGame)
-                addText(" Receive message: $text \n ")
-                if (gameFinishFromSocket.match) {
+                println("GAME RESULT :" + gameFinishFromSocket.idGame)
+                if (gameFinishFromSocket.match == true) {
                     val intento = Intent(requireContext(), ActivityResumeIsMatch::class.java)
                     startActivity(intento)
                 } else {
@@ -114,7 +113,7 @@ class PlayFragment : Fragment(), MessageListener {
     }
 
     override fun onDestroy() {
-        WebSocketManager.close()
+        //WebSocketManager.close()
         super.onDestroy()
 
     }
