@@ -1,9 +1,6 @@
 package com.example.justmeet.API
 
-import com.example.justmeet.Models.User
-import com.example.justmeet.Models.UserAnswer
-import com.example.justmeet.Models.sslContext
-import com.example.justmeet.Models.tmf
+import com.example.justmeet.Models.*
 import com.example.justmeet.R
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
@@ -73,6 +70,13 @@ class CrudApi(): CoroutineScope {
     suspend fun getOneUserByName(name: String): User {
         val call = getRetrofit().create(APIService::class.java).getOneUserByName(name)
         return call!!
+    }
+
+    //Settings Request
+
+    suspend fun getSettingById(idSetting: Int): Setting {
+        val call = getRetrofit().create(APIService::class.java).getSettingById(idSetting)
+        return call
     }
 
     // UserAnswersRequets

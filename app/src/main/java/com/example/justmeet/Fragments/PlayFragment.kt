@@ -23,7 +23,7 @@ import kotlin.concurrent.thread
 private lateinit var binding: FragmentPlayBinding
 
 class PlayFragment : Fragment(), MessageListener {
-
+var isSucces : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -34,18 +34,18 @@ class PlayFragment : Fragment(), MessageListener {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentPlayBinding.inflate(inflater, container, false)
-        binding.btnJugar.visibility = View.GONE
         val serverUrl = "ws://172.16.24.123:45456/ws/${userLog.idUser}"
-
-
         binding.btnBuscarPartida.setOnClickListener {
             thread {
                 kotlin.run {
                     WebSocketManager.init(serverUrl, this)
-                        WebSocketManager.connect()
+                    WebSocketManager.connect()
                 }
             }
-
+            activity?.runOnUiThread {
+                binding.btnBuscarPartida.setText("Buscando partida...")
+                binding.progressBarPlay.visibility = View.VISIBLE
+            }
         }
         /*closeConnectionBtn.setOnClickListener {
             WebSocketManager.close()
@@ -59,6 +59,7 @@ class PlayFragment : Fragment(), MessageListener {
 
     override fun onConnectSuccess() {
         println("on connectSucces")
+
     }
 
     override fun onConnectFailed() {
@@ -73,7 +74,22 @@ class PlayFragment : Fragment(), MessageListener {
         val gson = Gson()
 
         if (text != null) {
-            if (text.startsWith("GAMERESULT")) {
+            if (text.startsWith("CLOSE")) {
+                if(text == "CLOSEMATCH") {
+                    println("CLOSEMATCH")
+                } else if(text == "CLOSEAGE") {
+                    println("CLOSEAGE")
+                } else if(text == "CLOSEGENRE"){
+                    println("CLOSEGENRE")
+                }
+                hideProgressBar()
+                thread {
+                    kotlin.run {
+                            WebSocketManager.sendMessage("CLOSE")
+                    }
+                }
+            }
+            else if (text.startsWith("GAMERESULT")) {
                 var textSubstring = text.substring(10)
                 val gameType = object : TypeToken<Game>() {}.type
                 gameFinishFromSocket = gson.fromJson(textSubstring, gameType)
@@ -87,8 +103,7 @@ class PlayFragment : Fragment(), MessageListener {
                     val intento = Intent(requireContext(), ActivityResumeNotMatch::class.java)
                     startActivity(intento)
                 }
-            }
-            else if (text.startsWith("Game", false)) {
+            } else if (text.startsWith("Game", false)) {
                 var textSubstring = text.substring(4)
                 val listType = object : TypeToken<Game>() {}.type
                 gameFromSocket = gson.fromJson(textSubstring, listType)
@@ -98,7 +113,7 @@ class PlayFragment : Fragment(), MessageListener {
                 val listType = object : TypeToken<ArrayList<Question>>() {}.type
                 listQuestion = gson.fromJson(text, listType)
                 activity?.runOnUiThread {
-                   // binding.btnJugar.visibility = View.VISIBLE
+                    binding.progressBarPlay.visibility = View.GONE
                     val intent = Intent(requireContext(), GameActivity::class.java)
                     startActivity(intent)
                 }
@@ -106,9 +121,16 @@ class PlayFragment : Fragment(), MessageListener {
         }
     }
 
+    private fun hideProgressBar() {
+        activity?.runOnUiThread {
+            binding.progressBarPlay.visibility = View.GONE
+            binding.btnBuscarPartida.setText("Buscar partida")
+        }
+    }
+
     private fun addText(text: String?) {
         activity?.runOnUiThread {
-            //contentEt.text.append(text)
+
         }
     }
 

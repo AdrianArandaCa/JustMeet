@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/dark_gold">
+        android:background="@color/brown_gold">
 
         <TextView
             android:id="@+id/txtAnswer"
@@ -18,7 +18,7 @@
             android:layout_margin="10dp"
             android:text="@string/answer"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

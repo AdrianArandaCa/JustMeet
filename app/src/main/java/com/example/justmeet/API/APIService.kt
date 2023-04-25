@@ -1,5 +1,6 @@
 package com.example.justmeet.API
 
+import com.example.justmeet.Models.Setting
 import com.example.justmeet.Models.User
 import com.example.justmeet.Models.UserAnswer
 import retrofit2.Response
@@ -34,5 +35,10 @@ interface APIService {
 
     @GET("userGameList/{idUser}")
     suspend fun getUsersMatch(@Path("idUser") idUser : Int) : List<User>
+
+    //Settings Request
+
+    @GET("setting/{idSetting}")
+    suspend fun getSettingById(@Path("idSetting") idSetting : Int) : Setting
 
 }

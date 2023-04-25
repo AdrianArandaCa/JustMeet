@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@drawable/fondobg1"
     tools:context=".Fragments.PremiumFragment">
 
     <ImageView
@@ -43,15 +43,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-
-                    android:background="@color/light_gold"
+                    android:id="@+id/linearOpcion1"
+                    android:background="@drawable/fondobg3"
                     >
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tvMesPremium"
                         android:text="1 mes"
-                        android:textColor="@color/black"
+                        android:textColor="@color/light_gold"
                         android:textAlignment="center"
                         android:textSize="20sp"
                         android:layout_marginTop="20dp"
@@ -60,7 +61,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="25,99 €/mes"
-                        android:textColor="@color/black"
+                        android:id="@+id/tvPrecioPremium"
+                        android:textColor="@color/light_gold"
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:layout_marginTop="8dp"
@@ -83,15 +85,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-
-                    android:background="@color/light_gold"
+                    android:id="@+id/linearOpcion2"
+                    android:background="@drawable/fondobg3"
                     >
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="6 meses"
-                        android:textColor="@color/black"
+                        android:id="@+id/tvMesPremium1"
+                        android:textColor="@color/light_gold"
                         android:textAlignment="center"
                         android:textSize="20sp"
                         android:layout_marginTop="20dp"
@@ -100,7 +103,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="12,49 €/mes"
-                        android:textColor="@color/black"
+                        android:id="@+id/tvPrecioPremium1"
+                        android:textColor="@color/light_gold"
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:layout_marginTop="8dp"

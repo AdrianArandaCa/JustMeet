@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/fondobg1"
     tools:context=".Activitys.ActivityResumeNotMatch">
 
     <ImageView
@@ -13,6 +13,7 @@
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:src="@drawable/justresume"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -90,7 +91,7 @@
         android:background="@drawable/border_button"
         android:text="Volver al Inicio"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMensajeMatch2" />

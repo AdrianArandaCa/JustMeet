@@ -1,6 +1,8 @@
 package com.example.justmeet.Models
 
 
+import java.sql.Date
+import java.time.LocalDate
 import java.util.*
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManagerFactory
@@ -9,17 +11,17 @@ import kotlin.collections.ArrayList
 var listQuestion: ArrayList<Question> = arrayListOf()
 var listAnswer: ArrayList<Answer> = arrayListOf()
 data class User(
-    var idUser : Int?,
-    var name : String?,
-    var password : String?,
-    var email : String?,
-    var birthday : String?,
-    var genre : String?,
-    var photo : Int?,
-    var description : String?,
-    var premium : Boolean?,
+    var idUser: Int?,
+    var name: String?,
+    var password: String?,
+    var email: String?,
+    var birthday: Int?,
+    var genre: String?,
+    var photo: Int?,
+    var description: String?,
+    var premium: Boolean?,
     var idSetting: Int?,
-    var idSettingNavigation : Setting?,
+    var idSettingNavigation: Setting?,
     var location: Location?
 )
 

@@ -7,16 +7,17 @@ import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import com.example.justmeet.API.CrudApi
-import com.example.justmeet.Models.GameType
 import com.example.justmeet.Models.Location
 import com.example.justmeet.Models.Setting
 import com.example.justmeet.Models.User
-import com.example.justmeet.R
 import com.example.justmeet.databinding.ActivityRegisterBinding
 import kotlinx.coroutines.*
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
@@ -31,9 +32,9 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
-        binding.etBirthday.setOnClickListener {
-            showDatePicker()
-        }
+//        binding.etBirthday.setOnClickListener {
+//            showDatePicker()
+//        }
         binding.rbMale.setOnClickListener {
             binding.rbFemale.isChecked = false
             isMale = true
@@ -45,18 +46,25 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
             isMale = false
         }
         binding.btnRegister.setOnClickListener {
+            if(binding.etBirthday.text.toString().toInt() < 18 || binding.etBirthday.text.toString().toInt() > 99 ) {
+                Toast.makeText(this, "Edad no valida", Toast.LENGTH_LONG)
+                    .show()
+            }
             var nomUser = binding.etUserName.text.toString()
             var passWord = binding.etPassword.text.toString()
             var passWordConfirm = binding.etPasswordConfirm.text.toString()
             var email = binding.etEmail.text.toString()
-            var dateOfBirthday = binding.etBirthday.text.toString()
+            var dateOfBirthday = binding.etBirthday.text.toString().toInt()
+            //val sqlDate = java.sql.Date(dateOfBirthday.time)
+
+
             var genre = ""
             if (isMale) {
                 genre = "M"
             } else if (isFemale) {
                 genre = "F"
             }
-            if (nomUser.isNotEmpty() && passWord.isNotEmpty() && passWordConfirm.isNotEmpty() && email.isNotEmpty() && dateOfBirthday.isNotEmpty() && genre.isNotEmpty()) {
+            if (nomUser.isNotEmpty() && passWord.isNotEmpty() && passWordConfirm.isNotEmpty() && email.isNotEmpty() && binding.etBirthday.text.isNotEmpty() && genre.isNotEmpty()) {
                 if (passWord.equals(passWordConfirm)) {
                     //Guardas usuario
                     var passWordEncrypt = encryptPassword(passWord)
@@ -108,24 +116,25 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
             }
         }
     }
-    fun showDatePicker() {
-        // Se crea un Calendar con la fecha actual
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        // Se crea el DatePickerDialog
-        val datePickerDialog =
-            DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDayOfMonth ->
-                // Se establece la fecha seleccionada en el EditText
-                val selectedDate = "$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear"
-                binding.etBirthday.setText(selectedDate)
-            }, year, month, day)
-
-        // Se muestra el DatePickerDialog
-        datePickerDialog.show()
-    }
+//    fun showDatePicker() {
+//        // Se crea un Calendar con la fecha actual
+//        val calendar = Calendar.getInstance()
+//        val year = calendar.get(Calendar.YEAR)
+//        val month = calendar.get(Calendar.MONTH)
+//        val day = calendar.get(Calendar.DAY_OF_MONTH)
+//        val dateFormat = DateTimeFormatter.ofPattern("yyyy-M-dd")
+//        // Se crea el DatePickerDialog
+//        val datePickerDialog =
+//            DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDayOfMonth ->
+//                // Se establece la fecha seleccionada en el EditText
+//                val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDayOfMonth"
+//                val sdf = LocalDate.parse(selectedDate,dateFormat)
+//                binding.etBirthday.setText(sdf.toString())
+//            }, year, month, day)
+//
+//        // Se muestra el DatePickerDialog
+//        datePickerDialog.show()
+//    }
     fun encryptPassword(input: String): String {
         return try {
             val md = MessageDigest.getInstance("SHA-256")
