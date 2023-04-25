@@ -41,9 +41,13 @@ class PremiumFragment : Fragment() {
         }
         binding.cardViewPremium2.setOnClickListener {
 
-            binding.linearOpcion2.setBackgroundResource(R.drawable.fondobg3)
-            binding.tvMesPremium1.setTextColor(resources.getColor(R.color.light_gold))
-            binding.tvPrecioPremium1.setTextColor(resources.getColor(R.color.light_gold))
+            binding.linearOpcion2.setBackgroundResource(R.drawable.fondogold_selecteduno)
+            binding.tvMesPremium1.setTextColor(resources.getColor(R.color.black))
+            binding.tvPrecioPremium1.setTextColor(resources.getColor(R.color.black))
+
+            binding.linearOpcion1.setBackgroundResource(R.drawable.fondobg3)
+            binding.tvMesPremium.setTextColor(resources.getColor(R.color.light_gold))
+            binding.tvPrecioPremium.setTextColor(resources.getColor(R.color.light_gold))
             binding.cardViewPremium1.isSelected = false
         }
         return binding.root
