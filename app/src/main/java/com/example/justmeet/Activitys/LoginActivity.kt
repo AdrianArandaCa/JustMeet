@@ -56,16 +56,21 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
 
             if (userLog != null) {
                 var passWord = encryptPassword(binding.etPassword.text.toString())
-                if (passWord.equals(userLog.password)) {
+                if (passWord.equals(userLog!!.password)) {
                     runOnUiThread {
                         binding.progressBar.visibility = View.VISIBLE
                         Toast.makeText(this, "Login Correcte", Toast.LENGTH_LONG).show()
                         binding.progressBar.visibility = View.GONE
                     }
-                    Handler().postDelayed({
+                    if(userLog!!.photo == 0) {
+                        val intento = Intent(this, ActivitySelectAvatar::class.java)
+                        startActivity(intento)
+                    } else {
                         val intento = Intent(this, BottomNavigationActivity::class.java)
                         startActivity(intento)
-                    }, 0)
+                    }
+
+
 
                 } else {
                     Toast.makeText(this, "Contrasenya incorrecte", Toast.LENGTH_LONG).show()

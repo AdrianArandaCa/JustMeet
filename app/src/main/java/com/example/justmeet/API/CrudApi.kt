@@ -55,7 +55,7 @@ class CrudApi(): CoroutineScope {
     }
 
     suspend fun modifyUserFromApi(user: User): Boolean {
-        val call = getRetrofit().create(APIService::class.java).updateUser(user.idUser ?: 0, user)
+        val call = getRetrofit().create(APIService::class.java).updateUser(user.idUser!!, user)
         return call.isSuccessful
     }
 

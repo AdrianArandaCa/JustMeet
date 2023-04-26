@@ -75,7 +75,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                             if (answer.selected == 1) {
                                 var userAns = UserAnswer(
                                     gameFromSocket.idGame!!,
-                                    userLog.idUser!!,
+                                    userLog!!.idUser!!,
                                     question.idQuestion,
                                     answer.idAnswer
                                 )

@@ -1,9 +1,12 @@
 package com.example.justmeet.Activitys
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.Setting
 import com.example.justmeet.Models.userLog
@@ -26,7 +29,7 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
         runBlocking {
             val corrutina = launch {
                 val crudapi = CrudApi()
-                userSetting = crudapi.getSettingById(userLog.idSetting!!)
+                userSetting = crudapi.getSettingById(userLog!!.idSetting!!)
             }
             corrutina.join()
         }
@@ -56,6 +59,24 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
         }
         binding.btnGuardarCambios.setOnClickListener {
 
+        }
+        binding.btnCerrarSesion.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Cerrar sesión")
+            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+            builder.setPositiveButton("Sí") { _, _ ->
+                // Agrega aquí el código para cerrar sesión
+                userLog = null
+                val intento = Intent(this,LoginActivity::class.java)
+                startActivity(intento)
+                finish()
+                Toast.makeText(this,"Sessión cerrada",Toast.LENGTH_LONG).show()
+            }
+            builder.setNegativeButton("No") { _, _ ->
+
+            }
+            val dialog = builder.create()
+            dialog.show()
         }
 
         val seekBarChangeListener = object : SeekBar.OnSeekBarChangeListener {

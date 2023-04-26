@@ -30,11 +30,15 @@ class AdapterMatches(val llista : ArrayList<User>): RecyclerView.Adapter<Adapter
 
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
-        if(llista[position].genre.equals("M")){
-            holder.avatarUser.setImageResource(R.drawable.avatarhombre)
+
+        if(llista[position].photo == 0) {
+            holder.avatarUser.setImageResource(R.drawable.logousernamegold)
         } else {
-            holder.avatarUser.setImageResource(R.drawable.avatar_female)
+            holder.avatarUser.setImageResource(llista[position].photo!!)
         }
+
+
+
         holder.userName.setText(llista[position].name)
     }
     override fun getItemCount(): Int {

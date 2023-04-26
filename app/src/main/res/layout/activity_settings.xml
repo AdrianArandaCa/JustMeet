@@ -11,11 +11,12 @@
         android:id="@+id/backButtonSettings"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:contentDescription="@string/imagesetting"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/imagesetting"
         android:src="@drawable/back_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/ivJustSettings"
         android:layout_width="match_parent"
@@ -52,50 +53,51 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:text="Distancia màxima"
             android:inputType="text"
-            android:textStyle="bold"
+            android:text="Distancia màxima"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tvKM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:text="23 km"
             android:inputType="text"
-            android:textStyle="bold"
+            android:text="23 km"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <SeekBar
         android:id="@+id/seekbarDistancia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="99"
-        android:progress="20"
-        android:layout_marginEnd="80dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="80dp"
+        android:max="99"
+        android:progress="20"
         android:progressTint="@color/white"
         android:thumbTint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLocation"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLocation" />
+
     <LinearLayout
         android:id="@+id/linearRangoEdad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/seekbarDistancia">
@@ -115,84 +117,86 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:text="Rango de Edad"
             android:inputType="text"
-            android:textStyle="bold"
+            android:text="Rango de Edad"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tvEdadMinMax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:text="18-27"
             android:inputType="text"
-            android:textStyle="bold"
+            android:text="18-27"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
+
     <SeekBar
         android:id="@+id/seekBarMin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="80dp"
         android:max="99"
         android:min="18"
         android:progress="18"
-        android:layout_marginEnd="80dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="8dp"
         android:progressTint="@color/white"
         android:thumbTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearRangoEdad"
-        app:layout_constraintEnd_toEndOf="parent"
 
         />
+
     <SeekBar
         android:id="@+id/seekBarMax"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="80dp"
         android:max="100"
         android:min="19"
         android:progress="100"
-        android:layout_marginEnd="80dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seekBarMin"
-        app:layout_constraintEnd_toEndOf="parent"
         android:progressTint="@color/white"
         android:thumbTint="@color/white"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekBarMin" />
+
     <TextView
+        android:id="@+id/tvJugarvs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvJugarvs"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seekBarMax"
-        android:text="Jugar contra"
-        android:textColor="@color/dark_gold"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="18sp"
         android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toTopOf="@id/linearGenre"
+        android:text="Jugar contra"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gold"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekBarMax"
+
         />
 
     <LinearLayout
         android:id="@+id/linearGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/btnGuardarCambios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvJugarvs">
@@ -242,15 +246,29 @@
         android:id="@+id/btnGuardarCambios"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/border_button"
         android:text="Guardar Cambios"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
- />
+        app:layout_constraintTop_toBottomOf="@id/linearGenre" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/border_button"
+        android:text="Cerrar sesion"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,7 +38,7 @@ class ComunicationFragment : Fragment(),CoroutineScope {
         runBlocking {
             val corrutina =  launch {
                 var crudApi= CrudApi()
-            listUserMatches = crudApi.getUsersMatches(userLog.idUser!!) as ArrayList<User>
+            listUserMatches = crudApi.getUsersMatches(userLog!!.idUser!!) as ArrayList<User>
             }
             corrutina.join()
         }

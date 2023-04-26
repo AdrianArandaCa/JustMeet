@@ -90,7 +90,8 @@ data class Question(
 data class Avatar(
     var idFoto : Int,
     var resourcePhoto : Int,
-    var nomFoto : String
+    var nomFoto : String,
+    var selected: Int
 )
 
 lateinit var llistaUsers: ArrayList<User>
@@ -98,7 +99,7 @@ lateinit var llistaUsers: ArrayList<User>
 lateinit var tmf: TrustManagerFactory
 lateinit var sslContext: SSLContext
 lateinit var algorithm: String
- var userLog = User(null,null,null,null,null,null,null,null,null,null,null,null)
+ var userLog : User?= User(null,null,null,null,null,null,null,null,null,null,null,null)
 var listQuestionAux: ArrayList<Question> = arrayListOf()
 lateinit var gameFromSocket : Game
  var gameFinishFromSocket = Game(null,null,null,null)
