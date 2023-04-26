@@ -87,6 +87,12 @@ data class Question(
     var answers : ArrayList<Answer>
 )
 
+data class Avatar(
+    var idFoto : Int,
+    var resourcePhoto : Int,
+    var nomFoto : String
+)
+
 lateinit var llistaUsers: ArrayList<User>
 
 lateinit var tmf: TrustManagerFactory
