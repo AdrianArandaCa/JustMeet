@@ -9,11 +9,12 @@
 
     <ImageButton
         android:id="@+id/backButtonSettings"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/imagesetting"
-        android:src="@drawable/back_arrow"
+        android:scaleType="centerCrop"
+        android:src="@drawable/arrowbackgold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

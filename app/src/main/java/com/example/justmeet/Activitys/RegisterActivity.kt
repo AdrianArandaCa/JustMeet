@@ -35,6 +35,9 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
 //        binding.etBirthday.setOnClickListener {
 //            showDatePicker()
 //        }
+        binding.btnBackRegister.setOnClickListener {
+            onBackPressed()
+        }
         binding.rbMale.setOnClickListener {
             binding.rbFemale.isChecked = false
             isMale = true

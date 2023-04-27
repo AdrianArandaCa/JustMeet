@@ -5,8 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondobg1"
-
     tools:context=".Activitys.RegisterActivity">
+    <ImageButton
+        android:id="@+id/btnBackRegister"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/imagesetting"
+        android:src="@drawable/arrowbackgold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ivLogoLogin"
@@ -27,7 +36,9 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivLogoLogin">
+        app:layout_constraintTop_toBottomOf="@id/ivLogoLogin"
+        app:layout_constraintBottom_toTopOf="@id/linearPassword"
+        >
 
         <ImageView
             android:id="@+id/logoUser"
@@ -62,7 +73,9 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearUser">
+        app:layout_constraintTop_toBottomOf="@id/linearUser"
+        app:layout_constraintBottom_toTopOf="@id/linearConfirmPassword"
+        >
 
         <ImageView
             android:id="@+id/logoPassword"
@@ -97,7 +110,9 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearPassword">
+        app:layout_constraintTop_toBottomOf="@id/linearPassword"
+        app:layout_constraintBottom_toTopOf="@id/linearEmail"
+        >
 
         <ImageView
             android:id="@+id/logoPasswordConfirm"
@@ -132,7 +147,9 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearConfirmPassword">
+        app:layout_constraintTop_toBottomOf="@id/linearConfirmPassword"
+        app:layout_constraintBottom_toTopOf="@id/linearBirthday"
+        >
 
         <ImageView
             android:id="@+id/logoEmail"
@@ -167,7 +184,9 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearEmail">
+        app:layout_constraintTop_toBottomOf="@id/linearEmail"
+        app:layout_constraintBottom_toTopOf="@id/linearGenre"
+        >
 
         <ImageView
             android:id="@+id/logoBirthday"
@@ -216,6 +235,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnRegister"
         app:layout_constraintTop_toBottomOf="@id/linearBirthday">
 
         <ImageView
@@ -274,6 +294,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearGenre" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

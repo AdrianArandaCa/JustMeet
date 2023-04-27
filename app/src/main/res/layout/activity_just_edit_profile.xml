@@ -8,13 +8,12 @@
     tools:context=".Activitys.ActivityJustEditProfile">
     <ImageButton
         android:id="@+id/backButtonEdit"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:background="@color/black"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/imagesetting"
-        android:src="@drawable/back_arrow"
-
+        android:src="@drawable/arrowbackgold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageView
@@ -48,8 +47,8 @@
         android:padding="3dp"
         android:text="Cambiar avatar"
         android:textColor="@color/light_gold"
-        android:textSize="18sp"
-
+        android:textSize="20sp"
+        android:fontFamily="@font/champagnebold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivProfile" />
@@ -64,6 +63,7 @@
         android:textColor="@color/light_gold"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:fontFamily="@font/champagnebold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNomEdad" />
 
@@ -79,6 +79,7 @@
         android:text="@string/descriptionuser"
         android:textColor="@color/light_gold"
         android:textSize="15sp"
+        android:fontFamily="@font/champagnebold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvsobreTiTitulo"
         tools:ignore="TextSizeCheck" />
@@ -91,6 +92,8 @@
         android:background="@drawable/border_button"
         android:text="Guardar cambios"
         android:textAllCaps="false"
+        android:fontFamily="@font/champagnebold"
+        android:textSize="16sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
