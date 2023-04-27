@@ -47,9 +47,12 @@ var isSucces : Boolean = false
                 binding.progressBarPlay.visibility = View.VISIBLE
             }
         }
-        /*closeConnectionBtn.setOnClickListener {
-            WebSocketManager.close()
-        }*/
+
+       binding.btnIntentLocation.setOnClickListener {
+
+//           val intento = Intent(requireContext(),ActivityLocation::class.java)
+//           startActivity(intento)
+       }
         return binding.root
     }
 

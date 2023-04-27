@@ -27,8 +27,9 @@ data class User(
 
 data class Location(
     var idLocation : Int?,
-    var longitud : Double,
-    var latitud : Double
+    var longitud : Double?,
+    var latitud : Double?,
+    var idUser : Int?
 )
 
 data class UserGame(

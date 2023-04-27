@@ -1,5 +1,6 @@
 package com.example.justmeet.API
 
+import com.example.justmeet.Models.Location
 import com.example.justmeet.Models.Setting
 import com.example.justmeet.Models.User
 import com.example.justmeet.Models.UserAnswer
@@ -40,5 +41,10 @@ interface APIService {
 
     @GET("setting/{idSetting}")
     suspend fun getSettingById(@Path("idSetting") idSetting : Int) : Setting
+
+    //Location Request
+
+    @PUT("location/{id}")
+    suspend fun putLocationOnUser(@Path("id") idUser : Int,@Body location: Location) : Response<Location>
 
 }

@@ -26,6 +26,8 @@
         android:background="@drawable/border_button"
         android:text="@string/searchgame"
         android:textAllCaps="false"
+        android:fontFamily="@font/champagnebold"
+        android:textSize="18sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +43,7 @@
         android:textAlignment="center"
         android:textColor="@color/light_gold"
         android:textSize="17sp"
-        android:textStyle="italic"
+        android:fontFamily="@font/champagnebolditalic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnBuscarPartida" />
@@ -56,6 +58,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtRegister"
         android:layout_marginTop="20dp"
+        />
+
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/btnIntentLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBarPlay"
+        android:src="@drawable/worldgold"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="120dp"
         />
 
 

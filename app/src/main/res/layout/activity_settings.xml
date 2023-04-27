@@ -55,11 +55,12 @@
             android:backgroundTint="@color/dark_gold"
             android:inputType="text"
             android:text="Distancia màxima"
+            android:fontFamily="@font/champagnebold"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
             android:textSize="18sp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:id="@+id/tvKM"
@@ -73,7 +74,7 @@
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/champagnebold"/>
     </LinearLayout>
 
     <SeekBar
@@ -123,7 +124,7 @@
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/champagnebold" />
 
         <TextView
             android:id="@+id/tvEdadMinMax"
@@ -137,7 +138,7 @@
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/champagnebold" />
     </LinearLayout>
 
     <SeekBar
@@ -182,8 +183,8 @@
         android:text="Jugar contra"
         android:textAlignment="center"
         android:textColor="@color/dark_gold"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textSize="22sp"
+        android:fontFamily="@font/champagnebold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/seekBarMax"
@@ -219,6 +220,7 @@
             android:textAlignment="center"
             android:textColor="@color/light_gold"
             android:textColorHint="@color/dark_gold"
+            android:fontFamily="@font/champagnebold"
             android:textSize="18sp" />
 
         <ImageView
@@ -239,6 +241,7 @@
             android:textAlignment="center"
             android:textColor="@color/light_gold"
             android:textColorHint="@color/dark_gold"
+            android:fontFamily="@font/champagnebold"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -252,6 +255,8 @@
         android:text="Guardar Cambios"
         android:textAllCaps="false"
         android:textColor="@color/white"
+        android:fontFamily="@font/champagnebold"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearGenre" />
@@ -265,6 +270,8 @@
         android:text="Cerrar sesion"
         android:textAllCaps="false"
         android:textColor="@color/white"
+        android:fontFamily="@font/champagnebold"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

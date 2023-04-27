@@ -46,8 +46,8 @@
         android:padding="3dp"
         android:text="@string/userAgustin"
         android:textColor="@color/light_gold"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textSize="20sp"
+       android:fontFamily="@font/champagnebold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivProfile" />
@@ -60,8 +60,8 @@
         android:layout_marginTop="40dp"
         android:text="@string/aboutme"
         android:textColor="@color/light_gold"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="24sp"
+        android:fontFamily="@font/champagnebold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNomEdad" />
 
@@ -75,8 +75,8 @@
         android:maxLines="0"
         android:text="@string/descriptionuser"
         android:textColor="@color/light_gold"
-        android:textSize="15sp"
-        android:textStyle="bold"
+        android:textSize="18sp"
+        android:fontFamily="@font/champagnebold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvsobreTiTitulo"
         tools:ignore="TextSizeCheck" />
@@ -90,6 +90,8 @@
         android:text="@string/editsetting"
         android:textAllCaps="false"
         android:textColor="@color/white"
+        android:fontFamily="@font/champagnebold"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSobreMiContent" />
