@@ -47,4 +47,10 @@ interface APIService {
     @PUT("location/{id}")
     suspend fun putLocationOnUser(@Path("id") idUser : Int,@Body location: Location) : Response<Location>
 
+    @GET("locations")
+    suspend fun getAllLocations() :ArrayList<Location>
+
+    @GET("locationByUser/{id}")
+    suspend fun getLocationByUser(@Path("id") id : Int) : Location
+
 }

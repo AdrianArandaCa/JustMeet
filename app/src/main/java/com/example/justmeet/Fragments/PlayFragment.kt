@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.justmeet.Activitys.ActivityLocation
 import com.example.justmeet.Activitys.ActivityResumeIsMatch
 import com.example.justmeet.Activitys.ActivityResumeNotMatch
 import com.example.justmeet.Activitys.GameActivity
@@ -50,8 +51,8 @@ var isSucces : Boolean = false
 
        binding.btnIntentLocation.setOnClickListener {
 
-//           val intento = Intent(requireContext(),ActivityLocation::class.java)
-//           startActivity(intento)
+           val intento = Intent(requireContext(), ActivityLocation::class.java)
+           startActivity(intento)
        }
         return binding.root
     }

@@ -199,6 +199,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     }
 
     fun getLocationPermission(isPressed: Boolean) {
+         var locationByUser : com.example.justmeet.Models.Location? = null
         if (
             (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) &&
@@ -211,9 +212,18 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             if (isPressed) {
                 fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
                     if (userLog != null) {
+
+                        runBlocking {
+                            var corrutina = launch {
+                                val crudApi = CrudApi()
+                                locationByUser  = crudApi.getOneLocationByUserFromAPI(userLog!!.idUser!!)
+                            }
+                            corrutina.join()
+
+                        }
                         var userLocation: com.example.justmeet.Models.Location =
                             com.example.justmeet.Models.Location(
-                                null, location!!.longitude, location!!.latitude,
+                                locationByUser!!.idLocation, location!!.longitude, location!!.latitude,
                                 userLog!!.idUser!!
                             )
                         userLog!!.location = userLocation

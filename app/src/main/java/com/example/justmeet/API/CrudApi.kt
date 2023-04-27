@@ -95,8 +95,16 @@ class CrudApi(): CoroutineScope {
     //Location Requests
 
     suspend fun modifyLocationUser(location : Location): Boolean {
-        val call = getRetrofit().create(APIService::class.java).putLocationOnUser(userLog!!.idUser!!,location)
+        val call = getRetrofit().create(APIService::class.java).putLocationOnUser(location.idLocation!!,location)
         return call.isSuccessful
+    }
+    suspend fun getAllLocationsFromAPI(): ArrayList<Location> {
+        val response = getRetrofit().create(APIService::class.java).getAllLocations()
+        return response!!
+    }
+    suspend fun getOneLocationByUserFromAPI(id : Int): Location {
+        val response = getRetrofit().create(APIService::class.java).getLocationByUser(id)
+        return response!!
     }
 
     override val coroutineContext: CoroutineContext
