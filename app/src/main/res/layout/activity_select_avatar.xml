@@ -29,7 +29,7 @@
         android:id="@+id/btnGuardarAvatar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+
         android:background="@drawable/border_button"
         android:text="Guardar Avatar"
         android:textAllCaps="false"

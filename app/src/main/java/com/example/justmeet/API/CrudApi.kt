@@ -78,6 +78,10 @@ class CrudApi(): CoroutineScope {
         val call = getRetrofit().create(APIService::class.java).getSettingById(idSetting)
         return call
     }
+    suspend fun modifySettingFromApi(set: Setting): Boolean {
+        val call = getRetrofit().create(APIService::class.java).updateSetting(set.idSetting!!, set)
+        return call.isSuccessful
+    }
 
     // UserAnswersRequets
     suspend fun addUserAnswerToAPI(listUserAnswer: List<UserAnswer>): Boolean {

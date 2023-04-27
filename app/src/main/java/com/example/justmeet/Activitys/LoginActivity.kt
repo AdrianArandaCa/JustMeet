@@ -51,6 +51,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         demanarPermisos()
         putFullScreen()
         getPermissionsApi()
+
         binding.btnRegister.setOnClickListener {
 
             val intento = Intent(this, RegisterActivity::class.java)

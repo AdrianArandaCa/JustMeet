@@ -19,6 +19,7 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
     private lateinit var binding : ActivitySettingsBinding
     private lateinit var userSetting : Setting
     var job = Job()
+    var changeSaved : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         var isMale : Boolean = false
         var isFemale : Boolean = true
@@ -45,7 +46,34 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
         }
 
         binding.backButtonSettings.setOnClickListener {
-            onBackPressed()
+            if(changeSaved) {
+                onBackPressed()
+                finish()
+
+            }
+            if(binding.seekbarDistancia.progress == userSetting.maxDistance && binding.seekBarMin.progress == userSetting.minAge &&
+                binding.seekBarMax.progress == userSetting.maxAge){
+                onBackPressed()
+                finish()
+            }
+            if((binding.seekbarDistancia.progress != userSetting.maxDistance || binding.seekBarMin.progress != userSetting.minAge ||
+                        binding.seekBarMax.progress != userSetting.maxAge) && !changeSaved
+            ) {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Salir de Ajustes")
+                builder.setMessage("¿Estás seguro de que deseas salir sin guardar cambios?")
+                builder.setPositiveButton("Sí") { _, _ ->
+                    // Agrega aquí el código para cerrar sesión
+                    onBackPressed()
+                    finish()
+                }
+                builder.setNegativeButton("No") { _, _ ->
+
+                }
+                val dialog = builder.create()
+                dialog.show()
+            }
+
         }
         binding.rbMale.setOnClickListener {
             binding.rbFemale.isChecked = false
@@ -58,6 +86,28 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
             isMale = false
         }
         binding.btnGuardarCambios.setOnClickListener {
+
+           if(binding.seekbarDistancia.progress == userSetting.maxDistance && binding.seekBarMin.progress == userSetting.minAge &&
+               binding.seekBarMax.progress == userSetting.maxAge){
+
+               Toast.makeText(this,"No hay cambios a modificar",Toast.LENGTH_LONG).show()
+           } else {
+               var genre = ""
+               if(binding.rbMale.isChecked){
+                   genre = "M"
+               } else {
+                   genre = "F"
+               }
+               runBlocking {
+                   val corrutina = launch {
+                       val crudApi = CrudApi()
+                       var setting = Setting(userLog!!.idSetting!!,binding.seekbarDistancia.progress,binding.seekBarMin.progress,binding.seekBarMax.progress,genre,null)
+                       changeSaved = crudApi.modifySettingFromApi(setting)
+                   }
+                   corrutina.join()
+               }
+               Toast.makeText(this,"CAMBIOS GUARDADOS",Toast.LENGTH_LONG).show()
+           }
 
         }
         binding.btnCerrarSesion.setOnClickListener {
@@ -84,6 +134,7 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
                 // Obtiene los valores actuales de ambas SeekBar
                 val minValue = binding.seekBarMin.progress
                 val maxValue = binding.seekBarMax.progress
+                val maxDistanca = binding.seekbarDistancia.progress
 
                 if (seekBar == binding.seekBarMin) {
                     // Limita el valor máximo de la seekBarMin al valor actual de la seekBarMax
@@ -95,26 +146,34 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
                     if (maxValue < minValue) {
                         binding.seekBarMax.progress = minValue
                     }
+                } else if(seekBar == binding.seekbarDistancia){
+                    binding.seekbarDistancia.progress = maxDistanca
+
                 }
                 // Actualiza los valores en algún otro elemento de la interfaz de usuario, como un TextView
                 if(maxValue> minValue && minValue < maxValue) {
                     binding.tvEdadMinMax.text = "$minValue-$maxValue"
+
                 }
+                binding.tvKM.text = "$maxDistanca km."
 
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
                 // Este método se llama cuando el usuario comienza a interactuar con la SeekBar
+
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 // Este método se llama cuando el usuario deja de interactuar con la SeekBar
+
             }
         }
 
 // Asigna el objeto de tipo OnSeekBarChangeListener a ambas SeekBar
         binding.seekBarMin.setOnSeekBarChangeListener(seekBarChangeListener)
         binding.seekBarMax.setOnSeekBarChangeListener(seekBarChangeListener)
+        binding.seekbarDistancia.setOnSeekBarChangeListener(seekBarChangeListener)
     }
     fun putFullScreen() {
         this.supportActionBar?.hide()

@@ -42,6 +42,9 @@ interface APIService {
     @GET("setting/{idSetting}")
     suspend fun getSettingById(@Path("idSetting") idSetting : Int) : Setting
 
+    @PUT("setting/{id}")
+    suspend fun updateSetting(@Path("id") id: Int, @Body user: Setting): Response<Setting>
+
     //Location Request
 
     @PUT("location/{id}")
@@ -52,5 +55,6 @@ interface APIService {
 
     @GET("locationByUser/{id}")
     suspend fun getLocationByUser(@Path("id") id : Int) : Location
+
 
 }

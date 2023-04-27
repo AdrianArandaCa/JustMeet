@@ -41,6 +41,11 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
         demanarPermisos()
         putFullScreen()
         createFragment()
+
+        binding.btnBackMap.setOnClickListener {
+            onBackPressed()
+            finish()
+        }
     }
 
     private fun createFragment() {
