@@ -53,6 +53,7 @@
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
+
             android:textSize="20sp" />
     </LinearLayout>
 

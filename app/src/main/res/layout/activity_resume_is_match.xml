@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/border_button"
-        android:text="Ver matches"
+        android:text="Volver al Inicio"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:textColor="@color/white"

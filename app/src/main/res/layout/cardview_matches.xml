@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:padding="10dp"
+       android:padding="15dp"
         android:background="@color/black"
         >
 
@@ -25,6 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/ivAvatarMatch"
             android:scaleType="centerCrop"
+
             />
         <TextView
             android:layout_width="wrap_content"

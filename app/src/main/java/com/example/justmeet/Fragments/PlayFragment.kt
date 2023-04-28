@@ -17,6 +17,7 @@ import com.example.justmeet.databinding.FragmentPlayBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.concurrent.thread
+import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +42,9 @@ var isSucces : Boolean = false
                 kotlin.run {
                     WebSocketManager.init(serverUrl, this)
                     WebSocketManager.connect()
+                    val randomDelay = Random.nextInt(0, 200)
+                    Thread.sleep(randomDelay.toLong())
+                    WebSocketManager.sendMessage("STARTGAME")
                 }
             }
             activity?.runOnUiThread {

@@ -36,10 +36,11 @@ class AdapterMatches(val llista : ArrayList<User>): RecyclerView.Adapter<Adapter
         } else {
             holder.avatarUser.setImageResource(llista[position].photo!!)
         }
-
-
-
         holder.userName.setText(llista[position].name)
+
+        holder.view.setOnClickListener {
+
+        }
     }
     override fun getItemCount(): Int {
         return llista.size

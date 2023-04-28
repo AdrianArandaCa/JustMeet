@@ -1,5 +1,6 @@
 package com.example.justmeet.Activitys
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -15,6 +16,12 @@ class ActivityResumeIsMatch : AppCompatActivity() {
         setContentView(binding.root)
         putFullScreen()
         binding.tvPorcentajeNum.setText(gameFinishFromSocket.percentage.toString()+"%")
+
+        binding.btnVerMatches.setOnClickListener {
+
+            val intento = Intent(this, BottomNavigationActivity::class.java)
+            startActivity(intento)
+        }
     }
     fun putFullScreen() {
         this.supportActionBar?.hide()

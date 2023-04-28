@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@id/ivJustEdit" />
 
     <TextView
-        android:id="@+id/tvNomEdad"
+        android:id="@+id/tvCambiarAvatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -65,7 +65,7 @@
         android:textStyle="bold"
         android:fontFamily="@font/champagnebold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNomEdad" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCambiarAvatar" />
 
     <EditText
         android:id="@+id/tvSobreMiContent"
@@ -73,13 +73,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
-        android:lines="4"
-        android:maxLines="0"
-        android:background="@color/white"
+        android:background="@color/light_gold"
         android:text="@string/descriptionuser"
-        android:textColor="@color/light_gold"
+        android:textColor="@color/black"
         android:textSize="15sp"
         android:fontFamily="@font/champagnebold"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvsobreTiTitulo"
         tools:ignore="TextSizeCheck" />
