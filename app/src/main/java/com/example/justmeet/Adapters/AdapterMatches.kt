@@ -5,7 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.justmeet.Fragments.InfoDialogMatch
 import com.example.justmeet.Models.User
 import com.example.justmeet.R
 import kotlinx.coroutines.CoroutineScope
@@ -39,7 +42,10 @@ class AdapterMatches(val llista : ArrayList<User>): RecyclerView.Adapter<Adapter
         holder.userName.setText(llista[position].name)
 
         holder.view.setOnClickListener {
+            val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager
+            val infoDialog = InfoDialogMatch(llista[position])
 
+            infoDialog.show(fragmentManager, "InfoDialog")
         }
     }
     override fun getItemCount(): Int {

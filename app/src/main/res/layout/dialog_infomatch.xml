@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/fondobgdetail"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/btnBackDetailMatch"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/imagesetting"
+        android:src="@drawable/arrowbackgold"
+         />
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/logodoradodos"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="60dp"
+        android:id="@+id/ivDetalleMatch"
+        />
+
+    <TextView
+        android:id="@+id/tvNameEdadMatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agustin,27"
+        android:textColor="@color/light_gold"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:fontFamily="@font/champagnebold"
+        android:padding="10dp"
+        android:textSize="30sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descripción"
+        android:textColor="@color/light_gold"
+        android:fontFamily="@font/champagnebold"
+        android:textSize="25sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDescriptionUserMatch"
+        android:text="Soy Agustin, el admin de toda esta app de la que vas a pagar perro"
+        android:textColor="@color/light_gold"
+        android:layout_margin="23dp"
+        android:padding="10dp"
+        android:fontFamily="@font/champagnebold"
+        android:textSize="20sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOpenChat"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border_button"
+        android:text="Abrir chat"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:fontFamily="@font/champagnebold"
+     />
+
+</LinearLayout>

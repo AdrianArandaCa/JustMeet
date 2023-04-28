@@ -19,14 +19,9 @@ class BottomNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityBottomNavigationBinding.inflate(layoutInflater)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                )
+
         setContentView(binding.root)
-        this.supportActionBar?.hide()
+        putFullScreen()
 
 
         val navView: BottomNavigationView = binding.navView
@@ -44,5 +39,14 @@ class BottomNavigationActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+    fun putFullScreen() {
+        this.supportActionBar?.hide()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                )
     }
 }
