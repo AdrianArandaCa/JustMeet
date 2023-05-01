@@ -21,8 +21,6 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
     var job = Job()
     var changeSaved : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
-        var isMale : Boolean = false
-        var isFemale : Boolean = true
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -77,13 +75,11 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
         }
         binding.rbMale.setOnClickListener {
             binding.rbFemale.isChecked = false
-            isMale = true
-            isFemale = false
+
         }
         binding.rbFemale.setOnClickListener {
             binding.rbMale.isChecked = false
-            isFemale = true
-            isMale = false
+
         }
         binding.btnGuardarCambios.setOnClickListener {
 

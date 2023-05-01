@@ -108,7 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="30dp"
         android:textColor="@color/dark_gold"
-        tools:text="Pregunta 1/10"
+        android:text="@string/numeropregunta"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"

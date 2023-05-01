@@ -43,4 +43,5 @@
     <string name="wish">¡Te deseamos lo mejor!</string>
     <string name="logochat">logoChat</string>
     <string name="play">Jugar!</string>
+    <string name="numeropregunta">Pregunta 1/10</string>
 </resources>

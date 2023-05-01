@@ -29,6 +29,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
     private var currentQuestionIndex = 0
     private var listUserAnswer: List<UserAnswer> = listOf()
     var job = Job()
+    var answerSelected : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,9 +71,10 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                 } else {
                     println("ELSE")
                     for (question in listQuestion) {
-                        // var answerSelected = false
+                        answerSelected = false
                         for (answer in question.answers) {
                             if (answer.selected == 1) {
+                                answerSelected = true
                                 var userAns = UserAnswer(
                                     gameFromSocket.idGame!!,
                                     userLog!!.idUser!!,
@@ -80,10 +82,19 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                                     answer.idAnswer
                                 )
                                 listUserAnswer += userAns
-                                //     answerSelected = true
+
                                 println("Pregunta " + question.question1)
                                 println("Respuesta seleccionada" + answer.answer1)
                             }
+                        }
+                        if(!answerSelected) {
+                            var userAns = UserAnswer(
+                                gameFromSocket.idGame!!,
+                                userLog!!.idUser!!,
+                                question.idQuestion,
+                                0
+                            )
+                            listUserAnswer += userAns
                         }
                     }
                     println("estamos")
