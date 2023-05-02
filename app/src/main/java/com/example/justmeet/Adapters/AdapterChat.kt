@@ -37,7 +37,7 @@ class AdapterChat(var list: java.util.ArrayList<Chat>) :
 
     override fun getItemCount() = list.size
 
-    override fun getItemViewType(position: Int) = list[position].isUserLogged.toString().toInt()
+    override fun getItemViewType(position: Int) = list[position].isUserLogged
 
     fun updateDades(newList: ArrayList<Chat>) {
         list = newList

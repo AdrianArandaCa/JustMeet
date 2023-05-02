@@ -74,6 +74,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                         answerSelected = false
                         for (answer in question.answers) {
                             if (answer.selected == 1) {
+                                println("Respuesta  seleccionada")
                                 answerSelected = true
                                 var userAns = UserAnswer(
                                     gameFromSocket.idGame!!,
@@ -88,11 +89,12 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                             }
                         }
                         if(!answerSelected) {
+                            println("Respuesta no seleccionada")
                             var userAns = UserAnswer(
                                 gameFromSocket.idGame!!,
                                 userLog!!.idUser!!,
                                 question.idQuestion,
-                                0
+                                null
                             )
                             listUserAnswer += userAns
                         }

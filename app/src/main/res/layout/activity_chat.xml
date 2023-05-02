@@ -60,7 +60,6 @@
         android:id="@+id/recyclerChat"
         android:layout_weight="15"
         android:orientation="vertical"
-
         />
 
     <LinearLayout

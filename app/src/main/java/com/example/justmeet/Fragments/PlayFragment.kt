@@ -42,7 +42,7 @@ var isSucces : Boolean = false
                 kotlin.run {
                     WebSocketManager.init(serverUrl, this)
                     WebSocketManager.connect()
-                    val randomDelay = Random.nextInt(0, 200)
+                    val randomDelay = Random.nextInt(400, 500)
                     Thread.sleep(randomDelay.toLong())
                     WebSocketManager.sendMessage("STARTGAME")
                 }

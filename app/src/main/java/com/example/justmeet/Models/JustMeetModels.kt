@@ -97,7 +97,7 @@ data class Avatar(
 
 data class Chat(
     var message : String,
-    var isUserLogged : Boolean
+    var isUserLogged : Int
 )
 
 lateinit var llistaUsers: ArrayList<User>
