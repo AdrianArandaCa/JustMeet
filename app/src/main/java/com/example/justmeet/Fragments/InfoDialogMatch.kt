@@ -2,6 +2,7 @@ package com.example.justmeet.Fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
+import com.example.justmeet.Activitys.ActivityChat
 import com.example.justmeet.Models.User
 import com.example.justmeet.R
 
@@ -32,7 +34,9 @@ class InfoDialogMatch(private var user : User) : DialogFragment() {
         val buttonOpenChat = dialogView.findViewById<AppCompatButton>(R.id.btnOpenChat)
         buttonOpenChat.setOnClickListener {
 
-            println("ABRIENDO CHAT")
+            val intento = Intent(requireContext(),ActivityChat::class.java)
+            intento.putExtra("User",user as java.io.Serializable)
+            startActivity(intento)
         }
         val buttonBack = dialogView.findViewById<ImageButton>(R.id.btnBackDetailMatch)
         buttonBack.setOnClickListener {

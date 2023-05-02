@@ -23,7 +23,7 @@ data class User(
     var idSetting: Int?,
     var idSettingNavigation: Setting?,
     var location: Location?
-)
+) : java.io.Serializable
 
 data class Location(
     var idLocation : Int?,
@@ -95,6 +95,11 @@ data class Avatar(
     var selected: Int
 )
 
+data class Chat(
+    var message : String,
+    var isUserLogged : Boolean
+)
+
 lateinit var llistaUsers: ArrayList<User>
 
 lateinit var tmf: TrustManagerFactory
@@ -106,5 +111,6 @@ lateinit var gameFromSocket : Game
  var gameFinishFromSocket = Game(null,null,null,null)
 //var userMatch = User(null,null,null,null,null,null,null,null,null,null,null,null)
 var listUserMatches : ArrayList<User> = arrayListOf()
+var listChatUsers : ArrayList<Chat> = arrayListOf()
 
 
