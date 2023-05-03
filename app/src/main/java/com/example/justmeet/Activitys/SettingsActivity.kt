@@ -82,9 +82,15 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
 
         }
         binding.btnGuardarCambios.setOnClickListener {
+            var genre = ""
+            if(binding.rbMale.isChecked){
+                genre = "M"
+            } else {
+                genre = "F"
+            }
 
            if(binding.seekbarDistancia.progress == userSetting.maxDistance && binding.seekBarMin.progress == userSetting.minAge &&
-               binding.seekBarMax.progress == userSetting.maxAge){
+               binding.seekBarMax.progress == userSetting.maxAge && userSetting.genre.equals(genre)){
 
                Toast.makeText(this,"No hay cambios a modificar",Toast.LENGTH_LONG).show()
            } else {

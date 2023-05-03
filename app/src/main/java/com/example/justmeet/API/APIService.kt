@@ -16,7 +16,7 @@ interface APIService {
     suspend fun getOneUser(@Path("id") id: Int): User
 
     @GET("userByName/{name}")
-    suspend fun getOneUserByName(@Path("name") name: String): User
+    suspend fun getOneUserByName(@Path("name") name: String): Response<User>
 
     @POST("user")
     suspend fun insertUsuari(@Body user: User): Response<User>

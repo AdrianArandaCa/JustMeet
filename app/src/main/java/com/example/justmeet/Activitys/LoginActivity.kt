@@ -22,6 +22,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.*
 import okhttp3.*
+import retrofit2.HttpException
 import java.io.InputStream
 import java.math.BigInteger
 import java.security.KeyStore

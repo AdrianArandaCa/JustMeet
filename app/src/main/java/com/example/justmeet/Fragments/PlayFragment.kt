@@ -89,6 +89,8 @@ var isSucces : Boolean = false
                     println("CLOSEAGE")
                 } else if(text == "CLOSEGENRE"){
                     println("CLOSEGENRE")
+                } else if(text == "CLOSEGAMETYPE"){
+                    println("CLOSEGAMETYPE")
                 }
                 hideProgressBar()
                 thread {

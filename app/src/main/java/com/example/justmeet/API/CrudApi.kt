@@ -67,9 +67,9 @@ class CrudApi(): CoroutineScope {
         val call = getRetrofit().create(APIService::class.java).getOneUser(codi)
         return call!!
     }
-    suspend fun getOneUserByName(name: String): User {
+    suspend fun getOneUserByName(name: String): User? {
         val call = getRetrofit().create(APIService::class.java).getOneUserByName(name)
-        return call!!
+        return if (call?.isSuccessful == true) call.body() else null
     }
 
     //Settings Request

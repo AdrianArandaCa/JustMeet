@@ -25,6 +25,7 @@
         android:background="@android:color/transparent"
         android:contentDescription="@string/imagesetting"
         android:src="@drawable/asset_settings"
+        android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

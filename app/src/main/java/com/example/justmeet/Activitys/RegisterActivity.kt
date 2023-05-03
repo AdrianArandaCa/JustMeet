@@ -1,15 +1,14 @@
 package com.example.justmeet.Activitys
 
-import android.app.DatePickerDialog
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Patterns
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.Location
 import com.example.justmeet.Models.Setting
@@ -19,11 +18,10 @@ import kotlinx.coroutines.*
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
+import java.util.regex.Pattern
 import kotlin.coroutines.CoroutineContext
+
 
 class RegisterActivity : AppCompatActivity(), CoroutineScope {
     private lateinit var binding: ActivityRegisterBinding
@@ -168,8 +166,8 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         }
 
         if (nomUser.isNotEmpty() && passWord.isNotEmpty() && passWordConfirm.isNotEmpty() && email.isNotEmpty() && binding.etBirthday.text.isNotEmpty() && genre.isNotEmpty()) {
-            if(!email.contains("@gmail.com") || !email.contains("@hotmail.com") || !email.contains("@yahoo.es")) {
-                Toast.makeText(this,"EMAIL NO VALID TONTO",Toast.LENGTH_LONG).show()
+            if(!isValidEmail(binding.etEmail.text.toString())) {
+                Toast.makeText(this,"Introdueix un email vàlid",Toast.LENGTH_LONG).show()
             } else {
                 if (passWord.equals(passWordConfirm)) {
                     //Guardas usuario
@@ -217,7 +215,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                             val corrutina = launch {
                                 val crudApi =  CrudApi()
                                 var userName = crudApi.getOneUserByName(nomUser)
-                                var locationNewUser = Location(null,0.0,0.0,userName.idUser)
+                                var locationNewUser = Location(null,0.0,0.0,userName!!.idUser)
                                 locationPosted = crudApi.postLocation(locationNewUser)
                             }
                             corrutina.join()
@@ -234,6 +232,10 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         } else {
             Toast.makeText(this, "Hi han camps buits!!!", Toast.LENGTH_LONG).show()
         }
+    }
+    fun isValidEmail(email: String): Boolean {
+        val pattern: Pattern = Patterns.EMAIL_ADDRESS
+        return pattern.matcher(email).matches()
     }
 
 
