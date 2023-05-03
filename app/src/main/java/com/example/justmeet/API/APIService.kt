@@ -56,5 +56,8 @@ interface APIService {
     @GET("locationByUser/{id}")
     suspend fun getLocationByUser(@Path("id") id : Int) : Location
 
+    @POST("location")
+    suspend fun insertLocation(@Body location: Location) : Response<Location>
+
 
 }

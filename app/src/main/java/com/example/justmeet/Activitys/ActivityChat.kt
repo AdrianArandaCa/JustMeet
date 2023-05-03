@@ -1,8 +1,11 @@
 package com.example.justmeet.Activitys
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Adapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -66,6 +69,15 @@ class ActivityChat : AppCompatActivity(), MessageListener {
             onBackPressed()
             finish()
         }
+        binding.etSendMessage.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                // Ocultar el teclado
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.etSendMessage.windowToken, 0)
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
     }
 
     private fun sendList() {
@@ -104,6 +116,21 @@ class ActivityChat : AppCompatActivity(), MessageListener {
                         WebSocketManager.sendMessage("CLOSE")
                     }
                 }
+            } else if(text.startsWith("USERLEAVE")) {
+                var textSubstring = text.substring(9)
+                var chat = Chat("${textSubstring} ha abandonado el chat",2)
+                listChatUsers.add(chat)
+                runOnUiThread {
+                    adapter.updateDades(listChatUsers)
+                }
+
+            } else if(text.startsWith("USERCONNECT")) {
+                var textSubstring = text.substring(11)
+                var chat = Chat("${textSubstring} se ha conectado al chat",2)
+                listChatUsers.add(chat)
+                runOnUiThread {
+                    adapter.updateDades(listChatUsers)
+                }
             } else {
                 var chat = Chat(text,0)
                 listChatUsers.add(chat)
@@ -115,4 +142,15 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         }
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        WebSocketManager.sendMessage("CLOSE")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        WebSocketManager.sendMessage("CLOSE")
+    }
+
 }

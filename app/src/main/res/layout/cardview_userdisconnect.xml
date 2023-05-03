@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="5dp"
-    android:background="#51514F"
-    android:layout_gravity="start"
-    app:cardCornerRadius="10dp"
+    android:background="@android:color/transparent"
+    android:backgroundTint="@android:color/transparent"
+    android:layout_gravity="end"
     android:layout_margin="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="#9A9893"
+        android:layout_gravity="end"
+        android:background="@android:color/transparent"
+
         >
 
         <TextView
@@ -23,9 +24,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="Hola que tal"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="El usuario se ha desconectado"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="#CAC7C2"
+
+
             />
 
 

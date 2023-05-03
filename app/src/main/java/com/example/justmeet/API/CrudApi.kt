@@ -110,6 +110,12 @@ class CrudApi(): CoroutineScope {
         val response = getRetrofit().create(APIService::class.java).getLocationByUser(id)
         return response!!
     }
+    suspend fun postLocation(location : Location): Boolean {
+        val response = getRetrofit().create(APIService::class.java).insertLocation(location)
+        return response.isSuccessful
+    }
+
+
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
