@@ -45,5 +45,15 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateData()
+    }
+    fun updateData() {
+        binding.ivProfile.setImageResource(userLog!!.photo!!)
+        binding.tvNomEdad.setText("${userLog!!.name!!},${userLog!!.birthday!!}")
+        binding.tvSobreMiContent.setText("${userLog!!.description!!}")
+    }
+
 
 }
