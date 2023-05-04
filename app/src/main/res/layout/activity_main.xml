@@ -20,5 +20,18 @@
         app:layout_constraintTop_toTopOf="parent"
          />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/copyright"
+        android:textColor="@color/dark_gold"
+        android:fontFamily="@font/champagnebolditalic"
+        android:textAlignment="center"
+        android:padding="8dp"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -78,4 +78,5 @@
     <string name="confirm_close_session">Are you sure you want to log out?</string>
     <string name="session_closed">closed session</string>
     <string name="finding_game">Looking for match...</string>
+    <string name="copyright">© Just Meet 2023. All rights reserved</string>
 </resources>

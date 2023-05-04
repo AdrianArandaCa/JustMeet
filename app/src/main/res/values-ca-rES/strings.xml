@@ -78,4 +78,5 @@
     <string name="confirm_close_session">Estàs segur que vols tancar sessió?</string>
     <string name="session_closed">Sessió tancada</string>
     <string name="finding_game">Buscant partida...</string>
+    <string name="copyright">© Just Meet 2023. Tots els drets reservats</string>
 </resources>
