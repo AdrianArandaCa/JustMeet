@@ -108,7 +108,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                         corrutina.join()
                     }
                     println("USER ANSWER INSERIT!!!")
-                    val randomDelay = Random.nextInt(0, 200)
+                    val randomDelay = Random.nextInt(600, 800)
                     Thread.sleep(randomDelay.toLong())
                             WebSocketManager.sendMessage("GAMERESULT${gameFromSocket.idGame}")
                     println("FINAL WEBSOCKET")
@@ -134,7 +134,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
 
     override fun onDestroy() {
         super.onDestroy()
-      //  WebSocketManager.close()
+        //WebSocketManager.sendMessage("CLOSE")
     }
     override fun onStop() {
         super.onStop()

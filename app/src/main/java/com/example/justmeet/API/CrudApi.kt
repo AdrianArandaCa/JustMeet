@@ -93,7 +93,8 @@ class CrudApi(): CoroutineScope {
     //UserMatchesRequets
     suspend fun getUsersMatches(idUser: Int): List<User> {
 
-        return getRetrofit().create(APIService::class.java).getUsersMatch(idUser)
+        val call = getRetrofit().create(APIService::class.java).getUsersMatch(idUser)
+        return call
     }
 
     //Location Requests

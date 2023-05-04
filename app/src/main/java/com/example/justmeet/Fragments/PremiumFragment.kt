@@ -1,11 +1,15 @@
 package com.example.justmeet.Fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.example.justmeet.Activitys.ActivityBuyPremium
+import com.example.justmeet.Models.userLog
 import com.example.justmeet.R
 import com.example.justmeet.databinding.FragmentPlayBinding
 import com.example.justmeet.databinding.FragmentPremiumBinding
@@ -13,7 +17,7 @@ import com.example.justmeet.databinding.FragmentPremiumBinding
 private lateinit var binding: FragmentPremiumBinding
 class PremiumFragment : Fragment() {
 
-
+var isSelected : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +54,31 @@ class PremiumFragment : Fragment() {
             binding.tvPrecioPremium.setTextColor(resources.getColor(R.color.light_gold))
             binding.cardViewPremium1.isSelected = false
         }
+
+        binding.btnBuyPremium.setOnClickListener {
+            if(userLog!!.premium!!){
+                Toast.makeText(requireContext(),"Ya tienes el premium comprado",Toast.LENGTH_LONG).show()
+            } else {
+                if(!binding.cardViewPremium1.isSelected && !binding.cardViewPremium2.isSelected) {
+                    Toast.makeText(requireContext(),"Tienes que seleccionar un plan!",Toast.LENGTH_LONG).show()
+                } else {
+                    val intento = Intent(requireContext(),ActivityBuyPremium::class.java)
+                    startActivity(intento)
+                }
+
+            }
+
+        }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+       // updateData()
+    }
+    fun updateData() {
+        if(userLog!!.premium!!){
+            binding.btnBuyPremium.isEnabled = false
+        }
     }
 }

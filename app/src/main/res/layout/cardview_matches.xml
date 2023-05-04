@@ -34,10 +34,23 @@
             android:layout_marginTop="8dp"
             android:textColor="@color/light_gold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintEnd_toStartOf="@id/ivCrownPremium"
             app:layout_constraintTop_toBottomOf="@id/ivAvatarMatch"
             android:fontFamily="@font/champagnebold"
             android:id="@+id/tvUserNameMatch"
+            android:layout_marginStart="15dp"
+            />
+        <ImageView
+            android:id="@+id/ivCrownPremium"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:layout_constraintStart_toEndOf="@id/tvUserNameMatch"
+            app:layout_constraintTop_toBottomOf="@id/ivAvatarMatch"
+            android:src="@drawable/crownplane"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="3dp"
+            android:visibility="invisible"
             />
 
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.example.justmeet.Activitys.ActivityJustEditProfile
 import com.example.justmeet.Activitys.SettingsActivity
 import com.example.justmeet.Models.userLog
@@ -32,6 +33,9 @@ class ProfileFragment : Fragment() {
         binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvNomEdad.setText("${userLog!!.name!!},${userLog!!.birthday!!}")
         binding.tvSobreMiContent.setText("${userLog!!.description!!}")
+        if(userLog!!.premium!!){
+            binding.ivCrownPremium.isVisible = true
+        }
         binding.ibSettings.setOnClickListener {
             val intento = Intent(context,SettingsActivity::class.java)
             startActivity(intento)

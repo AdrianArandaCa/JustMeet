@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.justmeet.Fragments.InfoDialogMatch
@@ -22,6 +23,7 @@ class AdapterMatches(val llista : ArrayList<User>): RecyclerView.Adapter<Adapter
     class viewholder(val view: View) : RecyclerView.ViewHolder(view) {
         var avatarUser = view.findViewById<ImageView>(R.id.ivAvatarMatch)
         var userName =  view.findViewById<TextView>(R.id.tvUserNameMatch)
+        var isPremium = view.findViewById<ImageView>(R.id.ivCrownPremium)
 
     }
 
@@ -40,6 +42,10 @@ class AdapterMatches(val llista : ArrayList<User>): RecyclerView.Adapter<Adapter
             holder.avatarUser.setImageResource(llista[position].photo!!)
         }
         holder.userName.setText(llista[position].name)
+        if(llista[position].premium!!){
+            holder.isPremium.isVisible = true
+            holder.isPremium.setImageResource(R.drawable.crownplane)
+        }
 
         holder.view.setOnClickListener {
             val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager

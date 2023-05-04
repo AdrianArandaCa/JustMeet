@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondobgblanco"
+    tools:context=".Activitys.ActivityBuyPremium">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMetodoPago"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Método de pago"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/champagnebold"
+            android:textSize="28sp"
+            android:padding="10dp"
+            android:layout_margin="30dp"
+            />
+
+        <EditText
+            android:id="@+id/etTargetNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/timesnewnormal"
+            android:hint="Número de tarjeta"
+            android:inputType="number"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="30dp"
+            android:maxLines="1"
+            android:layout_marginStart="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMetodoPago" />
+        <EditText
+            android:id="@+id/etNameSurNameTarget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/timesnewnormal"
+            android:hint="Nombre y apellidos impresos en la tarjeta"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etTargetNumber" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearYearCode"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etNameSurNameTarget"
+            android:layout_margin="50dp"
+            >
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/etMMAA"
+                android:hint="MM/AA"
+                android:maxLines="1"
+                android:maxLength="5"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/timesnewnormal"
+                />
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/etCVC"
+                android:hint="CVC"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="3"
+                android:layout_marginStart="70dp"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/timesnewnormal"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/creditcard"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etPostalCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="35dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="36dp"
+            android:hint="Código postal"
+            android:maxLines="1"
+            android:backgroundTint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearYearCode"
+            android:fontFamily="@font/timesnewnormal"
+            />
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="35dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="36dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/timesnewnormal"
+            android:hint="Direccion correo electronico"
+            android:maxLines="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPostalCode" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/planSelected"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEmail"
+            android:layout_margin="30dp"
+            android:text="Plan seleccionado : 1 mes, 21,99€"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/timesnewnormal"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnConfirmBuyPremium"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/border_button"
+            android:text="Comprar"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:fontFamily="@font/champagnebold"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/planSelected" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

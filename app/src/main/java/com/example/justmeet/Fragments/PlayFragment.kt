@@ -152,11 +152,11 @@ var isSucces : Boolean = false
 
     override fun onDestroyView() {
         super.onDestroyView()
-        WebSocketManager.sendMessage("CLOSE")
+       // WebSocketManager.sendMessage("CLOSE")
     }
     override fun onStop() {
         super.onStop()
-        WebSocketManager.sendMessage("CLOSE")
+       // WebSocketManager.sendMessage("CLOSE")
     }
 
 
