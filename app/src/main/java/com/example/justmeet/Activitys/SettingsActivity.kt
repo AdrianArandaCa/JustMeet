@@ -58,14 +58,14 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
                         binding.seekBarMax.progress != userSetting.maxAge) && !changeSaved
             ) {
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle("Salir de Ajustes")
-                builder.setMessage("¿Estás seguro de que deseas salir sin guardar cambios?")
-                builder.setPositiveButton("Sí") { _, _ ->
+                builder.setTitle(getString(R.string.go_out_settings))
+                builder.setMessage(getString(R.string.confirm_go_out_settings))
+                builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
                     // Agrega aquí el código para cerrar sesión
                     onBackPressed()
                     finish()
                 }
-                builder.setNegativeButton("No") { _, _ ->
+                builder.setNegativeButton(getString(R.string.no)) { _, _ ->
 
                 }
                 val dialog = builder.create()
@@ -92,7 +92,7 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
            if(binding.seekbarDistancia.progress == userSetting.maxDistance && binding.seekBarMin.progress == userSetting.minAge &&
                binding.seekBarMax.progress == userSetting.maxAge && userSetting.genre.equals(genre)){
 
-               Toast.makeText(this,"No hay cambios a modificar",Toast.LENGTH_LONG).show()
+               Toast.makeText(this,getString(R.string.nochangesmodify),Toast.LENGTH_LONG).show()
            } else {
                var genre = ""
                if(binding.rbMale.isChecked){
@@ -108,23 +108,23 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
                    }
                    corrutina.join()
                }
-               Toast.makeText(this,"CAMBIOS GUARDADOS",Toast.LENGTH_LONG).show()
+               Toast.makeText(this,getString(R.string.savechanges),Toast.LENGTH_LONG).show()
            }
 
         }
         binding.btnCerrarSesion.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            builder.setTitle("Cerrar sesión")
-            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
-            builder.setPositiveButton("Sí") { _, _ ->
+            builder.setTitle(getString(R.string.close_session))
+            builder.setMessage(getString(R.string.confirm_close_session))
+            builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
                 // Agrega aquí el código para cerrar sesión
                 userLog = null
                 val intento = Intent(this,LoginActivity::class.java)
                 startActivity(intento)
                 finish()
-                Toast.makeText(this,"Sessión cerrada",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,getString(R.string.close_session),Toast.LENGTH_LONG).show()
             }
-            builder.setNegativeButton("No") { _, _ ->
+            builder.setNegativeButton(getString(R.string.no)) { _, _ ->
 
             }
             val dialog = builder.create()

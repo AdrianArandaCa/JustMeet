@@ -13,6 +13,7 @@ import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.Location
 import com.example.justmeet.Models.Setting
 import com.example.justmeet.Models.User
+import com.example.justmeet.R
 import com.example.justmeet.databinding.ActivityRegisterBinding
 import kotlinx.coroutines.*
 import java.math.BigInteger
@@ -147,7 +148,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
 
     fun registerUser() {
         if(binding.etBirthday.text.toString() < "18" || binding.etBirthday.text.toString() > "99" ) {
-            Toast.makeText(this, "Edad no valida", Toast.LENGTH_LONG)
+            Toast.makeText(this, getString(R.string.invalid_age), Toast.LENGTH_LONG)
                 .show()
         }
         var nomUser = binding.etUserName.text.toString()
@@ -167,7 +168,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
 
         if (nomUser.isNotEmpty() && passWord.isNotEmpty() && passWordConfirm.isNotEmpty() && email.isNotEmpty() && binding.etBirthday.text.isNotEmpty() && genre.isNotEmpty()) {
             if(!isValidEmail(binding.etEmail.text.toString())) {
-                Toast.makeText(this,"Introdueix un email vàlid",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,getString(R.string.write_valid_email),Toast.LENGTH_LONG).show()
             } else {
                 if (passWord.equals(passWordConfirm)) {
                     //Guardas usuario
@@ -195,7 +196,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                         if (userPosted) {
                             Toast.makeText(
                                 applicationContext,
-                                "Usuari inserit amb èxit",
+                                getString(R.string.userregistredfine),
                                 Toast.LENGTH_LONG
                             ).show()
                             Handler().postDelayed({
@@ -206,7 +207,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                         } else {
                             Toast.makeText(
                                 applicationContext,
-                                "Ja existeix un usuari amb aquest nom",
+                                getString(R.string.userexistsbd),
                                 Toast.LENGTH_LONG
                             ).show()
                         }
@@ -224,13 +225,13 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
 
                     }
                 } else {
-                    Toast.makeText(this, "Les contrasenyes no coincideixen", Toast.LENGTH_LONG)
+                    Toast.makeText(this, getString(R.string.differentpassword), Toast.LENGTH_LONG)
                         .show()
                 }
             }
 
         } else {
-            Toast.makeText(this, "Hi han camps buits!!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.empty_information), Toast.LENGTH_LONG).show()
         }
     }
     fun isValidEmail(email: String): Boolean {

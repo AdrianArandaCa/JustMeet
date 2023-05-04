@@ -99,7 +99,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                 if (passWord.equals(userLog!!.password)) {
                     runOnUiThread {
                         binding.progressBar.visibility = View.VISIBLE
-                        Toast.makeText(this, "Login Correcte", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, getString(R.string.correct_login), Toast.LENGTH_LONG).show()
                         binding.progressBar.visibility = View.GONE
                     }
                     if (userLog!!.photo == 0) {
@@ -116,11 +116,11 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
 
 
                 } else {
-                    Toast.makeText(this, "Contrasenya incorrecte", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.incorrect_password), Toast.LENGTH_LONG).show()
                 }
 
             } else {
-                Toast.makeText(this, "Aquest nom d'usuari no està registrat", Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.username_dontexists), Toast.LENGTH_LONG)
                     .show()
             }
         }
@@ -192,7 +192,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             ) {
                 Toast.makeText(
                     this,
-                    "El permís ACCESS_FINE_LOCATION no està disponible",
+                    getString(R.string.permision_acces_file),
                     Toast.LENGTH_LONG
                 ).show()
                 permisosGarantits = false
@@ -204,7 +204,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                 ) {
                     Toast.makeText(
                         this,
-                        "El permís ACCESS_COARSE_LOCATION no està disponible",
+                        getString(R.string.permision_acces_coarse),
                         Toast.LENGTH_LONG
                     ).show()
                     permisosGarantits = false

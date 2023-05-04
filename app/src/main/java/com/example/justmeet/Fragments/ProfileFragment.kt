@@ -33,7 +33,6 @@ class ProfileFragment : Fragment() {
         binding.tvNomEdad.setText("${userLog!!.name!!},${userLog!!.birthday!!}")
         binding.tvSobreMiContent.setText("${userLog!!.description!!}")
         binding.ibSettings.setOnClickListener {
-            Toast.makeText(context,"has fet click al buttó de settings",Toast.LENGTH_LONG).show()
             val intento = Intent(context,SettingsActivity::class.java)
             startActivity(intento)
         }

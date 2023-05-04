@@ -70,7 +70,7 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
 
     override fun onMyLocationClick(ubicacioActual: Location) {
         val ubi  = LatLng(ubicacioActual.latitude, ubicacioActual.longitude)
-        map.addMarker(MarkerOptions().position(ubi).title("Posició actual"))
+        map.addMarker(MarkerOptions().position(ubi).title(getString(R.string.current_position)))
     }
     private fun createMarker() {
         var locationByUser : com.example.justmeet.Models.Location? = null
@@ -84,7 +84,7 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
         for(i in 0..allLocationsList.size - 1) {
             if(allLocationsList[i].latitud !=0.0 && allLocationsList[i].longitud !=0.0){
                 val coordinates = LatLng(allLocationsList[i].latitud!!, allLocationsList[i].longitud!!)
-                val marker = MarkerOptions().position(coordinates).title("Usuari Just Meet")
+                val marker = MarkerOptions().position(coordinates).title(getString(R.string.justmeet_user))
                 map.addMarker(marker)
 
             }
@@ -126,7 +126,7 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
             ) {
                 Toast.makeText(
                     this,
-                    "El permís ACCESS_FINE_LOCATION no està disponible",
+                    getString(R.string.permision_acces_file),
                     Toast.LENGTH_LONG
                 ).show()
                 permisosGarantits = false
@@ -138,7 +138,7 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
                 ) {
                     Toast.makeText(
                         this,
-                        "El permís ACCESS_COARSE_LOCATION no està disponible",
+                        getString(R.string.permision_acces_coarse),
                         Toast.LENGTH_LONG
                     ).show()
                     permisosGarantits = false

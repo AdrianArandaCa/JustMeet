@@ -41,7 +41,7 @@ class ActivitySelectAvatar : AppCompatActivity(),CoroutineScope {
                 }
             }
             if(!isSelected){
-                Toast.makeText(this,"Has de escoger un avatar!!",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,getString(R.string.select_an_avatar),Toast.LENGTH_LONG).show()
             } else {
                 runBlocking {
                     val corrutina = launch {
@@ -54,7 +54,7 @@ class ActivitySelectAvatar : AppCompatActivity(),CoroutineScope {
                     val intento = Intent(this,BottomNavigationActivity::class.java)
                     startActivity(intento)
                 } else {
-                    Toast.makeText(this,"Ha habido un error en la insercion del avatar, intentelo mas tarde",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,getString(R.string.insert_error_avatar),Toast.LENGTH_LONG).show()
                 }
             }
         }

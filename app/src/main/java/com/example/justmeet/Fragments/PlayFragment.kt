@@ -11,6 +11,7 @@ import com.example.justmeet.Activitys.ActivityResumeIsMatch
 import com.example.justmeet.Activitys.ActivityResumeNotMatch
 import com.example.justmeet.Activitys.GameActivity
 import com.example.justmeet.Models.*
+import com.example.justmeet.R
 import com.example.justmeet.Socket.MessageListener
 import com.example.justmeet.Socket.WebSocketManager
 import com.example.justmeet.databinding.FragmentPlayBinding
@@ -48,7 +49,7 @@ var isSucces : Boolean = false
                 }
             }
             activity?.runOnUiThread {
-                binding.btnBuscarPartida.setText("Buscando partida...")
+                binding.btnBuscarPartida.setText(getString(R.string.finding_game))
                 binding.progressBarPlay.visibility = View.VISIBLE
             }
         }
@@ -134,7 +135,7 @@ var isSucces : Boolean = false
     private fun hideProgressBar() {
         activity?.runOnUiThread {
             binding.progressBarPlay.visibility = View.GONE
-            binding.btnBuscarPartida.setText("Buscar partida")
+            binding.btnBuscarPartida.setText(getString(R.string.searchgame))
         }
     }
 

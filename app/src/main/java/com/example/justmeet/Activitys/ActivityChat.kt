@@ -118,7 +118,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
                 }
             } else if(text.startsWith("USERLEAVE")) {
                 var textSubstring = text.substring(9)
-                var chat = Chat("${textSubstring} ha abandonado el chat",2)
+                var chat = Chat(getString(R.string.user_leave_chat, textSubstring), 2)
                 listChatUsers.add(chat)
                 runOnUiThread {
                     adapter.updateDades(listChatUsers)
@@ -126,7 +126,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
 
             } else if(text.startsWith("USERCONNECT")) {
                 var textSubstring = text.substring(11)
-                var chat = Chat("${textSubstring} se ha conectado al chat",2)
+                var chat = Chat(getString(R.string.user_connect_chat, textSubstring), 2)
                 listChatUsers.add(chat)
                 runOnUiThread {
                     adapter.updateDades(listChatUsers)

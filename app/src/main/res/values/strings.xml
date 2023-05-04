@@ -74,4 +74,33 @@
     <string name="hide_ad">Ocultar anuncios</string>
     <string name="logo_premium">Logo premium</string>
     <string name="buy_premium">Comprar</string>
+    <string name="user_leave_chat">%s ha abandonado el chat</string>
+    <string name="user_connect_chat">%s se ha conectado al chat</string>
+    <string name="nochangesmodify">No hay cambios a modificar</string>
+    <string name="savechanges">Cambios guardados</string>
+    <string name="go_out_profile">Salir del Perfil</string>
+    <string name="confirm_go_out_profile">¿Estás seguro de que deseas salir sin guardar cambios?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="current_position">Posicion actual</string>
+    <string name="justmeet_user">Usuario Just Meet</string>
+    <string name="permision_acces_file">El permís ACCESS_FINE_LOCATION no està disponible</string>
+    <string name="permision_acces_coarse">El permís ACCESS_COARSE_LOCATION no està disponible</string>
+    <string name="select_an_avatar">Has de escoger un avatar!!</string>
+    <string name="insert_error_avatar">Ha habido un error en la insercion del avatar, intentelo mas tarde</string>
+    <string name="correct_login">Login Correcte</string>
+    <string name="incorrect_password">Contrasenya incorrecte</string>
+    <string name="username_dontexists">Aquest nom d'usuari no està registrat</string>
+    <string name="invalid_age">Edad no valida</string>
+    <string name="write_valid_email">Introdueix un email vàlid</string>
+    <string name="userregistredfine">Usuari registrat amb èxit</string>
+    <string name="userexistsbd">Ja existeix un usuari amb aquest nom</string>
+    <string name="differentpassword">Les contrasenyes no coincideixen</string>
+    <string name="empty_information">Hi han camps buits!!!</string>
+    <string name="go_out_settings">Salir de Ajustes</string>
+    <string name="confirm_go_out_settings">Estas seguro que quieres salir sin guardar cambios?</string>
+    <string name="confirm_close_session">¿Estás seguro de que deseas cerrar sesión?</string>
+    <string name="session_closed">Sessión cerrada</string>
+    <string name="finding_game">Buscando partida...</string>
+
 </resources>

@@ -36,7 +36,7 @@ class ActivityJustEditProfile : AppCompatActivity() {
 
             if(binding.tvSobreMiContent.text.toString().equals(userLog!!.description) ){
 
-                Toast.makeText(this,"No hay cambios a modificar", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,getString(R.string.nochangesmodify), Toast.LENGTH_LONG).show()
             } else {
 
                 runBlocking {
@@ -48,7 +48,7 @@ class ActivityJustEditProfile : AppCompatActivity() {
                     corrutina.join()
                 }
 
-                Toast.makeText(this,"CAMBIOS GUARDADOS",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,getString(R.string.savechanges),Toast.LENGTH_LONG).show()
             }
         }
         binding.backButtonEdit.setOnClickListener {
@@ -64,14 +64,14 @@ class ActivityJustEditProfile : AppCompatActivity() {
             if(!binding.tvSobreMiContent.text.toString().equals(userLog!!.description) && !changeSaved
             ) {
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle("Salir del Perfil")
-                builder.setMessage("¿Estás seguro de que deseas salir sin guardar cambios?")
-                builder.setPositiveButton("Sí") { _, _ ->
+                builder.setTitle(getString(R.string.go_out_profile))
+                builder.setMessage(getString(R.string.confirm_go_out_profile))
+                builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
                     // Agrega aquí el código para cerrar sesión
                     onBackPressed()
                     finish()
                 }
-                builder.setNegativeButton("No") { _, _ ->
+                builder.setNegativeButton(getString(R.string.no)) { _, _ ->
 
                 }
                 val dialog = builder.create()
