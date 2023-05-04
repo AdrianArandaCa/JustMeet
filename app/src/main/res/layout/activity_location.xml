@@ -22,7 +22,7 @@
         android:layout_marginTop="70dp"
         android:background="@drawable/border_button_alternative"
         android:fontFamily="@font/champagnebold"
-        android:text="Salir"
+        android:text="@string/go_out"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp"

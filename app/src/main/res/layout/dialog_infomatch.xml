@@ -39,7 +39,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Descripción"
+        android:text="@string/description_profile"
         android:textColor="@color/black"
         android:fontFamily="@font/champagnebold"
         android:textSize="25sp"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/border_button"
-        android:text="Abrir chat"
+        android:text="@string/open_chat"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp"

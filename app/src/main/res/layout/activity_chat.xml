@@ -76,7 +76,7 @@
             android:layout_height="30dp"
             android:id="@+id/etSendMessage"
             android:background="@color/dark_gold"
-            android:hint="Escribe un mensaje..."
+            android:hint="@string/escribe_un_mensaje"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:inputType="text"
@@ -86,7 +86,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enviar"
+            android:text="@string/send_message"
             android:id="@+id/btnSendMessage"
             android:textColor="@color/black"
             android:layout_gravity="center"

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvTituloAvatar"
-        android:text="Escoge tu avatar"
+        android:text="@string/select_avatar"
         android:textColor="@color/dark_gold"
         android:textAlignment="center"
         android:layout_marginTop="50dp"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
 
         android:background="@drawable/border_button"
-        android:text="Guardar Avatar"
+        android:text="@string/save_avatar"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:fontFamily="@font/champagnebold"
