@@ -90,7 +90,7 @@
     <string name="insert_error_avatar">Ha habido un error en la insercion del avatar, intentelo mas tarde</string>
     <string name="correct_login">Login Correcte</string>
     <string name="incorrect_password">Contrasenya incorrecte</string>
-    <string name="username_dontexists">Aquest nom d'usuari no està registrat</string>
+    <string name="username_dontexists">Aquest nom d\'usuari no està registrat</string>
     <string name="invalid_age">Edad no valida</string>
     <string name="write_valid_email">Introdueix un email vàlid</string>
     <string name="userregistredfine">Usuari registrat amb èxit</string>
