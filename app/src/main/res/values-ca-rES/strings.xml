@@ -79,4 +79,5 @@
     <string name="session_closed">Sessió tancada</string>
     <string name="finding_game">Buscant partida...</string>
     <string name="copyright">© Just Meet 2023. Tots els drets reservats</string>
+    <string name="premium_comprado">Premium comprat</string>
 </resources>

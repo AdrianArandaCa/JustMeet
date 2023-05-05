@@ -33,6 +33,7 @@ var isSelected : Boolean = false
 
 
         binding.cardViewPremium1.setOnClickListener {
+            binding.cardViewPremium1.isSelected = true
             binding.linearOpcion1.setBackgroundResource(R.drawable.fondogold_selecteduno)
             binding.tvMesPremium.setTextColor(resources.getColor(R.color.black))
             binding.tvPrecioPremium.setTextColor(resources.getColor(R.color.black))
@@ -44,7 +45,7 @@ var isSelected : Boolean = false
 
         }
         binding.cardViewPremium2.setOnClickListener {
-
+            binding.cardViewPremium2.isSelected = true
             binding.linearOpcion2.setBackgroundResource(R.drawable.fondogold_selecteduno)
             binding.tvMesPremium1.setTextColor(resources.getColor(R.color.black))
             binding.tvPrecioPremium1.setTextColor(resources.getColor(R.color.black))
@@ -62,8 +63,18 @@ var isSelected : Boolean = false
                 if(!binding.cardViewPremium1.isSelected && !binding.cardViewPremium2.isSelected) {
                     Toast.makeText(requireContext(),"Tienes que seleccionar un plan!",Toast.LENGTH_LONG).show()
                 } else {
-                    val intento = Intent(requireContext(),ActivityBuyPremium::class.java)
-                    startActivity(intento)
+                    if(binding.cardViewPremium1.isSelected) {
+                        val intento = Intent(requireContext(),ActivityBuyPremium::class.java)
+                            intento.putExtra("Price",binding.tvPrecioPremium.text.toString())
+                            intento.putExtra("Month",binding.tvMesPremium.text.toString())
+                        startActivity(intento)
+                    } else if(binding.cardViewPremium2.isSelected) {
+                        val intento = Intent(requireContext(),ActivityBuyPremium::class.java)
+                        intento.putExtra("Price",binding.tvPrecioPremium1.text.toString())
+                        intento.putExtra("Month",binding.tvMesPremium1.text.toString())
+                        startActivity(intento)
+                    }
+
                 }
 
             }

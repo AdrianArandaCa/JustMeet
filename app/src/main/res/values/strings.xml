@@ -103,5 +103,6 @@
     <string name="session_closed">Sessión cerrada</string>
     <string name="finding_game">Buscando partida...</string>
     <string name="copyright">© Just Meet 2023. Todos los derechos reservados</string>
+    <string name="premium_comprado">Premium comprado</string>
 
 </resources>

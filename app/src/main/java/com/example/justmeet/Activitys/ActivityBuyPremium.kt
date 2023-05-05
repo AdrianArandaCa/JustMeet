@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Toast
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.userLog
 import com.example.justmeet.R
@@ -14,15 +15,17 @@ import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
-    private lateinit var binding : ActivityBuyPremiumBinding
+    private lateinit var binding: ActivityBuyPremiumBinding
     var job = Job()
-    var userBuyedPremium : Boolean = false
+    var userBuyedPremium: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBuyPremiumBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
-
+        val priceSelected = intent.getStringExtra("Price")
+        val monthSelected = intent.getStringExtra("Month")
+        binding.planSelected.setText("Plan seleccionado: ${monthSelected},${priceSelected}")
         binding.btnConfirmBuyPremium.setOnClickListener {
             var numberTarget = binding.etTargetNumber.text.toString()
             var nameSurnameTarget = binding.etNameSurNameTarget.text.toString()
@@ -31,7 +34,7 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
             var postalcode = binding.etPostalCode.text.toString()
             var email = binding.etEmail.text.toString()
 
-            if(numberTarget.isNotEmpty() && nameSurnameTarget.isNotEmpty() && mmaa.isNotEmpty() && cvc.isNotEmpty() && postalcode.isNotEmpty() && email.isNotEmpty()){
+            if (numberTarget.isNotEmpty() && nameSurnameTarget.isNotEmpty() && mmaa.isNotEmpty() && cvc.isNotEmpty() && postalcode.isNotEmpty() && email.isNotEmpty()) {
 
 
                 runBlocking {
@@ -42,11 +45,16 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
                     }
                     corrutina.join()
                 }
-                if(userBuyedPremium) {
+                if (userBuyedPremium) {
                     onBackPressed()
                     finish()
+                    Toast.makeText(this,"Premium comprado",Toast.LENGTH_LONG).show()
                 }
             }
+        }
+        binding.ibBack.setOnClickListener {
+            onBackPressed()
+            finish()
         }
 
         binding.etMMAA.addTextChangedListener(object : TextWatcher {
@@ -79,6 +87,7 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
         })
 
     }
+
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
