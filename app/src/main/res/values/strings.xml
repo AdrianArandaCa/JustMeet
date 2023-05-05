@@ -104,5 +104,13 @@
     <string name="finding_game">Buscando partida...</string>
     <string name="copyright">© Just Meet 2023. Todos los derechos reservados</string>
     <string name="premium_comprado">Premium comprado</string>
+    <string name="method_buy_premium">Método de pago</string>
+    <string name="numbertarget">Número de tarjeta</string>
+    <string name="namesurnametarget">Nombre y apellidos impresos en la tarjeta</string>
+    <string name="postalcode">Código postal</string>
+    <string name="direccion_email">Direccion correo electronico</string>
+    <string name="mmaa_error">El MMAA ha de contener una \'/' entre años</string>
+    <string name="plan_selected">Plan seleccionado: %1$s, %2$s</string>
+
 
 </resources>

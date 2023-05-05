@@ -80,4 +80,11 @@
     <string name="finding_game">Looking for match...</string>
     <string name="copyright">© Just Meet 2023. All rights reserved</string>
     <string name="premium_comprado">Purchased premium</string>
+    <string name="method_buy_premium">Payment method</string>
+    <string name="numbertarget">Card number</string>
+    <string name="namesurnametarget">Name and surname printed on the card</string>
+    <string name="postalcode">Postal Code</string>
+    <string name="direccion_email">Email address</string>
+    <string name="mmaa_error">The MMAA must contain a \'/\' between years</string>
+    <string name="plan_selected">Selected plan: %1$s, %2$s</string>
 </resources>

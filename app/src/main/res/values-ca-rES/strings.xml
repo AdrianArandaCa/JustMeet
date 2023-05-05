@@ -80,4 +80,11 @@
     <string name="finding_game">Buscant partida...</string>
     <string name="copyright">© Just Meet 2023. Tots els drets reservats</string>
     <string name="premium_comprado">Premium comprat</string>
+    <string name="method_buy_premium">Mètode de pagament</string>
+    <string name="numbertarget">Número de targeta</string>
+    <string name="namesurnametarget">Nom i cognoms impresos a la targeta</string>
+    <string name="postalcode">Codi postal</string>
+    <string name="direccion_email">Adreça correu electrònic</string>
+    <string name="mmaa_error">El MMAA ha de contenir una \'/\' entre anys</string>
+    <string name="plan_selected">Pla seleccionat: %1$s, %2$s</string>
 </resources>

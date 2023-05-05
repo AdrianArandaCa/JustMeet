@@ -25,7 +25,7 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
         putFullScreen()
         val priceSelected = intent.getStringExtra("Price")
         val monthSelected = intent.getStringExtra("Month")
-        binding.planSelected.setText("Plan seleccionado: ${monthSelected},${priceSelected}")
+        binding.planSelected.setText(getString(R.string.plan_selected, monthSelected, priceSelected))
         binding.btnConfirmBuyPremium.setOnClickListener {
             var numberTarget = binding.etTargetNumber.text.toString()
             var nameSurnameTarget = binding.etNameSurNameTarget.text.toString()
@@ -36,20 +36,25 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
 
             if (numberTarget.isNotEmpty() && nameSurnameTarget.isNotEmpty() && mmaa.isNotEmpty() && cvc.isNotEmpty() && postalcode.isNotEmpty() && email.isNotEmpty()) {
 
-
-                runBlocking {
-                    val corrutina = launch {
-                        val crudApi = CrudApi()
-                        userLog!!.premium = true
-                        userBuyedPremium = crudApi.modifyUserFromApi(userLog!!)
+                if(!mmaa.contains("/")) {
+                    Toast.makeText(this,getString(R.string.mmaa_error),Toast.LENGTH_LONG).show()
+                } else {
+                    runBlocking {
+                        val corrutina = launch {
+                            val crudApi = CrudApi()
+                            userLog!!.premium = true
+                            userBuyedPremium = crudApi.modifyUserFromApi(userLog!!)
+                        }
+                        corrutina.join()
                     }
-                    corrutina.join()
+                    if (userBuyedPremium) {
+                        onBackPressed()
+                        finish()
+                        Toast.makeText(this,getString(R.string.premium_comprado),Toast.LENGTH_LONG).show()
+                    }
                 }
-                if (userBuyedPremium) {
-                    onBackPressed()
-                    finish()
-                    Toast.makeText(this,"Premium comprado",Toast.LENGTH_LONG).show()
-                }
+            } else {
+                Toast.makeText(this,getString(R.string.empty_information),Toast.LENGTH_LONG).show()
             }
         }
         binding.ibBack.setOnClickListener {
@@ -57,34 +62,7 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
             finish()
         }
 
-        binding.etMMAA.addTextChangedListener(object : TextWatcher {
-            private var isDeleting = false
 
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (count == 0 && before == 1 && s[start] == '/') {
-                    isDeleting = true
-                }
-            }
-
-            override fun afterTextChanged(s: Editable) {
-                if (isDeleting) {
-                    isDeleting = false
-                    return
-                }
-
-                val input = s.toString()
-                if (input.length == 3 && input[2] != '/') {
-                    val newInput = StringBuilder(input).insert(2, "/").toString()
-                    binding.etMMAA.setText(newInput)
-                    binding.etMMAA.setSelection(newInput.length)
-                } else if (input.length == 2 && !input.contains("/")) {
-                    binding.etMMAA.setText("$input/")
-                    binding.etMMAA.setSelection(binding.etMMAA.text.length)
-                }
-            }
-        })
 
     }
 
