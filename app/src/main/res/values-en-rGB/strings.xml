@@ -85,6 +85,6 @@
     <string name="namesurnametarget">Name and surname printed on the card</string>
     <string name="postalcode">Postal Code</string>
     <string name="direccion_email">Email address</string>
-    <string name="mmaa_error">The MMAA must contain a \'/\' between years</string>
+<!--    <string name="mmaa_error">The MMAA must contain a \'/\' between years</string>-->
     <string name="plan_selected">Selected plan: %1$s, %2$s</string>
 </resources>

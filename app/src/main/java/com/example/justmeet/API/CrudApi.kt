@@ -19,7 +19,8 @@ import kotlin.coroutines.CoroutineContext
 
 class CrudApi(): CoroutineScope {
 
-    val urlapi = "https://172.16.24.123:45455/api/"
+    val urlapi = "https://172.16.24.24:45455/api/" // IP PC HDD
+    //val urlapi = "https://172.16.24.123:45455/api/" // IP SERVER PC ADRI
 //    val urlapi = "http://192.168.1.135/"
 //    val urlapi = "http://172.19.254.119/"
 

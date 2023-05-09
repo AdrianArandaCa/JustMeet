@@ -109,7 +109,7 @@
     <string name="namesurnametarget">Nombre y apellidos impresos en la tarjeta</string>
     <string name="postalcode">Código postal</string>
     <string name="direccion_email">Direccion correo electronico</string>
-    <string name="mmaa_error">El MMAA ha de contener una \'/' entre años</string>
+<!--    <string name="mmaa_error">El MMAA ha de contener una \'/' entre años</string>-->
     <string name="plan_selected">Plan seleccionado: %1$s, %2$s</string>
 
 

@@ -201,7 +201,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                             ).show()
                             Handler().postDelayed({
                                 finish()
-                            }, 3000)
+                            }, 2000)
 
 
                         } else {
