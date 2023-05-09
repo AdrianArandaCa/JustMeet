@@ -137,7 +137,8 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     }
 
     fun getPermissionsApi() {
-        val inputStream: InputStream = resources.openRawResource(R.raw.certificadoserver)
+     //   val inputStream: InputStream = resources.openRawResource(R.raw.certificadoserver) //Server PC ADRI
+        val inputStream: InputStream = resources.openRawResource(R.raw.certificadoserverhdd) // Server PC HDD
 
         // Cargar certificado
         val cf: CertificateFactory = CertificateFactory.getInstance("X.509")
