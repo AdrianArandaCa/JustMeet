@@ -29,21 +29,20 @@ class ActivityVideoView : AppCompatActivity() {
         val mediaController = MediaController(this)
         mediaController.setAnchorView(binding.vvAnuncio)
         val videoPath = advertisementList[randomDelay].url
-        binding.tvCompanyName.setText("Anuncio patrocinado por : ${advertisementList[randomDelay].nameCompany}")
         var uri = Uri.parse(videoPath)
         binding.vvAnuncio.setMediaController(mediaController)
         binding.vvAnuncio.setVideoURI(uri)
         binding.vvAnuncio.requestFocus()
         binding.vvAnuncio.start()
-        binding.vvAnuncio.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_UP) {
-                openAdvertiserWebsite(advertisementList[randomDelay].website)
-            }
-            true
+
+        binding.btnGoWebsite.setImageResource(advertisementList[randomDelay].logo)
+
+        binding.btnGoWebsite.setOnClickListener {
+            openAdvertiserWebsite(advertisementList[randomDelay].website)
         }
         binding.vvAnuncio.setOnCompletionListener {
 
-            val intento = Intent(this, BottomNavigationActivity::class.java)
+            val intento = Intent(this, LoginActivity::class.java)
             startActivity(intento)
             finish()
         }
@@ -84,11 +83,11 @@ class ActivityVideoView : AppCompatActivity() {
         advertisementList = arrayListOf()
         advertisementList.addAll(
             listOf(
-                Advertisement(1,"Nesquik","android.resource://"+this.packageName+"/"+R.raw.anuncionesquik,"https://www.kalise.com/"),
-                Advertisement(2,"Coca Cola","android.resource://"+this.packageName+"/"+R.raw.anunciococacola,"https://www.kalise.com/"),
-                Advertisement(3,"Vanish Gold","android.resource://"+this.packageName+"/"+R.raw.anunciodetergente,"https://www.kalise.com/"),
-                Advertisement(4,"Paco Rabanne","android.resource://"+this.packageName+"/"+R.raw.anuncioinvictus,"https://www.kalise.com/"),
-                Advertisement(5,"Kalise","android.resource://"+this.packageName+"/"+R.raw.anunciokalise,"https://www.kalise.com/")
+                Advertisement(1,"Nesquik","android.resource://"+this.packageName+"/"+R.raw.anuncionesquik,"https://www.kalise.com/",R.drawable.nesquiklogo),
+                Advertisement(2,"Coca Cola","android.resource://"+this.packageName+"/"+R.raw.anunciococacola,"https://www.kalise.com/",R.drawable.cocacolalogo),
+                Advertisement(3,"Vanish Gold","android.resource://"+this.packageName+"/"+R.raw.anunciodetergente,"https://www.kalise.com/",R.drawable.vanish),
+                Advertisement(4,"Paco Rabanne","android.resource://"+this.packageName+"/"+R.raw.anuncioinvictus,"https://www.kalise.com/",R.drawable.pacorrabane),
+                Advertisement(5,"Kalise","android.resource://"+this.packageName+"/"+R.raw.anunciokalise,"https://www.kalise.com/",R.drawable.kalise)
             )
         )
     }

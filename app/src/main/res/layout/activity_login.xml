@@ -46,10 +46,10 @@
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
+            android:fontFamily="@font/timesnewnormal"
             android:hint="@string/nomusuari"
             android:inputType="text"
             android:text="admin"
-            android:fontFamily="@font/timesnewnormal"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
@@ -112,12 +112,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:fontFamily="@font/champagnebold"
         android:padding="8dp"
         android:text="@string/textRegister"
         android:textAlignment="center"
         android:textColor="@color/light_gold"
         android:textSize="20sp"
-        android:fontFamily="@font/champagnebold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnLogin" />
@@ -128,23 +128,67 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/border_button"
+        android:fontFamily="@font/champagnebold"
         android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:fontFamily="@font/champagnebold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtRegister" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+        android:layout_marginBottom="5dp"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/ibFacebook"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/facebooklogogold"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageButton
+            android:id="@+id/ibLinkedin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/linkedinlogogold"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageButton
+            android:id="@+id/ibGmail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/googlelogogold"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageButton
+            android:id="@+id/ibInstagram"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/instagramlogogold"
+            android:scaleType="centerCrop"
+            />
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -105,7 +105,8 @@ data class Advertisement(
     var idAdvertisement : Int,
     var nameCompany : String,
     var url : String,
-    var website : String
+    var website : String,
+    var logo : Int
 )
 
 lateinit var llistaUsers: ArrayList<User>

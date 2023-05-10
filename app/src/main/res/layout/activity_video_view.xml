@@ -7,20 +7,7 @@
     android:background="@drawable/fondobg3"
     tools:context=".Activitys.ActivityVideoView">
 
-    <TextView
-        android:id="@+id/tvCompanyName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="150dp"
-        android:text="Anuncio emitido por :"
-        android:textAlignment="center"
-        android:textColor="@color/dark_gold"
-        android:textSize="25sp"
-        android:fontFamily="@font/champagnebold"
-        />
+
 
     <VideoView
         android:id="@+id/vvAnuncio"
@@ -29,18 +16,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="150dp"
+        />
+
+    <ImageButton
+        android:id="@+id/btnGoWebsite"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vvAnuncio"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/transparent"
+        />
+    <TextView
+        android:id="@+id/tvFlechas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⇈"
+        android:textSize="30dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGoWebsite"
+        android:textColor="@color/dark_gold"
+
+        />
+    <TextView
+        android:id="@+id/tvHazClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvFlechas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="¡HAZ CLICK PARA ACCEDER A LA PAGINA OFICIAL"
+    android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gold"
+        android:textSize="18sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/champagnebold"
         />
 
     <TextView
         android:id="@+id/tvAvisoAnuncio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/vvAnuncio"
+        app:layout_constraintTop_toBottomOf="@id/tvHazClick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:text="Accederas a la app despues del anuncio"
         android:textAlignment="center"
         android:textColor="@color/dark_gold"
@@ -53,7 +84,6 @@
         app:layout_constraintTop_toBottomOf="@id/tvAvisoAnuncio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
         android:text="¡Contrata premium para omitirlos!"
         android:textAlignment="center"
         android:textColor="@color/dark_gold"

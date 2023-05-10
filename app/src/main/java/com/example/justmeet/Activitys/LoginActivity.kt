@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -56,6 +57,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         putFullScreen()
         getPermissionsApi()
 
+
         binding.btnRegister.setOnClickListener {
 
             val intento = Intent(this, RegisterActivity::class.java)
@@ -98,9 +100,8 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                 var passWord = encryptPassword(binding.etPassword.text.toString())
                 if (passWord.equals(userLog!!.password)) {
                     runOnUiThread {
-                        binding.progressBar.visibility = View.VISIBLE
                         Toast.makeText(this, getString(R.string.correct_login), Toast.LENGTH_LONG).show()
-                        binding.progressBar.visibility = View.GONE
+
                     }
                     if (userLog!!.photo == 0) {
                         getLocationPermission(isPressed)
@@ -130,6 +131,19 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                     .show()
             }
         }
+        binding.ibFacebook.setOnClickListener {
+            openAdvertiserWebsite("https://www.facebook.com/")
+        }
+        binding.ibGmail.setOnClickListener {
+            openAdvertiserWebsite("https://www.gmail.com/")
+        }
+        binding.ibInstagram.setOnClickListener {
+            openAdvertiserWebsite("https://www.instagram.com/")
+        }
+        binding.ibLinkedin.setOnClickListener {
+            openAdvertiserWebsite("https://www.linkedin.com/")
+        }
+
     }
 
     fun putFullScreen() {
@@ -295,6 +309,12 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             } else
                 permisosGarantits = false
         }
+    }
+
+    private fun openAdvertiserWebsite(website : String) {
+        val advertiserUri = Uri.parse(website)
+        val intent = Intent(Intent.ACTION_VIEW, advertiserUri)
+        startActivity(intent)
     }
 
     override val coroutineContext: CoroutineContext get() = Dispatchers.Main + job
