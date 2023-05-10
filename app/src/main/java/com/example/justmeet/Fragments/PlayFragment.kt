@@ -44,7 +44,7 @@ var isSucces : Boolean = false
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentPlayBinding.inflate(inflater, container, false)
-        val serverUrl = "ws://172.16.24.123:45456/ws/${userLog!!.idUser}"
+        val serverUrl = "ws://172.16.24.24:45456/ws/${userLog!!.idUser}"
 //        binding.btnBuscarPartida.setOnClickListener {
 //            thread {
 //                kotlin.run {

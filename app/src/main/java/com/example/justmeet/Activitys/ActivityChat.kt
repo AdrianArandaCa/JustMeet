@@ -34,7 +34,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         setContentView(binding.root)
         putFullScreen()
         val userRecived = intent.getSerializableExtra("User") as? User
-        val serverUrl = "ws://172.16.24.123:45456/ws/${userLog!!.idUser}"
+        val serverUrl = "ws://172.16.24.24:45456/ws/${userLog!!.idUser}"
         thread {
             kotlin.run {
                 WebSocketManager.init(serverUrl, this)
