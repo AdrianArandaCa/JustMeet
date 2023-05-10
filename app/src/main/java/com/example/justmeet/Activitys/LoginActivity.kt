@@ -109,9 +109,15 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                         finish()
                     } else {
                         getLocationPermission(isPressed)
-                        val intento = Intent(this, BottomNavigationActivity::class.java)
-                        startActivity(intento)
-                        finish()
+                        if(userLog!!.premium!!){
+                            val intento = Intent(this, BottomNavigationActivity::class.java)
+                            startActivity(intento)
+                            finish()
+                        } else {
+                            val intento = Intent(this,ActivityVideoView::class.java)
+                            startActivity(intento)
+                            finish()
+                        }
                     }
 
 

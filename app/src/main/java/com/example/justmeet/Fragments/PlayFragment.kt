@@ -204,8 +204,8 @@ var isSucces : Boolean = false
     }
 
     fun animatePlayButton() {
-        val scaleDownX = ObjectAnimator.ofFloat(binding.btnPlay, "scaleX", 2.2f)
-        val scaleDownY = ObjectAnimator.ofFloat(binding.btnPlay, "scaleY", 2.2f)
+        val scaleDownX = ObjectAnimator.ofFloat(binding.btnPlay, "scaleX", 2.0f)
+        val scaleDownY = ObjectAnimator.ofFloat(binding.btnPlay, "scaleY", 2.0f)
         scaleDownX.duration = 2500
         scaleDownY.duration = 2500
 

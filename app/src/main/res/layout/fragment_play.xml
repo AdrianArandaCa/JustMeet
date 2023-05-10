@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnPlay"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="110dp"
         android:text="¡Haz click para buscar partida!"
         android:textAlignment="center"
         android:textSize="22sp"

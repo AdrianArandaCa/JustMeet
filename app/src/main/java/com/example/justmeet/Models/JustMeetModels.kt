@@ -101,6 +101,13 @@ data class Chat(
     var isUserLogged : Int
 )
 
+data class Advertisement(
+    var idAdvertisement : Int,
+    var nameCompany : String,
+    var url : String,
+    var website : String
+)
+
 lateinit var llistaUsers: ArrayList<User>
 
 lateinit var tmf: TrustManagerFactory
