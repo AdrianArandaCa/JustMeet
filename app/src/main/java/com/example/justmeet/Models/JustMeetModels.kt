@@ -57,6 +57,7 @@ data class Setting(
     var minAge : Int,
     var maxAge : Int,
     var genre : String,
+    var idGametype : Int?,
     var idGameTypeNavigation : GameType?
 )
 

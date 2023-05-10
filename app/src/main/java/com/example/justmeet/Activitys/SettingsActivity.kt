@@ -103,7 +103,7 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
                runBlocking {
                    val corrutina = launch {
                        val crudApi = CrudApi()
-                       var setting = Setting(userLog!!.idSetting!!,binding.seekbarDistancia.progress,binding.seekBarMin.progress,binding.seekBarMax.progress,genre,null)
+                       var setting = Setting(userLog!!.idSetting!!,binding.seekbarDistancia.progress,binding.seekBarMin.progress,binding.seekBarMax.progress,genre,2,null)
                        changeSaved = crudApi.modifySettingFromApi(setting)
                    }
                    corrutina.join()

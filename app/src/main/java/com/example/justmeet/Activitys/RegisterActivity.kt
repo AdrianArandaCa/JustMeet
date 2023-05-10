@@ -184,7 +184,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                         "",
                         false,
                         null,
-                        Setting(null, 10, 18, 30, genre, null),
+                        Setting(null, 10, 18, 30, genre, 2,null),
                         Location(null, 0.0, 0.0,null)
                     )
                     runBlocking {
