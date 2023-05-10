@@ -1,11 +1,16 @@
 package com.example.justmeet.Fragments
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.core.view.isVisible
 import com.example.justmeet.Activitys.ActivityLocation
 import com.example.justmeet.Activitys.ActivityResumeIsMatch
 import com.example.justmeet.Activitys.ActivityResumeNotMatch
@@ -27,6 +32,8 @@ private lateinit var binding: FragmentPlayBinding
 
 class PlayFragment : Fragment(), MessageListener {
 var isSucces : Boolean = false
+    var isFinding : Boolean = false
+    private lateinit var  focusAnimation : AnimatorSet
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -38,20 +45,58 @@ var isSucces : Boolean = false
         // Inflate the layout for this fragment
         binding = FragmentPlayBinding.inflate(inflater, container, false)
         val serverUrl = "ws://172.16.24.123:45456/ws/${userLog!!.idUser}"
-        binding.btnBuscarPartida.setOnClickListener {
-            thread {
-                kotlin.run {
-                    WebSocketManager.init(serverUrl, this)
-                    WebSocketManager.connect()
-                    val randomDelay = Random.nextInt(400, 500)
-                    Thread.sleep(randomDelay.toLong())
-                    WebSocketManager.sendMessage("STARTGAME")
+//        binding.btnBuscarPartida.setOnClickListener {
+//            thread {
+//                kotlin.run {
+//                    WebSocketManager.init(serverUrl, this)
+//                    WebSocketManager.connect()
+//                    val randomDelay = Random.nextInt(400, 500)
+//                    Thread.sleep(randomDelay.toLong())
+//                    WebSocketManager.sendMessage("STARTGAME")
+//                }
+//            }
+//            activity?.runOnUiThread {
+//                binding.btnBuscarPartida.setText(getString(R.string.finding_game))
+//                binding.btnPlay.setImageResource(R.drawable.stopbuttontop)
+//            }
+//        }
+        binding.btnPlay.setOnClickListener {
+
+            if(!isFinding){
+                thread {
+                    kotlin.run {
+                        WebSocketManager.init(serverUrl, this)
+                        WebSocketManager.connect()
+                        val randomDelay = Random.nextInt(400, 500)
+                        Thread.sleep(randomDelay.toLong())
+                        WebSocketManager.sendMessage("STARTGAME")
+                    }
                 }
+                activity?.runOnUiThread {
+                    binding.tvStateGame.isVisible = true
+                    binding.tvStateGame.setText("Buscando partida...")
+                   // binding.btnBuscarPartida.setText(getString(R.string.finding_game))
+                   // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
+                    isFinding = true
+                  animatePlayButton()
+                }
+            } else {
+                WebSocketManager.sendMessage("CLOSE")
+               binding.tvStateGame.setText("¡Haz click para buscar partida!")
+               // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
+                isFinding = false
+                if(focusAnimation.isRunning){
+                    focusAnimation.cancel()
+                    focusAnimation.end()
+                    binding.btnPlay.alpha = 1.0f
+                    binding.btnPlay.scaleX = 1.0f
+                    binding.btnPlay.scaleY = 1.0f
+                    binding.btnPlay.rotation = 0.0f
+                    return@setOnClickListener
+                }
+
             }
-            activity?.runOnUiThread {
-                binding.btnBuscarPartida.setText(getString(R.string.finding_game))
-                binding.progressBarPlay.visibility = View.VISIBLE
-            }
+
         }
 
        binding.btnIntentLocation.setOnClickListener {
@@ -93,7 +138,7 @@ var isSucces : Boolean = false
                 } else if(text == "CLOSEGAMETYPE"){
                     println("CLOSEGAMETYPE")
                 }
-                hideProgressBar()
+            //    hideProgressBar()
                 thread {
                     kotlin.run {
                             WebSocketManager.sendMessage("CLOSE")
@@ -124,7 +169,7 @@ var isSucces : Boolean = false
                 val listType = object : TypeToken<ArrayList<Question>>() {}.type
                 listQuestion = gson.fromJson(text, listType)
                 activity?.runOnUiThread {
-                    binding.progressBarPlay.visibility = View.GONE
+
                     val intent = Intent(requireContext(), GameActivity::class.java)
                     startActivity(intent)
                 }
@@ -132,12 +177,11 @@ var isSucces : Boolean = false
         }
     }
 
-    private fun hideProgressBar() {
-        activity?.runOnUiThread {
-            binding.progressBarPlay.visibility = View.GONE
-            binding.btnBuscarPartida.setText(getString(R.string.searchgame))
-        }
-    }
+//    private fun hideProgressBar() {
+//        activity?.runOnUiThread {
+//            binding.btnBuscarPartida.setText(getString(R.string.searchgame))
+//        }
+//    }
 
     private fun addText(text: String?) {
         activity?.runOnUiThread {
@@ -157,6 +201,44 @@ var isSucces : Boolean = false
     override fun onStop() {
         super.onStop()
        // WebSocketManager.sendMessage("CLOSE")
+    }
+
+    fun animatePlayButton() {
+        val scaleDownX = ObjectAnimator.ofFloat(binding.btnPlay, "scaleX", 2.2f)
+        val scaleDownY = ObjectAnimator.ofFloat(binding.btnPlay, "scaleY", 2.2f)
+        scaleDownX.duration = 2500
+        scaleDownY.duration = 2500
+
+
+//        val fadeOut = ObjectAnimator.ofFloat(binding.btnPlay, "alpha", 0.5f)
+//        fadeOut.duration = 1000
+
+
+        val scaleUpX = ObjectAnimator.ofFloat(binding.btnPlay, "scaleX", 10f)
+        val scaleUpY = ObjectAnimator.ofFloat(binding.btnPlay, "scaleY", 10f)
+        scaleUpX.duration = 1000
+        scaleUpY.duration = 1000
+
+//        val fadeIn = ObjectAnimator.ofFloat(binding.btnPlay, "alpha", 1f)
+//        fadeIn.duration = 1000
+
+
+        focusAnimation = AnimatorSet()
+        focusAnimation.play(scaleDownX).with(scaleDownY)
+        focusAnimation.play(scaleUpX).with(scaleUpY).after(scaleDownX)
+
+
+
+        focusAnimation.interpolator = AccelerateDecelerateInterpolator()
+        scaleDownX.repeatCount = ValueAnimator.INFINITE
+        scaleDownY.repeatCount = ValueAnimator.INFINITE
+       // fadeOut.repeatCount = ValueAnimator.INFINITE
+        scaleUpX.repeatCount = ValueAnimator.INFINITE
+        scaleUpY.repeatCount = ValueAnimator.INFINITE
+       // fadeIn.repeatCount = ValueAnimator.INFINITE
+
+
+        focusAnimation.start()
     }
 
 

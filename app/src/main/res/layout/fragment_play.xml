@@ -18,61 +18,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnBuscarPartida"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/border_button"
-        android:text="@string/searchgame"
-        android:textAllCaps="false"
-        android:fontFamily="@font/champagnebold"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivJustplay" />
 
-    <TextView
-        android:id="@+id/txtRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:padding="8dp"
-        android:text="@string/wish"
-        android:textAlignment="center"
-        android:textColor="@color/light_gold"
-        android:textSize="17sp"
-        android:fontFamily="@font/champagnebolditalic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBuscarPartida" />
 
-    <ProgressBar
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/progressBarPlay"
-        android:indeterminate="true"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtRegister"
-        android:layout_marginTop="20dp"
-        />
+
+
 
 
     <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/btnPlay"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/buttonjustmeetheart"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/tvStateGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPlay"
+        android:layout_marginTop="120dp"
+        android:text="¡Haz click para buscar partida!"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:fontFamily="@font/timesnewnormal"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+
+        />
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:scaleType="centerCrop"
         android:id="@+id/btnIntentLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressBarPlay"
+        app:layout_constraintTop_toBottomOf="@id/tvStateGame"
+
         android:src="@drawable/worldgold"
         android:background="@android:color/transparent"
-        android:layout_marginTop="120dp"
+
         />
 
 
