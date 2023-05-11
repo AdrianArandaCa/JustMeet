@@ -65,12 +65,12 @@ class ActivitySelectAvatar : AppCompatActivity(),CoroutineScope {
         avatarList = arrayListOf()
         avatarList.addAll(
             listOf(
-                Avatar(1,R.drawable.logodoradouno,"Aguila",0),
-                Avatar(2,R.drawable.logodoradodos,"Calavera",0),
-                Avatar(3,R.drawable.logodoradotres,"Ciervo",0),
-                Avatar(4,R.drawable.logodoradocuatro,"CorazonCruz",0),
-                Avatar(5,R.drawable.logodoradocinco,"Leon",0),
-                Avatar(6,R.drawable.logodoradoseis,"Pistola",0),
+                Avatar(1,R.drawable.avatargoldman,"Aguila",0),
+                Avatar(2,R.drawable.avatargoldmale,"Calavera",0),
+                Avatar(3,R.drawable.avatargoldmaletwo,"Ciervo",0),
+                Avatar(4,R.drawable.avatargoldmantwo,"CorazonCruz",0),
+                Avatar(5,R.drawable.avatargoldmanthree,"Leon",0),
+                Avatar(6,R.drawable.avatargoldnobinario,"Pistola",0),
                 )
         )
     }

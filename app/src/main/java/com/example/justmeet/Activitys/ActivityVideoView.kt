@@ -42,7 +42,7 @@ class ActivityVideoView : AppCompatActivity() {
         }
         binding.vvAnuncio.setOnCompletionListener {
 
-            val intento = Intent(this, LoginActivity::class.java)
+            val intento = Intent(this, BottomNavigationActivity::class.java)
             startActivity(intento)
             finish()
         }
@@ -83,10 +83,10 @@ class ActivityVideoView : AppCompatActivity() {
         advertisementList = arrayListOf()
         advertisementList.addAll(
             listOf(
-                Advertisement(1,"Nesquik","android.resource://"+this.packageName+"/"+R.raw.anuncionesquik,"https://www.kalise.com/",R.drawable.nesquiklogo),
-                Advertisement(2,"Coca Cola","android.resource://"+this.packageName+"/"+R.raw.anunciococacola,"https://www.kalise.com/",R.drawable.cocacolalogo),
-                Advertisement(3,"Vanish Gold","android.resource://"+this.packageName+"/"+R.raw.anunciodetergente,"https://www.kalise.com/",R.drawable.vanish),
-                Advertisement(4,"Paco Rabanne","android.resource://"+this.packageName+"/"+R.raw.anuncioinvictus,"https://www.kalise.com/",R.drawable.pacorrabane),
+                Advertisement(1,"Nesquik","android.resource://"+this.packageName+"/"+R.raw.anuncionesquik,"https://www.goodnes.com/nesquik/",R.drawable.nesquiklogo),
+                Advertisement(2,"Coca Cola","android.resource://"+this.packageName+"/"+R.raw.anunciococacola,"https://www.cocacolaespana.es/",R.drawable.cocacolalogo),
+                Advertisement(3,"Vanish Gold","android.resource://"+this.packageName+"/"+R.raw.anunciodetergente,"https://www.vanish.es/",R.drawable.vanish),
+                Advertisement(4,"Paco Rabanne","android.resource://"+this.packageName+"/"+R.raw.anuncioinvictus,"https://www.pacorabanne.com/",R.drawable.pacorrabane),
                 Advertisement(5,"Kalise","android.resource://"+this.packageName+"/"+R.raw.anunciokalise,"https://www.kalise.com/",R.drawable.kalise)
             )
         )

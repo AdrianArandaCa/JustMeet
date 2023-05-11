@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondobg2"
+    android:background="@drawable/splashtop"
     tools:context=".MainActivity">
 
     <ImageView
@@ -27,10 +27,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="@string/copyright"
-        android:textColor="@color/dark_gold"
-        android:textStyle="italic"
+        android:textColor="@color/gold_dark_light"
         android:textAlignment="center"
         android:padding="8dp"
+        android:fontFamily="@font/champagnebolditalic"
         />
 
 

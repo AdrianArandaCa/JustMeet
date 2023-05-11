@@ -28,7 +28,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
     private lateinit var binding: ActivityRegisterBinding
     var job = Job()
     var userPosted: Boolean = false
-    var locationPosted : Boolean = false
+    var locationPosted: Boolean = false
     var isMale: Boolean = false
     var isFemale: Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,7 +102,8 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
             return@setOnKeyListener false
         }
     }
-//    fun showDatePicker() {
+
+    //    fun showDatePicker() {
 //        // Se crea un Calendar con la fecha actual
 //        val calendar = Calendar.getInstance()
 //        val year = calendar.get(Calendar.YEAR)
@@ -147,7 +148,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
     }
 
     fun registerUser() {
-        if(binding.etBirthday.text.toString() < "18" || binding.etBirthday.text.toString() > "99" ) {
+        if (binding.etBirthday.text.toString() < "18" || binding.etBirthday.text.toString() > "99") {
             Toast.makeText(this, getString(R.string.invalid_age), Toast.LENGTH_LONG)
                 .show()
         }
@@ -167,8 +168,9 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         }
 
         if (nomUser.isNotEmpty() && passWord.isNotEmpty() && passWordConfirm.isNotEmpty() && email.isNotEmpty() && binding.etBirthday.text.isNotEmpty() && genre.isNotEmpty()) {
-            if(!isValidEmail(binding.etEmail.text.toString())) {
-                Toast.makeText(this,getString(R.string.write_valid_email),Toast.LENGTH_LONG).show()
+            if (!isValidEmail(binding.etEmail.text.toString())) {
+                Toast.makeText(this, getString(R.string.write_valid_email), Toast.LENGTH_LONG)
+                    .show()
             } else {
                 if (passWord.equals(passWordConfirm)) {
                     //Guardas usuario
@@ -184,8 +186,8 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                         "",
                         false,
                         null,
-                        Setting(null, 10, 18, 30, genre, 2,null),
-                        Location(null, 0.0, 0.0,null)
+                        Setting(null, 10, 18, 30, genre, 2, null),
+                        Location(null, 0.0, 0.0, null)
                     )
                     runBlocking {
                         val crudApi = CrudApi()
@@ -199,9 +201,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                                 getString(R.string.userregistredfine),
                                 Toast.LENGTH_LONG
                             ).show()
-                            Handler().postDelayed({
-                                finish()
-                            }, 2000)
+                            finish()
 
 
                         } else {
@@ -214,14 +214,14 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                         println("Usuari inserit: " + userPosted.toString())
                         runBlocking {
                             val corrutina = launch {
-                                val crudApi =  CrudApi()
+                                val crudApi = CrudApi()
                                 var userName = crudApi.getOneUserByName(nomUser)
-                                var locationNewUser = Location(null,0.0,0.0,userName!!.idUser)
+                                var locationNewUser = Location(null, 0.0, 0.0, userName!!.idUser)
                                 locationPosted = crudApi.postLocation(locationNewUser)
                             }
                             corrutina.join()
                         }
-                        println("Localització inserida "+locationPosted.toString())
+                        println("Localització inserida " + locationPosted.toString())
 
                     }
                 } else {
@@ -234,11 +234,11 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
             Toast.makeText(this, getString(R.string.empty_information), Toast.LENGTH_LONG).show()
         }
     }
+
     fun isValidEmail(email: String): Boolean {
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         return pattern.matcher(email).matches()
     }
-
 
 
     override val coroutineContext: CoroutineContext get() = Dispatchers.Main + job
