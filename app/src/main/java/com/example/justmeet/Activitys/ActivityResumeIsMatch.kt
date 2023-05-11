@@ -21,6 +21,7 @@ class ActivityResumeIsMatch : AppCompatActivity() {
 
             val intento = Intent(this, BottomNavigationActivity::class.java)
             startActivity(intento)
+            finish()
         }
     }
     fun putFullScreen() {

@@ -21,6 +21,7 @@ class ActivityResumeNotMatch : AppCompatActivity() {
         binding.btnVolverInicio.setOnClickListener {
             val intento = Intent(this,BottomNavigationActivity::class.java)
             startActivity(intento)
+            finish()
         }
     }
     fun putFullScreen() {

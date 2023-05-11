@@ -139,6 +139,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
     override fun onStop() {
         super.onStop()
         WebSocketManager.sendMessage("CLOSE")
+        finish()
     }
 
     override val coroutineContext: CoroutineContext
