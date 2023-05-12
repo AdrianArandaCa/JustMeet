@@ -14,7 +14,7 @@
         android:id="@+id/linearHeader"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:background="@drawable/border_button"
+        android:background="@drawable/border_edittext"
         android:layout_margin="20dp"
 
         >

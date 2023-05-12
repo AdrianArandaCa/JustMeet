@@ -3,10 +3,12 @@ package com.example.justmeet.Activitys
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Vibrator
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Adapter
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -59,11 +61,22 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         binding.recyclerChat.adapter = adapter
         binding.btnSendMessage.setOnClickListener {
             var message = binding.etSendMessage.text.toString()
-            WebSocketManager.sendMessage(message)
-            var chat = Chat(message,1)
-            listChatUsers.add(chat)
-            adapter.updateDades(listChatUsers)
-            binding.etSendMessage.setText("")
+            if(message.isEmpty()){
+                Toast.makeText(this,"Introduce un mensaje a enviar!",Toast.LENGTH_LONG).show()
+                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                val duration : Long = 200 //
+                if (vibrator.hasVibrator()) {
+                    vibrator.vibrate(duration)
+                }
+            }else {
+                WebSocketManager.sendMessage(message)
+                var chat = Chat(message,1)
+                listChatUsers.add(chat)
+                adapter.updateDades(listChatUsers)
+                binding.etSendMessage.setText("")
+                scrollToBottom()
+            }
+
 
         }
         binding.btnBackChat.setOnClickListener {
@@ -138,11 +151,18 @@ class ActivityChat : AppCompatActivity(), MessageListener {
                 listChatUsers.add(chat)
                 runOnUiThread {
                     adapter.updateDades(listChatUsers)
+                    scrollToBottom()
                 }
 
             }
         }
 
+    }
+
+    private fun scrollToBottom() {
+        binding.recyclerChat.postDelayed({
+            binding.recyclerChat.smoothScrollToPosition(adapter.itemCount - 1)
+        }, 100)
     }
 
     override fun onDestroy() {
