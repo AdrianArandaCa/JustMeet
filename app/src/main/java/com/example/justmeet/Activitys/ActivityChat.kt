@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Adapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.justmeet.Adapters.AdapterAnswer
 import com.example.justmeet.Adapters.AdapterAvatar
 import com.example.justmeet.Adapters.AdapterChat
@@ -46,7 +47,8 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         }
         //sendList()
 
-        binding.ivAvatarChat.setImageResource(userRecived?.photo!!)
+        Glide.with(this).load(userRecived?.photo!!).into(binding.ivAvatarChat)
+       // binding.ivAvatarChat.setImageResource(userRecived?.photo!!)
         binding.tvNameUser.setText(userRecived.name)
         println("Usuario recibido: "+ userRecived?.name)
         if(!listChatUsers.isEmpty()){

@@ -65,12 +65,12 @@ class ActivitySelectAvatar : AppCompatActivity(),CoroutineScope {
         avatarList = arrayListOf()
         avatarList.addAll(
             listOf(
-                Avatar(1,R.drawable.avatargoldman,"Aguila",0),
-                Avatar(2,R.drawable.avatargoldmale,"Calavera",0),
-                Avatar(3,R.drawable.avatargoldmaletwo,"Ciervo",0),
-                Avatar(4,R.drawable.avatargoldmantwo,"CorazonCruz",0),
-                Avatar(5,R.drawable.avatargoldmanthree,"Leon",0),
-                Avatar(6,R.drawable.avatargoldnobinario,"Pistola",0),
+                Avatar(1,"https://cdn.create.vista.com/api/media/medium/470885448/stock-vector-arab-gold-plated-metalic-icon?token=","HombreCapucha",0),
+                Avatar(2,"https://cdn.create.vista.com/api/media/medium/471096840/stock-vector-bald-male-avatar-gold-plated?token=","HombreSinCara",0),
+                Avatar(3,"https://cdn.create.vista.com/api/media/medium/470938596/stock-vector-boy-gold-plated-metalic-icon?token=","HombreConGafas",0),
+                Avatar(4,"https://cdn.create.vista.com/api/media/medium/470831488/stock-vector-anonymous-gold-plated-metalic-icon?token=","HombreSombrero",0),
+                Avatar(5,"https://cdn.create.vista.com/api/media/small/470782902/stock-vector-beauty-salon-gold-plated-metalic","MujerPeloCorto",0),
+                Avatar(6,"https://cdn.create.vista.com/api/media/medium/471120374/stock-vector-beauty-gold-plated-metalic-icon?token=","MujerPeloLargo",0),
                 )
         )
     }

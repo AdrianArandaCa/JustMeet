@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.justmeet.Fragments.InfoDialogMatch
 import com.example.justmeet.Models.User
 import com.example.justmeet.R
@@ -36,10 +37,12 @@ class AdapterMatches(val llista : ArrayList<User>): RecyclerView.Adapter<Adapter
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
 
-        if(llista[position].photo == 0) {
-            holder.avatarUser.setImageResource(R.drawable.logousernamegold)
+        if(llista[position].photo == "0") {
+            Glide.with(holder.avatarUser.context).load("https://cdn.create.vista.com/api/media/small/471012004/stock-vector-arab-gold-plated-metalic-icon").into(holder.avatarUser)
+          //  holder.avatarUser.setImageResource(R.drawable.logousernamegold)
         } else {
-            holder.avatarUser.setImageResource(llista[position].photo!!)
+            Glide.with(holder.avatarUser.context).load(llista[position].photo!!).into(holder.avatarUser)
+            //holder.avatarUser.setImageResource(llista[position].photo!!)
         }
         holder.userName.setText(llista[position].name)
         if(llista[position].premium!!){

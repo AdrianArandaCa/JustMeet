@@ -37,7 +37,7 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
             if (numberTarget.isNotEmpty() && nameSurnameTarget.isNotEmpty() && mmaa.isNotEmpty() && cvc.isNotEmpty() && postalcode.isNotEmpty() && email.isNotEmpty()) {
 
                 if(!mmaa.contains("/")) {
-                    Toast.makeText(this,"getString(R.string.mmaa_error)",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"El MMAA ha de contener una barra!",Toast.LENGTH_LONG).show()
                 } else {
                     runBlocking {
                         val corrutina = launch {

@@ -42,9 +42,9 @@
     <string name="matches_list">Match List</string>
     <string name="select_plan">Select a plan</string>
     <string name="onemonth">1 month</string>
-    <string name="price_month">25,99  £/month</string>
-    <string name="six_month">6 months</string>
-    <string name="price_monthlong">12,49  £/month</string>
+    <string name="price_month">9,99  £/month</string>
+    <string name="six_month">3 months</string>
+    <string name="price_monthlong">5,99  £/month</string>
     <string name="advents_premium">Advantages of being premium</string>
     <string name="unlimited_games">Unlimited games</string>
     <string name="hide_ad">Hide ads</string>

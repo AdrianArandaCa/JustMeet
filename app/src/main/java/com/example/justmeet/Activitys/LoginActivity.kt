@@ -103,7 +103,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                         Toast.makeText(this, getString(R.string.correct_login), Toast.LENGTH_LONG).show()
 
                     }
-                    if (userLog!!.photo == 0) {
+                    if (userLog!!.photo == "0") {
                         getLocationPermission(isPressed)
                         val intento = Intent(this, ActivitySelectAvatar::class.java)
                         startActivity(intento)

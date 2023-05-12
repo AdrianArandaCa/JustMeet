@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.justmeet.Models.Avatar
 import com.example.justmeet.R
 
@@ -25,7 +26,8 @@ class AdapterAvatar(val llista : ArrayList<Avatar>) : RecyclerView.Adapter<Adapt
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
-        holder.img.setImageResource(llista[position].resourcePhoto)
+        Glide.with(holder.img.context).load(llista[position].resourcePhoto).into(holder.img)
+        //holder.img.setImageResource(llista[position].resourcePhoto)
         holder.view.setOnClickListener {
             for (i in 0..llista.size - 1) {
                 if (i == position) {

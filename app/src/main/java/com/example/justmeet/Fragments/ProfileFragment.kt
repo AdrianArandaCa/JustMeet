@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.example.justmeet.Activitys.ActivityJustEditProfile
 import com.example.justmeet.Activitys.SettingsActivity
 import com.example.justmeet.Models.userLog
@@ -30,7 +31,8 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater,container,false)
-        binding.ivProfile.setImageResource(userLog!!.photo!!)
+        Glide.with(requireContext()).load(userLog!!.photo!!).into(binding.ivProfile)
+        //binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvNomEdad.setText("${userLog!!.name!!},${userLog!!.birthday!!}")
         binding.tvSobreMiContent.setText("${userLog!!.description!!}")
         if(userLog!!.premium!!){
@@ -53,7 +55,8 @@ class ProfileFragment : Fragment() {
         updateData()
     }
     fun updateData() {
-        binding.ivProfile.setImageResource(userLog!!.photo!!)
+        Glide.with(requireContext()).load(userLog!!.photo!!).into(binding.ivProfile)
+        //binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvNomEdad.setText("${userLog!!.name!!},${userLog!!.birthday!!}")
         binding.tvSobreMiContent.setText("${userLog!!.description!!}")
     }

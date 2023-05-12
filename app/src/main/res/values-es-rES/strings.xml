@@ -42,9 +42,9 @@
     <string name="matches_list">Lista de Matches</string>
     <string name="select_plan">Selecciona un plan</string>
     <string name="onemonth">1 mes</string>
-    <string name="price_month">25,99 €/mes</string>
-    <string name="six_month">6 meses</string>
-    <string name="price_monthlong">12,49 €/mes</string>
+    <string name="price_month">9,99 €/mes</string>
+    <string name="six_month">3 meses</string>
+    <string name="price_monthlong">5,99 €/mes</string>
     <string name="advents_premium">Ventajas de ser premium</string>
     <string name="unlimited_games">Partidas ilimitadas</string>
     <string name="hide_ad">Ocultar anuncios</string>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.bumptech.glide.Glide
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.Setting
 import com.example.justmeet.Models.User
@@ -23,13 +24,15 @@ class ActivityJustEditProfile : AppCompatActivity() {
         binding = ActivityJustEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
-        binding.ivProfile.setImageResource(userLog!!.photo!!)
+        Glide.with(this).load(userLog!!.photo!!).into(binding.ivProfile)
+        //binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvSobreMiContent.setText(userLog!!.description)
 
         binding.tvCambiarAvatar.setOnClickListener {
 
             val intento = Intent(this, ActivitySelectAvatar::class.java)
             startActivity(intento)
+            finish()
         }
 
         binding.btnGuardarCambiosEdit.setOnClickListener {

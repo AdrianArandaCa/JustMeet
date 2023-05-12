@@ -182,7 +182,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                         email,
                         dateOfBirthday.toInt(),
                         genre,
-                        0,
+                        "0",
                         "",
                         false,
                         null,

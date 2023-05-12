@@ -17,7 +17,7 @@ data class User(
     var email: String?,
     var birthday: Int?,
     var genre: String?,
-    var photo: Int?,
+    var photo: String?,
     var description: String?,
     var premium: Boolean?,
     var idSetting: Int?,
@@ -91,7 +91,7 @@ data class Question(
 
 data class Avatar(
     var idFoto : Int,
-    var resourcePhoto : Int,
+    var resourcePhoto : String,
     var nomFoto : String,
     var selected: Int
 )
