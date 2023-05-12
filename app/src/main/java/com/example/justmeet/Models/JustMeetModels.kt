@@ -121,5 +121,6 @@ lateinit var gameFromSocket : Game
 //var userMatch = User(null,null,null,null,null,null,null,null,null,null,null,null)
 var listUserMatches : ArrayList<User> = arrayListOf()
 var listChatUsers : ArrayList<Chat> = arrayListOf()
+var userGameLeave : Boolean = false
 
 

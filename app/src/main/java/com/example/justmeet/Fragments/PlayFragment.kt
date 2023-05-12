@@ -10,11 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.Toast
 import androidx.core.view.isVisible
-import com.example.justmeet.Activitys.ActivityLocation
-import com.example.justmeet.Activitys.ActivityResumeIsMatch
-import com.example.justmeet.Activitys.ActivityResumeNotMatch
-import com.example.justmeet.Activitys.GameActivity
+import com.example.justmeet.Activitys.*
 import com.example.justmeet.Models.*
 import com.example.justmeet.R
 import com.example.justmeet.Socket.MessageListener
@@ -165,7 +163,16 @@ var isSucces : Boolean = false
                 gameFromSocket = gson.fromJson(textSubstring, listType)
                 println("ID GAME INICIO :" + gameFromSocket.idGame)
                 addText(" Receive message: $text \n ")
-            } else {
+            } else if(text.startsWith("USERGAMELEAVE", false)){
+                activity?.runOnUiThread {
+                    userGameLeave = true
+                    Toast.makeText(requireContext(),"El jugador ha abandonado la partida",Toast.LENGTH_LONG).show()
+                    val intent = Intent(requireContext(), BottomNavigationActivity::class.java)
+                    startActivity(intent)
+                    activity?.finish()
+                }
+
+            }  else {
                 val listType = object : TypeToken<ArrayList<Question>>() {}.type
                 listQuestion = gson.fromJson(text, listType)
                 activity?.runOnUiThread {
