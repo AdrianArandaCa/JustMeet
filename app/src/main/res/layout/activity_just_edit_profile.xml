@@ -29,11 +29,12 @@
 
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivProfile"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:contentDescription="@string/imageuser"
+        android:scaleType="centerCrop"
         android:src="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
