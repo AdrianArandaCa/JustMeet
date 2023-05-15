@@ -22,7 +22,6 @@ class AdapterAvatar(val llista : ArrayList<Avatar>) : RecyclerView.Adapter<Adapt
         } else {
             return viewholder(layout.inflate(R.layout.cardview_avatares, parent, false))
         }
-
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
@@ -40,10 +39,8 @@ class AdapterAvatar(val llista : ArrayList<Avatar>) : RecyclerView.Adapter<Adapt
                     llista[i].selected = 0
                 }
             }
-
             notifyDataSetChanged()
         }
-
     }
 
     override fun getItemCount(): Int {

@@ -4,20 +4,17 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.View
 import android.widget.MediaController
 import com.example.justmeet.Models.Advertisement
-import com.example.justmeet.Models.Avatar
 import com.example.justmeet.R
 import com.example.justmeet.databinding.ActivityVideoViewBinding
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class ActivityVideoView : AppCompatActivity() {
-    private lateinit var binding : ActivityVideoViewBinding
-    private lateinit var advertisementList : ArrayList<Advertisement>
+    private lateinit var binding: ActivityVideoViewBinding
+    private lateinit var advertisementList: ArrayList<Advertisement>
     private var currentPosition: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +43,6 @@ class ActivityVideoView : AppCompatActivity() {
             startActivity(intento)
             finish()
         }
-
     }
 
     override fun onPause() {
@@ -60,12 +56,14 @@ class ActivityVideoView : AppCompatActivity() {
         binding.vvAnuncio.seekTo(currentPosition)
         binding.vvAnuncio.start()
     }
-    private fun openAdvertiserWebsite(website : String) {
+
+    private fun openAdvertiserWebsite(website: String) {
         val advertiserUri = Uri.parse(website)
         val intent = Intent(Intent.ACTION_VIEW, advertiserUri)
         startActivity(intent)
     }
-//    override fun onTouchEvent(event: MotionEvent?): Boolean {
+
+    //    override fun onTouchEvent(event: MotionEvent?): Boolean {
 //        // Evitar interacción táctil en toda la pantalla
 //        return true
 //    }
@@ -78,16 +76,46 @@ class ActivityVideoView : AppCompatActivity() {
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
     }
-    private fun listVideoViewsInitializer(){
 
+    private fun listVideoViewsInitializer() {
         advertisementList = arrayListOf()
         advertisementList.addAll(
             listOf(
-                Advertisement(1,"Nesquik","android.resource://"+this.packageName+"/"+R.raw.anuncionesquik,"https://www.goodnes.com/nesquik/",R.drawable.nesquiklogo),
-                Advertisement(2,"Coca Cola","android.resource://"+this.packageName+"/"+R.raw.anunciococacola,"https://www.cocacolaespana.es/",R.drawable.cocacolalogo),
-                Advertisement(3,"Vanish Gold","android.resource://"+this.packageName+"/"+R.raw.anunciodetergente,"https://www.vanish.es/",R.drawable.vanish),
-                Advertisement(4,"Paco Rabanne","android.resource://"+this.packageName+"/"+R.raw.anuncioinvictus,"https://www.pacorabanne.com/",R.drawable.pacorrabane),
-                Advertisement(5,"Kalise","android.resource://"+this.packageName+"/"+R.raw.anunciokalise,"https://www.kalise.com/",R.drawable.kalise)
+                Advertisement(
+                    1,
+                    "Nesquik",
+                    "android.resource://" + this.packageName + "/" + R.raw.anuncionesquik,
+                    "https://www.goodnes.com/nesquik/",
+                    R.drawable.nesquiklogo
+                ),
+                Advertisement(
+                    2,
+                    "Coca Cola",
+                    "android.resource://" + this.packageName + "/" + R.raw.anunciococacola,
+                    "https://www.cocacolaespana.es/",
+                    R.drawable.cocacolalogo
+                ),
+                Advertisement(
+                    3,
+                    "Vanish Gold",
+                    "android.resource://" + this.packageName + "/" + R.raw.anunciodetergente,
+                    "https://www.vanish.es/",
+                    R.drawable.vanish
+                ),
+                Advertisement(
+                    4,
+                    "Paco Rabanne",
+                    "android.resource://" + this.packageName + "/" + R.raw.anuncioinvictus,
+                    "https://www.pacorabanne.com/",
+                    R.drawable.pacorrabane
+                ),
+                Advertisement(
+                    5,
+                    "Kalise",
+                    "android.resource://" + this.packageName + "/" + R.raw.anunciokalise,
+                    "https://www.kalise.com/",
+                    R.drawable.kalise
+                )
             )
         )
     }

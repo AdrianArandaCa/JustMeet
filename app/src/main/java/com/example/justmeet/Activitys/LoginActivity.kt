@@ -8,7 +8,6 @@ import android.location.Location
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -23,7 +22,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.*
 import okhttp3.*
-import retrofit2.HttpException
 import java.io.InputStream
 import java.math.BigInteger
 import java.security.KeyStore
@@ -46,7 +44,6 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     private var locationModified: Boolean = false
     val urlapi = "https://api.openrouteservice.org/"
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -57,12 +54,11 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         putFullScreen()
         getPermissionsApi()
 
-
         binding.btnRegister.setOnClickListener {
-
             val intento = Intent(this, RegisterActivity::class.java)
             startActivity(intento)
         }
+
         binding.etUserName.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 // Ocultar el teclado
@@ -72,6 +68,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             }
             return@setOnKeyListener false
         }
+
         binding.etPassword.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 // Ocultar el teclado
@@ -100,8 +97,8 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                 var passWord = encryptPassword(binding.etPassword.text.toString())
                 if (passWord.equals(userLog!!.password)) {
                     runOnUiThread {
-                        Toast.makeText(this, getString(R.string.correct_login), Toast.LENGTH_LONG).show()
-
+                        Toast.makeText(this, getString(R.string.correct_login), Toast.LENGTH_LONG)
+                            .show()
                     }
                     if (userLog!!.photo == "0") {
                         getLocationPermission(isPressed)
@@ -110,22 +107,20 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                         finish()
                     } else {
                         getLocationPermission(isPressed)
-                        if(userLog!!.premium!!){
+                        if (userLog!!.premium!!) {
                             val intento = Intent(this, BottomNavigationActivity::class.java)
                             startActivity(intento)
                             finish()
                         } else {
-                            val intento = Intent(this,ActivityVideoView::class.java)
+                            val intento = Intent(this, ActivityVideoView::class.java)
                             startActivity(intento)
                             finish()
                         }
                     }
-
-
                 } else {
-                    Toast.makeText(this, getString(R.string.incorrect_password), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.incorrect_password), Toast.LENGTH_LONG)
+                        .show()
                 }
-
             } else {
                 Toast.makeText(this, getString(R.string.username_dontexists), Toast.LENGTH_LONG)
                     .show()
@@ -143,7 +138,6 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         binding.ibLinkedin.setOnClickListener {
             openAdvertiserWebsite("https://www.linkedin.com/")
         }
-
     }
 
     fun putFullScreen() {
@@ -157,8 +151,9 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     }
 
     fun getPermissionsApi() {
-     //   val inputStream: InputStream = resources.openRawResource(R.raw.certificadoserver) //Server PC ADRI
-        val inputStream: InputStream = resources.openRawResource(R.raw.certificadoserverhdd) // Server PC HDD
+        //   val inputStream: InputStream = resources.openRawResource(R.raw.certificadoserver) //Server PC ADRI
+        val inputStream: InputStream =
+            resources.openRawResource(R.raw.certificadoserverhdd) // Server PC HDD
 
         // Cargar certificado
         val cf: CertificateFactory = CertificateFactory.getInstance("X.509")
@@ -245,7 +240,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     }
 
     fun getLocationPermission(isPressed: Boolean) {
-         var locationByUser : com.example.justmeet.Models.Location? = null
+        var locationByUser: com.example.justmeet.Models.Location? = null
         if (
             (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) &&
@@ -262,14 +257,17 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                         runBlocking {
                             var corrutina = launch {
                                 val crudApi = CrudApi()
-                                locationByUser  = crudApi.getOneLocationByUserFromAPI(userLog!!.idUser!!)
+                                locationByUser =
+                                    crudApi.getOneLocationByUserFromAPI(userLog!!.idUser!!)
                             }
                             corrutina.join()
 
                         }
                         var userLocation: com.example.justmeet.Models.Location =
                             com.example.justmeet.Models.Location(
-                                locationByUser!!.idLocation, location!!.longitude, location!!.latitude,
+                                locationByUser!!.idLocation,
+                                location!!.longitude,
+                                location!!.latitude,
                                 userLog!!.idUser!!
                             )
                         userLog!!.location = userLocation
@@ -277,10 +275,8 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                             var corrutina = launch {
                                 val crudApi = CrudApi()
                                 locationModified = crudApi.modifyLocationUser(userLocation)
-
                             }
                             corrutina.join()
-
                         }
                         if (locationModified) {
                             println("LOCALIZACION USUARIO MODIFICADA")
@@ -311,7 +307,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    private fun openAdvertiserWebsite(website : String) {
+    private fun openAdvertiserWebsite(website: String) {
         val advertiserUri = Uri.parse(website)
         val intent = Intent(Intent.ACTION_VIEW, advertiserUri)
         startActivity(intent)

@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.example.justmeet.API.CrudApi
-import com.example.justmeet.Models.Setting
-import com.example.justmeet.Models.User
 import com.example.justmeet.Models.userLog
 import com.example.justmeet.R
 import com.example.justmeet.databinding.ActivityJustEditProfileBinding
@@ -17,8 +15,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class ActivityJustEditProfile : AppCompatActivity() {
-    private lateinit var binding : ActivityJustEditProfileBinding
-    var changeSaved : Boolean = false
+    private lateinit var binding: ActivityJustEditProfileBinding
+    var changeSaved: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityJustEditProfileBinding.inflate(layoutInflater)
@@ -27,21 +25,16 @@ class ActivityJustEditProfile : AppCompatActivity() {
         Glide.with(this).load(userLog!!.photo!!).into(binding.ivProfile)
         //binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvSobreMiContent.setText(userLog!!.description)
-
         binding.tvCambiarAvatar.setOnClickListener {
-
             val intento = Intent(this, ActivitySelectAvatar::class.java)
             startActivity(intento)
             finish()
         }
 
         binding.btnGuardarCambiosEdit.setOnClickListener {
-
-            if(binding.tvSobreMiContent.text.toString().equals(userLog!!.description) ){
-
-                Toast.makeText(this,getString(R.string.nochangesmodify), Toast.LENGTH_LONG).show()
+            if (binding.tvSobreMiContent.text.toString().equals(userLog!!.description)) {
+                Toast.makeText(this, getString(R.string.nochangesmodify), Toast.LENGTH_LONG).show()
             } else {
-
                 runBlocking {
                     val corrutina = launch {
                         val crudApi = CrudApi()
@@ -50,21 +43,21 @@ class ActivityJustEditProfile : AppCompatActivity() {
                     }
                     corrutina.join()
                 }
-
-                Toast.makeText(this,getString(R.string.savechanges),Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.savechanges), Toast.LENGTH_LONG).show()
             }
         }
-        binding.backButtonEdit.setOnClickListener {
-            if(changeSaved) {
-                onBackPressed()
-                finish()
 
-            }
-            if(binding.tvSobreMiContent.text.toString().equals(userLog!!.description) ){
+        binding.backButtonEdit.setOnClickListener {
+            if (changeSaved) {
                 onBackPressed()
                 finish()
             }
-            if(!binding.tvSobreMiContent.text.toString().equals(userLog!!.description) && !changeSaved
+            if (binding.tvSobreMiContent.text.toString().equals(userLog!!.description)) {
+                onBackPressed()
+                finish()
+            }
+            if (!binding.tvSobreMiContent.text.toString()
+                    .equals(userLog!!.description) && !changeSaved
             ) {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle(getString(R.string.go_out_profile))
@@ -81,9 +74,8 @@ class ActivityJustEditProfile : AppCompatActivity() {
                 dialog.show()
             }
         }
-
-
     }
+
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

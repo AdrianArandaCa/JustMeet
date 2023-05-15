@@ -14,18 +14,14 @@ import com.example.justmeet.databinding.ActivityBottomNavigationBinding
 class BottomNavigationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBottomNavigationBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityBottomNavigationBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
         putFullScreen()
 
-
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_bottom_navigation)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -40,6 +36,7 @@ class BottomNavigationActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

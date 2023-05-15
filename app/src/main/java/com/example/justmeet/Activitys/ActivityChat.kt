@@ -7,13 +7,9 @@ import android.os.Vibrator
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Adapter
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.justmeet.Adapters.AdapterAnswer
-import com.example.justmeet.Adapters.AdapterAvatar
 import com.example.justmeet.Adapters.AdapterChat
 import com.example.justmeet.Models.Chat
 import com.example.justmeet.Models.User
@@ -28,7 +24,7 @@ import kotlin.concurrent.thread
 import kotlin.random.Random
 
 class ActivityChat : AppCompatActivity(), MessageListener {
-    private lateinit var binding : ActivityChatBinding
+    private lateinit var binding: ActivityChatBinding
     private lateinit var adapter: AdapterChat
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,12 +44,11 @@ class ActivityChat : AppCompatActivity(), MessageListener {
             }
         }
         //sendList()
-
         Glide.with(this).load(userRecived?.photo!!).into(binding.ivAvatarChat)
-       // binding.ivAvatarChat.setImageResource(userRecived?.photo!!)
+        // binding.ivAvatarChat.setImageResource(userRecived?.photo!!)
         binding.tvNameUser.setText(userRecived.name)
-        println("Usuario recibido: "+ userRecived?.name)
-        if(!listChatUsers.isEmpty()){
+        println("Usuario recibido: " + userRecived?.name)
+        if (!listChatUsers.isEmpty()) {
             listChatUsers.clear()
         }
         adapter = AdapterChat(listChatUsers)
@@ -61,23 +56,21 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         binding.recyclerChat.adapter = adapter
         binding.btnSendMessage.setOnClickListener {
             var message = binding.etSendMessage.text.toString()
-            if(message.isEmpty()){
-                Toast.makeText(this,"Introduce un mensaje a enviar!",Toast.LENGTH_LONG).show()
+            if (message.isEmpty()) {
+                Toast.makeText(this, "Introduce un mensaje a enviar!", Toast.LENGTH_LONG).show()
                 val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                val duration : Long = 200 //
+                val duration: Long = 200 //
                 if (vibrator.hasVibrator()) {
                     vibrator.vibrate(duration)
                 }
-            }else {
+            } else {
                 WebSocketManager.sendMessage(message)
-                var chat = Chat(message,1)
+                var chat = Chat(message, 1)
                 listChatUsers.add(chat)
                 adapter.updateDades(listChatUsers)
                 binding.etSendMessage.setText("")
                 scrollToBottom()
             }
-
-
         }
         binding.btnBackChat.setOnClickListener {
             WebSocketManager.sendMessage("CLOSE")
@@ -99,6 +92,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         binding.recyclerChat.layoutManager = LinearLayoutManager(this)
         binding.recyclerChat.adapter = AdapterChat(listChatUsers)
     }
+
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -124,14 +118,14 @@ class ActivityChat : AppCompatActivity(), MessageListener {
     override fun onMessage(text: String?) {
         val gson = Gson()
 
-        if(text != null) {
+        if (text != null) {
             if (text.startsWith("CLOSE")) {
                 thread {
                     kotlin.run {
                         WebSocketManager.sendMessage("CLOSE")
                     }
                 }
-            } else if(text.startsWith("USERLEAVE")) {
+            } else if (text.startsWith("USERLEAVE")) {
                 var textSubstring = text.substring(9)
                 var chat = Chat(getString(R.string.user_leave_chat, textSubstring), 2)
                 listChatUsers.add(chat)
@@ -139,7 +133,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
                     adapter.updateDades(listChatUsers)
                 }
 
-            } else if(text.startsWith("USERCONNECT")) {
+            } else if (text.startsWith("USERCONNECT")) {
                 var textSubstring = text.substring(11)
                 var chat = Chat(getString(R.string.user_connect_chat, textSubstring), 2)
                 listChatUsers.add(chat)
@@ -147,7 +141,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
                     adapter.updateDades(listChatUsers)
                 }
             } else {
-                var chat = Chat(text,0)
+                var chat = Chat(text, 0)
                 listChatUsers.add(chat)
                 runOnUiThread {
                     adapter.updateDades(listChatUsers)
@@ -156,7 +150,6 @@ class ActivityChat : AppCompatActivity(), MessageListener {
 
             }
         }
-
     }
 
     private fun scrollToBottom() {
@@ -174,5 +167,4 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         super.onStop()
         WebSocketManager.sendMessage("CLOSE")
     }
-
 }

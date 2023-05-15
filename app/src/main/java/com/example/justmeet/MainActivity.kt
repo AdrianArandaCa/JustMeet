@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.justmeet.Activitys.LoginActivity
 import com.example.justmeet.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -22,13 +21,12 @@ class MainActivity : AppCompatActivity() {
             .scaleY(3.0f)
             .setDuration(2000)
             .start()
-
-
         Handler().postDelayed({
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, 3500)
     }
+
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -12,9 +12,9 @@ class SplashScreenActivity : AppCompatActivity() {
         val screenSplash = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-        screenSplash.setKeepOnScreenCondition{true}
+        screenSplash.setKeepOnScreenCondition { true }
 
-        val intento = Intent(this,MainActivity::class.java)
+        val intento = Intent(this, MainActivity::class.java)
         startActivity(intento)
         finish()
     }

@@ -1,43 +1,33 @@
 package com.example.justmeet.Activitys
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Adapters.AdapterAnswer
 import com.example.justmeet.Models.*
-import com.example.justmeet.Socket.MessageListener
 import com.example.justmeet.Socket.WebSocketManager
 import com.example.justmeet.databinding.ActivityGameBinding
-import com.example.justmeet.databinding.ActivityResumeNotMatchBinding
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
-import kotlin.concurrent.thread
 import kotlin.coroutines.CoroutineContext
 import kotlin.random.Random
 
-class GameActivity : AppCompatActivity(), CoroutineScope{
+class GameActivity : AppCompatActivity(), CoroutineScope {
 
     private lateinit var binding: ActivityGameBinding
     private lateinit var adapter: AdapterAnswer
     private var currentQuestionIndex = 0
     private var listUserAnswer: List<UserAnswer> = listOf()
     var job = Job()
-    var answerSelected : Boolean = false
+    var answerSelected: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
-
-
         if (listQuestion != null) {
             setupViews()
             startTimer()
@@ -88,7 +78,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                                 println("Respuesta seleccionada" + answer.answer1)
                             }
                         }
-                        if(!answerSelected) {
+                        if (!answerSelected) {
                             println("Respuesta no seleccionada")
                             var userAns = UserAnswer(
                                 gameFromSocket.idGame!!,
@@ -131,11 +121,11 @@ class GameActivity : AppCompatActivity(), CoroutineScope{
                 )
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         WebSocketManager.sendMessage("CLOSE")
     }
+
     override fun onStop() {
         super.onStop()
         WebSocketManager.sendMessage("CLOSE")

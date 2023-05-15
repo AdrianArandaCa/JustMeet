@@ -24,15 +24,16 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
-    private lateinit var binding : ActivityLocationBinding
-    private lateinit var map:GoogleMap
+class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope,
+    GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
+    private lateinit var binding: ActivityLocationBinding
+    private lateinit var map: GoogleMap
     var job = Job()
     val urlapi = "https://api.openrouteservice.org/"
     private var permisosGarantits: Boolean = false
     val locationRequestCode = 0
-    private lateinit var fusedLocationClient : FusedLocationProviderClient
-    private lateinit var allLocationsList : ArrayList<com.example.justmeet.Models.Location>
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var allLocationsList: ArrayList<com.example.justmeet.Models.Location>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLocationBinding.inflate(layoutInflater)
@@ -41,7 +42,6 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
         demanarPermisos()
         putFullScreen()
         createFragment()
-
         binding.btnBackMap.setOnClickListener {
             onBackPressed()
             finish()
@@ -49,7 +49,8 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
     }
 
     private fun createFragment() {
-        val mapFragment : SupportMapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment: SupportMapFragment =
+            supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
@@ -60,20 +61,19 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
         map.setOnMyLocationButtonClickListener(this)
         comprovarPermisos()
         createMarker()
-
     }
-
 
     override fun onMyLocationButtonClick(): Boolean {
         return false
     }
 
     override fun onMyLocationClick(ubicacioActual: Location) {
-        val ubi  = LatLng(ubicacioActual.latitude, ubicacioActual.longitude)
+        val ubi = LatLng(ubicacioActual.latitude, ubicacioActual.longitude)
         map.addMarker(MarkerOptions().position(ubi).title(getString(R.string.current_position)))
     }
+
     private fun createMarker() {
-        var locationByUser : com.example.justmeet.Models.Location? = null
+        var locationByUser: com.example.justmeet.Models.Location? = null
         runBlocking {
             var corrutina = launch {
                 val crudApi = CrudApi()
@@ -81,30 +81,27 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
             }
             corrutina.join()
         }
-        for(i in 0..allLocationsList.size - 1) {
-            if(allLocationsList[i].latitud !=0.0 && allLocationsList[i].longitud !=0.0){
-                val coordinates = LatLng(allLocationsList[i].latitud!!, allLocationsList[i].longitud!!)
-                val marker = MarkerOptions().position(coordinates).title(getString(R.string.justmeet_user))
+        for (i in 0..allLocationsList.size - 1) {
+            if (allLocationsList[i].latitud != 0.0 && allLocationsList[i].longitud != 0.0) {
+                val coordinates =
+                    LatLng(allLocationsList[i].latitud!!, allLocationsList[i].longitud!!)
+                val marker =
+                    MarkerOptions().position(coordinates).title(getString(R.string.justmeet_user))
                 map.addMarker(marker)
-
             }
-
         }
 
         runBlocking {
             var corrutina = launch {
                 val crudApi = CrudApi()
-                locationByUser  = crudApi.getOneLocationByUserFromAPI(userLog!!.idUser!!)
+                locationByUser = crudApi.getOneLocationByUserFromAPI(userLog!!.idUser!!)
             }
             corrutina.join()
-
         }
-        val latLongUser = LatLng(locationByUser!!.latitud!!,locationByUser!!.longitud!!)
+        val latLongUser = LatLng(locationByUser!!.latitud!!, locationByUser!!.longitud!!)
         map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(latLongUser,18f),5000,null
+            CameraUpdateFactory.newLatLngZoom(latLongUser, 18f), 5000, null
         )
-
-
     }
 
     fun demanarPermisos() {
@@ -117,7 +114,6 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
             ) == PackageManager.PERMISSION_GRANTED)
         ) {
             permisosGarantits = true
-
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
@@ -154,8 +150,8 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
                 }
             }
         }
-
     }
+
     fun comprovarPermisos() {
         if (
             (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -167,14 +163,14 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
         ) {
             permisosGarantits = true
             map.isMyLocationEnabled = true
-            fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
 
 //                ubicacioActualLatitud = location!!.latitude
 //                ubicacioActualLongitud = location!!.longitude
-
             }
         }
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,

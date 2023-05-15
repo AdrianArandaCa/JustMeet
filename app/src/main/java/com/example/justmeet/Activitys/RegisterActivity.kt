@@ -2,7 +2,6 @@ package com.example.justmeet.Activitys
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.util.Patterns
 import android.view.KeyEvent
 import android.view.View
@@ -19,10 +18,8 @@ import kotlinx.coroutines.*
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.util.*
 import java.util.regex.Pattern
 import kotlin.coroutines.CoroutineContext
-
 
 class RegisterActivity : AppCompatActivity(), CoroutineScope {
     private lateinit var binding: ActivityRegisterBinding
@@ -32,7 +29,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
     var isMale: Boolean = false
     var isFemale: Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -102,7 +98,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
             return@setOnKeyListener false
         }
     }
-
     //    fun showDatePicker() {
 //        // Se crea un Calendar con la fecha actual
 //        val calendar = Calendar.getInstance()
@@ -158,15 +153,12 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         var email = binding.etEmail.text.toString()
         var dateOfBirthday = binding.etBirthday.text.toString()
         //val sqlDate = java.sql.Date(dateOfBirthday.time)
-
-
         var genre = ""
         if (isMale) {
             genre = "M"
         } else if (isFemale) {
             genre = "F"
         }
-
         if (nomUser.isNotEmpty() && passWord.isNotEmpty() && passWordConfirm.isNotEmpty() && email.isNotEmpty() && binding.etBirthday.text.isNotEmpty() && genre.isNotEmpty()) {
             if (!isValidEmail(binding.etEmail.text.toString())) {
                 Toast.makeText(this, getString(R.string.write_valid_email), Toast.LENGTH_LONG)
@@ -229,7 +221,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                         .show()
                 }
             }
-
         } else {
             Toast.makeText(this, getString(R.string.empty_information), Toast.LENGTH_LONG).show()
         }
@@ -239,7 +230,5 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         return pattern.matcher(email).matches()
     }
-
-
     override val coroutineContext: CoroutineContext get() = Dispatchers.Main + job
 }

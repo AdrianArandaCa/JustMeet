@@ -14,7 +14,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.justmeet.Activitys.*
 import com.example.justmeet.Models.*
-import com.example.justmeet.R
 import com.example.justmeet.Socket.MessageListener
 import com.example.justmeet.Socket.WebSocketManager
 import com.example.justmeet.databinding.FragmentPlayBinding
@@ -23,15 +22,11 @@ import com.google.gson.reflect.TypeToken
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
 private lateinit var binding: FragmentPlayBinding
 
 class PlayFragment : Fragment(), MessageListener {
-var isSucces : Boolean = false
-    var isFinding : Boolean = false
-    private lateinit var  focusAnimation : AnimatorSet
+    var isFinding: Boolean = false
+    private lateinit var focusAnimation: AnimatorSet
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -60,7 +55,7 @@ var isSucces : Boolean = false
 //        }
         binding.btnPlay.setOnClickListener {
 
-            if(!isFinding){
+            if (!isFinding) {
                 thread {
                     kotlin.run {
                         WebSocketManager.init(serverUrl, this)
@@ -73,17 +68,17 @@ var isSucces : Boolean = false
                 activity?.runOnUiThread {
                     binding.tvStateGame.isVisible = true
                     binding.tvStateGame.setText("Buscando partida...")
-                   // binding.btnBuscarPartida.setText(getString(R.string.finding_game))
-                   // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
+                    // binding.btnBuscarPartida.setText(getString(R.string.finding_game))
+                    // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
                     isFinding = true
-                  animatePlayButton()
+                    animatePlayButton()
                 }
             } else {
                 WebSocketManager.sendMessage("CLOSE")
-               binding.tvStateGame.setText("¡Haz click para buscar partida!")
-               // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
+                binding.tvStateGame.setText("¡Haz click para buscar partida!")
+                // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
                 isFinding = false
-                if(focusAnimation.isRunning){
+                if (focusAnimation.isRunning) {
                     focusAnimation.cancel()
                     focusAnimation.end()
                     binding.btnPlay.alpha = 1.0f
@@ -92,16 +87,14 @@ var isSucces : Boolean = false
                     binding.btnPlay.rotation = 0.0f
                     return@setOnClickListener
                 }
-
             }
-
         }
 
-       binding.btnIntentLocation.setOnClickListener {
+        binding.btnIntentLocation.setOnClickListener {
 
-           val intento = Intent(requireContext(), ActivityLocation::class.java)
-           startActivity(intento)
-       }
+            val intento = Intent(requireContext(), ActivityLocation::class.java)
+            startActivity(intento)
+        }
         return binding.root
     }
 
@@ -127,25 +120,24 @@ var isSucces : Boolean = false
 
         if (text != null) {
             if (text.startsWith("CLOSE")) {
-                if(text == "CLOSEMATCH") {
+                if (text == "CLOSEMATCH") {
                     println("CLOSEMATCH")
-                } else if(text == "CLOSEAGE") {
+                } else if (text == "CLOSEAGE") {
                     println("CLOSEAGE")
-                } else if(text == "CLOSEGENRE"){
+                } else if (text == "CLOSEGENRE") {
                     println("CLOSEGENRE")
-                } else if(text == "CLOSEGAMETYPE"){
+                } else if (text == "CLOSEGAMETYPE") {
                     println("CLOSEGAMETYPE")
-                } else if(text=="CLOSEDISTANCE"){
+                } else if (text == "CLOSEDISTANCE") {
                     println("CLOSEDISTANCE")
                 }
-            //    hideProgressBar()
+                //    hideProgressBar()
                 thread {
                     kotlin.run {
-                            WebSocketManager.sendMessage("CLOSE")
+                        WebSocketManager.sendMessage("CLOSE")
                     }
                 }
-            }
-            else if (text.startsWith("GAMERESULT")) {
+            } else if (text.startsWith("GAMERESULT")) {
                 var textSubstring = text.substring(10)
                 val gameType = object : TypeToken<Game>() {}.type
                 gameFinishFromSocket = gson.fromJson(textSubstring, gameType)
@@ -165,32 +157,30 @@ var isSucces : Boolean = false
                 gameFromSocket = gson.fromJson(textSubstring, listType)
                 println("ID GAME INICIO :" + gameFromSocket.idGame)
                 addText(" Receive message: $text \n ")
-            } else if(text.startsWith("USERGAMELEAVE", false)){
+            } else if (text.startsWith("USERGAMELEAVE", false)) {
                 activity?.runOnUiThread {
                     userGameLeave = true
-                    Toast.makeText(requireContext(),"El jugador ha abandonado la partida",Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "El jugador ha abandonado la partida",
+                        Toast.LENGTH_LONG
+                    ).show()
                     val intent = Intent(requireContext(), BottomNavigationActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
                 }
 
-            }  else {
+            } else {
                 val listType = object : TypeToken<ArrayList<Question>>() {}.type
                 listQuestion = gson.fromJson(text, listType)
+                isSucces = true
                 activity?.runOnUiThread {
-
                     val intent = Intent(requireContext(), GameActivity::class.java)
                     startActivity(intent)
                 }
             }
         }
     }
-
-//    private fun hideProgressBar() {
-//        activity?.runOnUiThread {
-//            binding.btnBuscarPartida.setText(getString(R.string.searchgame))
-//        }
-//    }
 
     private fun addText(text: String?) {
         activity?.runOnUiThread {
@@ -199,7 +189,7 @@ var isSucces : Boolean = false
     }
 
     override fun onDestroy() {
-       // WebSocketManager.sendMessage("CLOSE")
+        // WebSocketManager.sendMessage("CLOSE")
         super.onDestroy()
     }
 
@@ -207,9 +197,12 @@ var isSucces : Boolean = false
         super.onDestroyView()
         //WebSocketManager.sendMessage("CLOSE")
     }
+
     override fun onStop() {
         super.onStop()
-        WebSocketManager.sendMessage("CLOSE")
+        if(!isSucces) {
+            WebSocketManager.sendMessage("CLOSE")
+        }
     }
 
     fun animatePlayButton() {
@@ -217,38 +210,27 @@ var isSucces : Boolean = false
         val scaleDownY = ObjectAnimator.ofFloat(binding.btnPlay, "scaleY", 2.0f)
         scaleDownX.duration = 2500
         scaleDownY.duration = 2500
-
-
 //        val fadeOut = ObjectAnimator.ofFloat(binding.btnPlay, "alpha", 0.5f)
 //        fadeOut.duration = 1000
-
 
         val scaleUpX = ObjectAnimator.ofFloat(binding.btnPlay, "scaleX", 10f)
         val scaleUpY = ObjectAnimator.ofFloat(binding.btnPlay, "scaleY", 10f)
         scaleUpX.duration = 1000
         scaleUpY.duration = 1000
-
 //        val fadeIn = ObjectAnimator.ofFloat(binding.btnPlay, "alpha", 1f)
 //        fadeIn.duration = 1000
-
-
         focusAnimation = AnimatorSet()
         focusAnimation.play(scaleDownX).with(scaleDownY)
         focusAnimation.play(scaleUpX).with(scaleUpY).after(scaleDownX)
 
-
-
         focusAnimation.interpolator = AccelerateDecelerateInterpolator()
         scaleDownX.repeatCount = ValueAnimator.INFINITE
         scaleDownY.repeatCount = ValueAnimator.INFINITE
-       // fadeOut.repeatCount = ValueAnimator.INFINITE
+        // fadeOut.repeatCount = ValueAnimator.INFINITE
         scaleUpX.repeatCount = ValueAnimator.INFINITE
         scaleUpY.repeatCount = ValueAnimator.INFINITE
-       // fadeIn.repeatCount = ValueAnimator.INFINITE
-
+        // fadeIn.repeatCount = ValueAnimator.INFINITE
 
         focusAnimation.start()
     }
-
-
 }

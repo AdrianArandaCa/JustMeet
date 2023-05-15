@@ -5,28 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Adapters.AdapterMatches
 import com.example.justmeet.Models.User
 import com.example.justmeet.Models.listUserMatches
 import com.example.justmeet.Models.userLog
-import com.example.justmeet.R
 import com.example.justmeet.databinding.FragmentComunicationBinding
-import com.example.justmeet.databinding.FragmentPlayBinding
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-
 private lateinit var binding: FragmentComunicationBinding
 
-class ComunicationFragment : Fragment(),CoroutineScope {
-
+class ComunicationFragment : Fragment(), CoroutineScope {
     var job = Job()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -37,13 +31,12 @@ class ComunicationFragment : Fragment(),CoroutineScope {
         binding = FragmentComunicationBinding.inflate(inflater, container, false)
 
         runBlocking {
-            val corrutina =  launch {
-                var crudApi= CrudApi()
-            listUserMatches = crudApi.getUsersMatches(userLog!!.idUser!!) as ArrayList<User>
+            val corrutina = launch {
+                var crudApi = CrudApi()
+                listUserMatches = crudApi.getUsersMatches(userLog!!.idUser!!) as ArrayList<User>
             }
             corrutina.join()
         }
-
         llansarLlista()
 
         return binding.root
@@ -51,10 +44,11 @@ class ComunicationFragment : Fragment(),CoroutineScope {
 
 
     private fun llansarLlista() {
-        binding.recyclerMatches.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        binding.recyclerMatches.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerMatches.adapter = AdapterMatches(listUserMatches)
     }
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
-
 }

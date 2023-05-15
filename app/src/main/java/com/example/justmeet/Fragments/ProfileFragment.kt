@@ -6,23 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.justmeet.Activitys.ActivityJustEditProfile
 import com.example.justmeet.Activitys.SettingsActivity
 import com.example.justmeet.Models.userLog
-import com.example.justmeet.R
-import com.example.justmeet.databinding.FragmentPlayBinding
 import com.example.justmeet.databinding.FragmentProfileBinding
 
-private lateinit var binding : FragmentProfileBinding
-class ProfileFragment : Fragment() {
+private lateinit var binding: FragmentProfileBinding
 
+class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -30,21 +26,21 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentProfileBinding.inflate(inflater,container,false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         Glide.with(requireContext()).load(userLog!!.photo!!).into(binding.ivProfile)
         //binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvNomEdad.setText("${userLog!!.name!!},${userLog!!.birthday!!}")
         binding.tvSobreMiContent.setText("${userLog!!.description!!}")
-        if(userLog!!.premium!!){
+        if (userLog!!.premium!!) {
             binding.ivCrownPremium.isVisible = true
         }
         binding.ibSettings.setOnClickListener {
-            val intento = Intent(context,SettingsActivity::class.java)
+            val intento = Intent(context, SettingsActivity::class.java)
             startActivity(intento)
         }
 
         binding.btnEditarPerfil.setOnClickListener {
-            val intento = Intent(context,ActivityJustEditProfile::class.java)
+            val intento = Intent(context, ActivityJustEditProfile::class.java)
             startActivity(intento)
         }
         return binding.root
@@ -54,12 +50,11 @@ class ProfileFragment : Fragment() {
         super.onResume()
         updateData()
     }
+
     fun updateData() {
         Glide.with(requireContext()).load(userLog!!.photo!!).into(binding.ivProfile)
         //binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvNomEdad.setText("${userLog!!.name!!},${userLog!!.birthday!!}")
         binding.tvSobreMiContent.setText("${userLog!!.description!!}")
     }
-
-
 }

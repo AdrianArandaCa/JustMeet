@@ -1,10 +1,7 @@
 package com.example.justmeet.Activitys
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import com.example.justmeet.API.CrudApi
@@ -25,7 +22,13 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
         putFullScreen()
         val priceSelected = intent.getStringExtra("Price")
         val monthSelected = intent.getStringExtra("Month")
-        binding.planSelected.setText(getString(R.string.plan_selected, monthSelected, priceSelected))
+        binding.planSelected.setText(
+            getString(
+                R.string.plan_selected,
+                monthSelected,
+                priceSelected
+            )
+        )
         binding.btnConfirmBuyPremium.setOnClickListener {
             var numberTarget = binding.etTargetNumber.text.toString()
             var nameSurnameTarget = binding.etNameSurNameTarget.text.toString()
@@ -36,8 +39,9 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
 
             if (numberTarget.isNotEmpty() && nameSurnameTarget.isNotEmpty() && mmaa.isNotEmpty() && cvc.isNotEmpty() && postalcode.isNotEmpty() && email.isNotEmpty()) {
 
-                if(!mmaa.contains("/")) {
-                    Toast.makeText(this,"El MMAA ha de contener una barra!",Toast.LENGTH_LONG).show()
+                if (!mmaa.contains("/")) {
+                    Toast.makeText(this, "El MMAA ha de contener una barra!", Toast.LENGTH_LONG)
+                        .show()
                 } else {
                     runBlocking {
                         val corrutina = launch {
@@ -50,20 +54,22 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
                     if (userBuyedPremium) {
                         onBackPressed()
                         finish()
-                        Toast.makeText(this,getString(R.string.premium_comprado),Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            this,
+                            getString(R.string.premium_comprado),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             } else {
-                Toast.makeText(this,getString(R.string.empty_information),Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.empty_information), Toast.LENGTH_LONG)
+                    .show()
             }
         }
         binding.ibBack.setOnClickListener {
             onBackPressed()
             finish()
         }
-
-
-
     }
 
     fun putFullScreen() {
@@ -78,6 +84,4 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
-
-
 }

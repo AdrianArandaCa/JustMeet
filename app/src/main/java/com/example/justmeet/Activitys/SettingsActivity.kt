@@ -15,11 +15,11 @@ import com.example.justmeet.databinding.ActivitySettingsBinding
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class SettingsActivity : AppCompatActivity(),CoroutineScope {
-    private lateinit var binding : ActivitySettingsBinding
-    private lateinit var userSetting : Setting
+class SettingsActivity : AppCompatActivity(), CoroutineScope {
+    private lateinit var binding: ActivitySettingsBinding
+    private lateinit var userSetting: Setting
     var job = Job()
-    var changeSaved : Boolean = false
+    var changeSaved: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -33,10 +33,10 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
             corrutina.join()
         }
         binding.seekbarDistancia.progress = userSetting.maxDistance
-        binding.tvKM.setText(userSetting.maxDistance.toString()+"km")
+        binding.tvKM.setText(userSetting.maxDistance.toString() + "km")
         binding.seekBarMin.progress = userSetting.minAge
         binding.seekBarMax.progress = userSetting.maxAge
-        binding.tvEdadMinMax.setText(userSetting.minAge.toString()+"-"+userSetting.maxAge.toString())
+        binding.tvEdadMinMax.setText(userSetting.minAge.toString() + "-" + userSetting.maxAge.toString())
         if (userSetting.genre.equals("M")) {
             binding.rbMale.isChecked = true
         } else {
@@ -44,17 +44,17 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
         }
 
         binding.backButtonSettings.setOnClickListener {
-            if(changeSaved) {
-                onBackPressed()
-                finish()
-
-            }
-            if(binding.seekbarDistancia.progress == userSetting.maxDistance && binding.seekBarMin.progress == userSetting.minAge &&
-                binding.seekBarMax.progress == userSetting.maxAge){
+            if (changeSaved) {
                 onBackPressed()
                 finish()
             }
-            if((binding.seekbarDistancia.progress != userSetting.maxDistance || binding.seekBarMin.progress != userSetting.minAge ||
+            if (binding.seekbarDistancia.progress == userSetting.maxDistance && binding.seekBarMin.progress == userSetting.minAge &&
+                binding.seekBarMax.progress == userSetting.maxAge
+            ) {
+                onBackPressed()
+                finish()
+            }
+            if ((binding.seekbarDistancia.progress != userSetting.maxDistance || binding.seekBarMin.progress != userSetting.minAge ||
                         binding.seekBarMax.progress != userSetting.maxAge) && !changeSaved
             ) {
                 val builder = AlertDialog.Builder(this)
@@ -83,34 +83,41 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
         }
         binding.btnGuardarCambios.setOnClickListener {
             var genre = ""
-            if(binding.rbMale.isChecked){
+            if (binding.rbMale.isChecked) {
                 genre = "M"
             } else {
                 genre = "F"
             }
+            if (binding.seekbarDistancia.progress == userSetting.maxDistance && binding.seekBarMin.progress == userSetting.minAge &&
+                binding.seekBarMax.progress == userSetting.maxAge && userSetting.genre.equals(genre)
+            ) {
 
-           if(binding.seekbarDistancia.progress == userSetting.maxDistance && binding.seekBarMin.progress == userSetting.minAge &&
-               binding.seekBarMax.progress == userSetting.maxAge && userSetting.genre.equals(genre)){
-
-               Toast.makeText(this,getString(R.string.nochangesmodify),Toast.LENGTH_LONG).show()
-           } else {
-               var genre = ""
-               if(binding.rbMale.isChecked){
-                   genre = "M"
-               } else {
-                   genre = "F"
-               }
-               runBlocking {
-                   val corrutina = launch {
-                       val crudApi = CrudApi()
-                       var setting = Setting(userLog!!.idSetting!!,binding.seekbarDistancia.progress,binding.seekBarMin.progress,binding.seekBarMax.progress,genre,2,null)
-                       changeSaved = crudApi.modifySettingFromApi(setting)
-                   }
-                   corrutina.join()
-               }
-               Toast.makeText(this,getString(R.string.savechanges),Toast.LENGTH_LONG).show()
-           }
-
+                Toast.makeText(this, getString(R.string.nochangesmodify), Toast.LENGTH_LONG).show()
+            } else {
+                var genre = ""
+                if (binding.rbMale.isChecked) {
+                    genre = "M"
+                } else {
+                    genre = "F"
+                }
+                runBlocking {
+                    val corrutina = launch {
+                        val crudApi = CrudApi()
+                        var setting = Setting(
+                            userLog!!.idSetting!!,
+                            binding.seekbarDistancia.progress,
+                            binding.seekBarMin.progress,
+                            binding.seekBarMax.progress,
+                            genre,
+                            2,
+                            null
+                        )
+                        changeSaved = crudApi.modifySettingFromApi(setting)
+                    }
+                    corrutina.join()
+                }
+                Toast.makeText(this, getString(R.string.savechanges), Toast.LENGTH_LONG).show()
+            }
         }
         binding.btnCerrarSesion.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -119,13 +126,12 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
             builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
                 // Agrega aquí el código para cerrar sesión
                 userLog = null
-                val intento = Intent(this,LoginActivity::class.java)
+                val intento = Intent(this, LoginActivity::class.java)
                 startActivity(intento)
                 finish()
-                Toast.makeText(this,getString(R.string.close_session),Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.close_session), Toast.LENGTH_LONG).show()
             }
             builder.setNegativeButton(getString(R.string.no)) { _, _ ->
-
             }
             val dialog = builder.create()
             dialog.show()
@@ -148,27 +154,22 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
                     if (maxValue < minValue) {
                         binding.seekBarMax.progress = minValue
                     }
-                } else if(seekBar == binding.seekbarDistancia){
+                } else if (seekBar == binding.seekbarDistancia) {
                     binding.seekbarDistancia.progress = maxDistanca
-
                 }
                 // Actualiza los valores en algún otro elemento de la interfaz de usuario, como un TextView
-                if(maxValue> minValue && minValue < maxValue) {
+                if (maxValue > minValue && minValue < maxValue) {
                     binding.tvEdadMinMax.text = "$minValue-$maxValue"
-
                 }
                 binding.tvKM.text = "$maxDistanca km."
-
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
                 // Este método se llama cuando el usuario comienza a interactuar con la SeekBar
-
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 // Este método se llama cuando el usuario deja de interactuar con la SeekBar
-
             }
         }
 
@@ -177,6 +178,7 @@ class SettingsActivity : AppCompatActivity(),CoroutineScope {
         binding.seekBarMax.setOnSeekBarChangeListener(seekBarChangeListener)
         binding.seekbarDistancia.setOnSeekBarChangeListener(seekBarChangeListener)
     }
+
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

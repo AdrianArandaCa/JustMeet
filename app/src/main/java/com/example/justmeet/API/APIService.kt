@@ -35,12 +35,12 @@ interface APIService {
     // UserMatches
 
     @GET("userGameList/{idUser}")
-    suspend fun getUsersMatch(@Path("idUser") idUser : Int) : List<User>
+    suspend fun getUsersMatch(@Path("idUser") idUser: Int): List<User>
 
     //Settings Request
 
     @GET("setting/{idSetting}")
-    suspend fun getSettingById(@Path("idSetting") idSetting : Int) : Setting
+    suspend fun getSettingById(@Path("idSetting") idSetting: Int): Setting
 
     @PUT("setting/{id}")
     suspend fun updateSetting(@Path("id") id: Int, @Body user: Setting): Response<Setting>
@@ -48,16 +48,19 @@ interface APIService {
     //Location Request
 
     @PUT("location/{id}")
-    suspend fun putLocationOnUser(@Path("id") idUser : Int,@Body location: Location) : Response<Location>
+    suspend fun putLocationOnUser(
+        @Path("id") idUser: Int,
+        @Body location: Location
+    ): Response<Location>
 
     @GET("locations")
-    suspend fun getAllLocations() :ArrayList<Location>
+    suspend fun getAllLocations(): ArrayList<Location>
 
     @GET("locationByUser/{id}")
-    suspend fun getLocationByUser(@Path("id") id : Int) : Location
+    suspend fun getLocationByUser(@Path("id") id: Int): Location
 
     @POST("location")
-    suspend fun insertLocation(@Body location: Location) : Response<Location>
+    suspend fun insertLocation(@Body location: Location): Response<Location>
 
 
 }

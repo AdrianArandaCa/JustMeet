@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,10 +14,9 @@ import com.example.justmeet.Activitys.ActivityChat
 import com.example.justmeet.Models.User
 import com.example.justmeet.R
 
-class InfoDialogMatch(private var user : User) : DialogFragment() {
+class InfoDialogMatch(private var user: User) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
         val inflater = requireActivity().layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_infomatch, null)
 
@@ -36,8 +34,8 @@ class InfoDialogMatch(private var user : User) : DialogFragment() {
         val buttonOpenChat = dialogView.findViewById<AppCompatButton>(R.id.btnOpenChat)
         buttonOpenChat.setOnClickListener {
 
-            val intento = Intent(requireContext(),ActivityChat::class.java)
-            intento.putExtra("User",user as java.io.Serializable)
+            val intento = Intent(requireContext(), ActivityChat::class.java)
+            intento.putExtra("User", user as java.io.Serializable)
             startActivity(intento)
         }
         val buttonBack = dialogView.findViewById<ImageButton>(R.id.btnBackDetailMatch)
@@ -50,5 +48,4 @@ class InfoDialogMatch(private var user : User) : DialogFragment() {
             .setView(dialogView)
             .create()
     }
-
 }

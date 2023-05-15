@@ -1,16 +1,12 @@
 package com.example.justmeet.Adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.justmeet.Models.Answer
 import com.example.justmeet.R
-import org.w3c.dom.Text
 
 class AdapterAnswer(var list: java.util.ArrayList<Answer>) :
     RecyclerView.Adapter<AdapterAnswer.viewholder>() {
@@ -43,7 +39,6 @@ class AdapterAnswer(var list: java.util.ArrayList<Answer>) :
                     list[i].selected = 0
                 }
             }
-
             notifyDataSetChanged()
         }
     }
