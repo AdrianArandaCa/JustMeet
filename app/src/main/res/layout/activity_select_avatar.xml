@@ -4,40 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/fondobg1"
+    android:orientation="vertical"
     tools:context=".Activitys.ActivitySelectAvatar">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/tvTituloAvatar"
-        android:text="@string/select_avatar"
-        android:textColor="@color/dark_gold"
-        android:textAlignment="center"
-        android:layout_marginTop="50dp"
-        android:textSize="30dp"
-        android:fontFamily="@font/versa"
-        />
-    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recyclerAvatares"
         android:layout_marginTop="50dp"
-        />
+        android:fontFamily="@font/versa"
+        android:text="@string/select_avatar"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gold"
+        android:textSize="30sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAvatares"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnGuardarAvatar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
 
+        android:layout_gravity="center"
         android:background="@drawable/border_button"
+        android:fontFamily="@font/champagnebold"
         android:text="@string/save_avatar"
         android:textAllCaps="false"
-        android:textSize="18sp"
-        android:fontFamily="@font/champagnebold"
         android:textColor="@color/white"
-        android:layout_gravity="center"
-        />
+        android:textSize="18sp" />
 
 
 </LinearLayout>

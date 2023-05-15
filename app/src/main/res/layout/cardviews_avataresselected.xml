@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="6dp"
     app:cardElevation="5dp"
     app:strokeColor="@color/dark_gold"
-    app:strokeWidth="5dp"
-    app:cardCornerRadius="6dp"
-    android:layout_margin="20dp">
+    app:strokeWidth="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:background="#E6D5B1"
-        >
+        android:padding="10dp">
 
         <ImageView
+            android:id="@+id/ivAvatar"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/ivAvatar"
-            android:scaleType="centerCrop"
-            />
-
+            android:contentDescription="@string/avatar_selected"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

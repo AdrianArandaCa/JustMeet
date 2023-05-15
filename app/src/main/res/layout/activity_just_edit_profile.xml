@@ -6,16 +6,18 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondobg1"
     tools:context=".Activitys.ActivityJustEditProfile">
+
     <ImageButton
         android:id="@+id/backButtonEdit"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleType="centerCrop"
         android:background="@android:color/transparent"
         android:contentDescription="@string/imagesetting"
+        android:scaleType="centerCrop"
         android:src="@drawable/arrowbackgold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/ivJustEdit"
         android:layout_width="match_parent"
@@ -26,7 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -45,11 +46,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:fontFamily="@font/champagnebold"
         android:padding="3dp"
         android:text="@string/cambiar_avatar"
         android:textColor="@color/light_gold"
         android:textSize="20sp"
-        android:fontFamily="@font/champagnebold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivProfile" />
@@ -60,11 +61,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/champagnebold"
         android:text="@string/aboutme"
         android:textColor="@color/light_gold"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:fontFamily="@font/champagnebold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCambiarAvatar" />
 
@@ -75,11 +76,12 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:background="@color/light_gold"
-        android:text="@string/descriptionuser"
+        android:fontFamily="@font/champagnebold"
+        android:hint="@string/descriptionuser"
+        android:inputType="textMultiLine"
+        android:padding="10dp"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:fontFamily="@font/champagnebold"
-        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvsobreTiTitulo"
         tools:ignore="TextSizeCheck" />
@@ -90,11 +92,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:background="@drawable/border_button"
+        android:fontFamily="@font/champagnebold"
         android:text="@string/save_changes"
         android:textAllCaps="false"
-        android:fontFamily="@font/champagnebold"
-        android:textSize="16sp"
         android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSobreMiContent" />

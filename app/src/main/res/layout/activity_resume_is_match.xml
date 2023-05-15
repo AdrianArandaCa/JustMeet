@@ -6,80 +6,84 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondobg1"
     tools:context=".Activitys.ActivityResumeIsMatch">
+
     <ImageView
         android:id="@+id/ivJustResume"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/resume_logo"
         android:scaleType="centerCrop"
         android:src="@drawable/justresume"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/tvPorcentaje"
-        app:layout_constraintTop_toBottomOf="@id/ivJustResume"
-        android:text="@string/percent_affinity"
-        android:textColor="@color/dark_gold"
-        android:fontFamily="@font/champagnebold"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvPorcentajeNum"
-        app:layout_constraintTop_toBottomOf="@id/tvPorcentaje"
-        android:text="80%"
-        android:textColor="@color/dark_gold"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/champagnebold"
+        android:text="@string/percent_affinity"
         android:textAlignment="center"
+        android:textColor="@color/dark_gold"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivJustResume" />
+
+    <TextView
+        android:id="@+id/tvPorcentajeNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/versa"
+        android:text="@string/_80"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gold"
         android:textSize="50sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPorcentaje" />
+
     <ImageView
         android:id="@+id/ivItsMatch"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:contentDescription="@string/resume_match"
         android:scaleType="centerCrop"
         android:src="@drawable/justismatch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPorcentajeNum"/>
+        app:layout_constraintTop_toBottomOf="@id/tvPorcentajeNum" />
+
     <TextView
+        android:id="@+id/tvMensajeMatch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMensajeMatch"
-        app:layout_constraintTop_toBottomOf="@id/ivItsMatch"
-        android:text="@string/see_matches"
-        android:textColor="@color/dark_gold"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:fontFamily="@font/champagnebold"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/champagnebold"
+        android:text="@string/see_matches"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gold"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivItsMatch" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnVerMatches"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/border_button"
+        android:fontFamily="@font/champagnebold"
         android:text="@string/back_home"
         android:textAllCaps="false"
-        android:textSize="18sp"
         android:textColor="@color/white"
-        android:fontFamily="@font/champagnebold"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMensajeMatch" />

@@ -49,7 +49,7 @@
             android:fontFamily="@font/timesnewnormal"
             android:hint="@string/nomusuari"
             android:inputType="text"
-            android:text="adrian"
+            android:text="@string/login_adrian"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
@@ -85,7 +85,7 @@
             android:backgroundTint="@color/dark_gold"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:text="1234"
+            android:text="@string/_1234"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
@@ -140,52 +140,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="5dp"
-        android:gravity="center">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/ibFacebook"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_margin="8dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/facebooklogogold"
+            android:contentDescription="@string/login_facebook"
             android:scaleType="centerCrop"
-            />
+            android:src="@drawable/facebooklogogold" />
 
         <ImageButton
             android:id="@+id/ibLinkedin"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_margin="8dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/linkedinlogogold"
+            android:contentDescription="@string/login_linkedin"
             android:scaleType="centerCrop"
-            />
+            android:src="@drawable/linkedinlogogold" />
 
         <ImageButton
             android:id="@+id/ibGmail"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_margin="8dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/googlelogogold"
+            android:contentDescription="@string/login_google"
             android:scaleType="centerCrop"
-            />
+            android:src="@drawable/googlelogogold" />
 
         <ImageButton
             android:id="@+id/ibInstagram"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_margin="8dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/instagramlogogold"
+            android:contentDescription="@string/login_instagram"
             android:scaleType="centerCrop"
-            />
+            android:src="@drawable/instagramlogogold" />
 
 
     </LinearLayout>

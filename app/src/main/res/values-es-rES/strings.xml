@@ -87,4 +87,5 @@
     <string name="direccion_email">Dirección correo electrónico</string>
 <!--    <string name="mmaa_error">El MMAA ha de contener una \'/\' entre años</string>-->
     <string name="plan_selected">Plan seleccionado: %1$s, %2$s</string>
+    <string name="method_pay">cerrar</string>
 </resources>

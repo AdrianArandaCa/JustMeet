@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondobg1"
     tools:context=".Activitys.RegisterActivity">
+
     <ImageButton
         android:id="@+id/btnBackRegister"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleType="centerCrop"
         android:background="@android:color/transparent"
         android:contentDescription="@string/imagesetting"
+        android:scaleType="centerCrop"
         android:src="@drawable/arrowbackgold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,11 +35,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/linearPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivLogoLogin"
-        app:layout_constraintBottom_toTopOf="@id/linearPassword"
-        >
+        app:layout_constraintTop_toBottomOf="@id/ivLogoLogin">
 
         <ImageView
             android:id="@+id/logoUser"
@@ -55,12 +55,12 @@
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
+            android:fontFamily="@font/timesnewnormal"
             android:hint="@string/nameuser"
             android:inputType="text"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:fontFamily="@font/timesnewnormal"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -71,11 +71,10 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/linearConfirmPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearUser"
-        app:layout_constraintBottom_toTopOf="@id/linearConfirmPassword"
-        >
+        app:layout_constraintTop_toBottomOf="@id/linearUser">
 
         <ImageView
             android:id="@+id/logoPassword"
@@ -92,12 +91,12 @@
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
+            android:fontFamily="@font/timesnewnormal"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
-            android:fontFamily="@font/timesnewnormal"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -108,11 +107,10 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/linearEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearPassword"
-        app:layout_constraintBottom_toTopOf="@id/linearEmail"
-        >
+        app:layout_constraintTop_toBottomOf="@id/linearPassword">
 
         <ImageView
             android:id="@+id/logoPasswordConfirm"
@@ -129,9 +127,9 @@
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
+            android:fontFamily="@font/timesnewnormal"
             android:hint="@string/confirmpassword"
             android:inputType="textPassword"
-            android:fontFamily="@font/timesnewnormal"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
@@ -145,11 +143,10 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/linearBirthday"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearConfirmPassword"
-        app:layout_constraintBottom_toTopOf="@id/linearBirthday"
-        >
+        app:layout_constraintTop_toBottomOf="@id/linearConfirmPassword">
 
         <ImageView
             android:id="@+id/logoEmail"
@@ -166,11 +163,11 @@
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
+            android:fontFamily="@font/timesnewnormal"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
-            android:fontFamily="@font/timesnewnormal"
             android:textColorHint="@color/dark_gold"
             android:textSize="18sp" />
     </LinearLayout>
@@ -182,11 +179,10 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/linearGenre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearEmail"
-        app:layout_constraintBottom_toTopOf="@id/linearGenre"
-        >
+        app:layout_constraintTop_toBottomOf="@id/linearEmail">
 
         <ImageView
             android:id="@+id/logoBirthday"
@@ -197,32 +193,32 @@
             android:padding="5dp"
             android:src="@drawable/baseline_cake_24" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/etBirthday"-->
-<!--            android:layout_width="250dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:backgroundTint="@color/dark_gold"-->
-<!--            android:hint="@string/birthday"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="@color/dark_gold"-->
-<!--            android:textColorHint="@color/dark_gold"-->
-<!--            android:inputType="date"-->
-<!--            android:textSize="18sp" />-->
-                <EditText
-                    android:id="@+id/etBirthday"
-                    android:layout_width="250dp"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="10dp"
-                    android:backgroundTint="@color/dark_gold"
-                    android:hint="@string/age"
-                    android:textAlignment="center"
-                    android:textColor="@color/dark_gold"
-                    android:textColorHint="@color/dark_gold"
-                    android:inputType="number"
-                    android:fontFamily="@font/timesnewnormal"
-                    android:maxLength="2"
-                    android:textSize="18sp" />
+        <!--        <EditText-->
+        <!--            android:id="@+id/etBirthday"-->
+        <!--            android:layout_width="250dp"-->
+        <!--            android:layout_height="48dp"-->
+        <!--            android:layout_marginEnd="10dp"-->
+        <!--            android:backgroundTint="@color/dark_gold"-->
+        <!--            android:hint="@string/birthday"-->
+        <!--            android:textAlignment="center"-->
+        <!--            android:textColor="@color/dark_gold"-->
+        <!--            android:textColorHint="@color/dark_gold"-->
+        <!--            android:inputType="date"-->
+        <!--            android:textSize="18sp" />-->
+        <EditText
+            android:id="@+id/etBirthday"
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/dark_gold"
+            android:fontFamily="@font/timesnewnormal"
+            android:hint="@string/age"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gold"
+            android:textColorHint="@color/dark_gold"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -233,9 +229,9 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnRegister"
         app:layout_constraintTop_toBottomOf="@id/linearBirthday">
 
         <ImageView
@@ -252,8 +248,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:text="@string/men"
             android:fontFamily="@font/timesnewnormal"
+            android:text="@string/men"
             android:textAlignment="center"
             android:textColor="@color/light_gold"
             android:textColorHint="@color/dark_gold"
@@ -273,8 +269,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/dark_gold"
-            android:text="@string/women"
             android:fontFamily="@font/timesnewnormal"
+            android:text="@string/women"
             android:textAlignment="center"
             android:textColor="@color/light_gold"
             android:textColorHint="@color/dark_gold"
@@ -287,14 +283,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/border_button"
+        android:fontFamily="@font/champagnebold"
         android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:fontFamily="@font/champagnebold"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearGenre" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

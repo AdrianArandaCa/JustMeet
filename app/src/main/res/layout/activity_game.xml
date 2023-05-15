@@ -12,10 +12,10 @@
         android:id="@+id/ivLogoGame"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginTop="40dp"
         android:contentDescription="@string/logogame"
         android:scaleType="centerCrop"
         android:src="@drawable/justgame"
-        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,11 +41,11 @@
                 android:id="@+id/logoTimerStart"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/imageclock"
                 android:padding="5dp"
                 android:src="@drawable/asset_timer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/imageclock"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvTime"
@@ -67,11 +67,11 @@
                 android:id="@+id/logoTimerEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/imageclock"
                 android:padding="5dp"
                 android:src="@drawable/asset_timer"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/imageclock"/>
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
@@ -100,20 +100,19 @@
         app:layout_constraintTop_toBottomOf="@+id/txtQuestion" />
 
     <TextView
+        android:id="@+id/numberQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/numberQuestion"
-        app:layout_constraintTop_toBottomOf="@id/rvAnswers"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="30dp"
-        android:textColor="@color/dark_gold"
+        android:layout_marginBottom="10dp"
         android:text="@string/numeropregunta"
         android:textAlignment="center"
+        android:textColor="@color/dark_gold"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvAnswers" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

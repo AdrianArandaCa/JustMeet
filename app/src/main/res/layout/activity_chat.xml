@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/black"
+    android:orientation="vertical"
     tools:context=".Activitys.ActivityChat">
 
     <LinearLayout
+        android:id="@+id/linearHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearHeader"
+        android:layout_margin="20dp"
+        android:background="@drawable/border_edittext"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:background="@drawable/border_edittext"
-        android:layout_margin="20dp"
 
         >
 
@@ -23,81 +23,73 @@
             android:id="@+id/btnBackChat"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:scaleType="centerCrop"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/imagesetting"
-            android:src="@drawable/arrowbackgold"
             android:layout_gravity="center"
-            />
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/chat_imagesetting"
+            android:scaleType="centerCrop"
+            android:src="@drawable/arrowbackgold" />
 
         <ImageView
             android:id="@+id/ivAvatarChat"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/imagesetting"
-            android:src="@drawable/avatarhombre"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            />
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatarhombre" />
 
         <TextView
+            android:id="@+id/tvNameUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Maria"
-            android:id="@+id/tvNameUser"
             android:layout_gravity="center"
-            android:textColor="@color/dark_gold"
-            android:textSize="26sp"
-            android:fontFamily="@font/champagnebold"
             android:layout_marginStart="20dp"
+            android:fontFamily="@font/champagnebold"
+            android:text="@string/chat_name"
             android:textAlignment="center"
-            />
+            android:textColor="@color/dark_gold"
+            android:textSize="26sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/recyclerChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="15"
-        android:orientation="vertical"
-        />
+        android:orientation="vertical" />
 
     <LinearLayout
+        android:id="@+id/linearMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearMessage"
         android:orientation="horizontal"
         android:padding="10dp"
-
         >
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
             android:id="@+id/etSendMessage"
-            android:background="@color/dark_gold"
-            android:hint="@string/escribe_un_mensaje"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:inputType="text"
             android:layout_weight="1"
-            />
+            android:background="@color/dark_gold"
+            android:hint="@string/escribe_un_mensaje"
+            android:inputType="text" />
 
         <Button
+            android:id="@+id/btnSendMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/send_message"
-            android:id="@+id/btnSendMessage"
-            android:textColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:maxLines="1"
-            />
+            android:text="@string/send_message"
+            android:textColor="@color/black" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

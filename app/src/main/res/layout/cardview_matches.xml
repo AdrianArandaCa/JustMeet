@@ -1,57 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="6dp"
     app:cardElevation="5dp"
     app:strokeColor="@color/dark_gold"
-    app:strokeWidth="5dp"
-    app:cardCornerRadius="6dp"
-    android:layout_margin="10dp">
+    app:strokeWidth="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:padding="15dp"
         android:background="@color/black"
-        >
+        android:padding="15dp">
 
         <ImageView
+            android:id="@+id/ivAvatarMatch"
             android:layout_width="70dp"
             android:layout_height="90dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/ivAvatarMatch"
+            android:contentDescription="@string/match_avatar"
             android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            />
         <TextView
+            android:id="@+id/tvUserNameMatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Maria"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/light_gold"
-            app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toStartOf="@id/ivCrownPremium"
-            app:layout_constraintTop_toBottomOf="@id/ivAvatarMatch"
-            android:fontFamily="@font/champagnebold"
-            android:id="@+id/tvUserNameMatch"
             android:layout_marginStart="15dp"
-            />
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/champagnebold"
+            android:textColor="@color/light_gold"
+            app:layout_constraintEnd_toStartOf="@id/ivCrownPremium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivAvatarMatch"
+            tools:text="Maria" />
+
         <ImageView
             android:id="@+id/ivCrownPremium"
             android:layout_width="12dp"
             android:layout_height="12dp"
-            app:layout_constraintStart_toEndOf="@id/tvUserNameMatch"
-            app:layout_constraintTop_toBottomOf="@id/ivAvatarMatch"
-            android:src="@drawable/crownplane"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/match_crown"
+            android:scaleType="centerCrop"
+            android:src="@drawable/crownplane"
             android:visibility="invisible"
-            />
+            app:layout_constraintStart_toEndOf="@id/tvUserNameMatch"
+            app:layout_constraintTop_toBottomOf="@id/ivAvatarMatch" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

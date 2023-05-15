@@ -8,87 +8,86 @@
     tools:context=".Activitys.ActivityVideoView">
 
 
-
     <VideoView
         android:id="@+id/vvAnuncio"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
         android:layout_marginTop="150dp"
-        />
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btnGoWebsite"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:scaleType="centerCrop"
-        android:padding="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vvAnuncio"
         android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
-        />
+        android:contentDescription="@string/advertisement_btn"
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vvAnuncio" />
+
     <TextView
         android:id="@+id/tvFlechas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="⇈"
-        android:textSize="30dp"
         android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnGoWebsite"
+        android:text="@string/advertisement_flechas"
         android:textColor="@color/dark_gold"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGoWebsite"
 
         />
+
     <TextView
         android:id="@+id/tvHazClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvFlechas"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="¡HAZ CLICK PARA ACCEDER A LA PAGINA OFICIAL"
-    android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/champagnebold"
+        android:text="@string/advertisement_access"
         android:textAlignment="center"
         android:textColor="@color/dark_gold"
         android:textSize="18sp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:fontFamily="@font/champagnebold"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFlechas" />
 
     <TextView
         android:id="@+id/tvAvisoAnuncio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvHazClick"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Accederas a la app despues del anuncio"
+        android:fontFamily="@font/champagnebold"
+        android:text="@string/advertisement_last"
         android:textAlignment="center"
         android:textColor="@color/dark_gold"
         android:textSize="20sp"
-        android:fontFamily="@font/champagnebold"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHazClick" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvAvisoAnuncio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="¡Contrata premium para omitirlos!"
+        android:fontFamily="@font/champagnebolditalic"
+        android:text="@string/advertisement_premium"
         android:textAlignment="center"
         android:textColor="@color/dark_gold"
         android:textSize="15sp"
-        android:fontFamily="@font/champagnebolditalic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAvisoAnuncio"
 
         />
 
