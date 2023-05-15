@@ -135,6 +135,8 @@ var isSucces : Boolean = false
                     println("CLOSEGENRE")
                 } else if(text == "CLOSEGAMETYPE"){
                     println("CLOSEGAMETYPE")
+                } else if(text=="CLOSEDISTANCE"){
+                    println("CLOSEDISTANCE")
                 }
             //    hideProgressBar()
                 thread {
@@ -197,17 +199,17 @@ var isSucces : Boolean = false
     }
 
     override fun onDestroy() {
-        //WebSocketManager.close()
+       // WebSocketManager.sendMessage("CLOSE")
         super.onDestroy()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-       // WebSocketManager.sendMessage("CLOSE")
+        //WebSocketManager.sendMessage("CLOSE")
     }
     override fun onStop() {
         super.onStop()
-       // WebSocketManager.sendMessage("CLOSE")
+        WebSocketManager.sendMessage("CLOSE")
     }
 
     fun animatePlayButton() {
