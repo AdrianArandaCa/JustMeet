@@ -3,6 +3,7 @@ package com.example.justmeet.Fragments
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -136,6 +137,17 @@ class PlayFragment : Fragment(), MessageListener {
                     kotlin.run {
                         WebSocketManager.sendMessage("CLOSE")
                     }
+                }
+                activity?.runOnUiThread {
+                    // Crea una instancia de AlertDialog.Builder
+                    val builder = AlertDialog.Builder(context)
+                    builder.setTitle("Aviso")
+                    builder.setMessage("La persona con la que se te ha emparejado no cumple los requisitos")
+                    builder.setPositiveButton("Seguir buscando") { dialog, which ->
+
+                    }
+                    val dialog = builder.create()
+                    dialog.show()
                 }
             } else if (text.startsWith("GAMERESULT")) {
                 var textSubstring = text.substring(10)
