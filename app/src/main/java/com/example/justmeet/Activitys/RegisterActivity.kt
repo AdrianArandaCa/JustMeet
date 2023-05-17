@@ -143,6 +143,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
     }
 
     fun registerUser() {
+        var genreSelected : Boolean = false
         if (binding.etBirthday.text.toString() < "18" || binding.etBirthday.text.toString() > "99") {
             Toast.makeText(this, getString(R.string.invalid_age), Toast.LENGTH_LONG)
                 .show()
@@ -156,10 +157,12 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         var genre = ""
         if (isMale) {
             genre = "M"
+            genreSelected = true
         } else if (isFemale) {
             genre = "F"
+            genreSelected = true
         }
-        if (nomUser.isNotEmpty() && passWord.isNotEmpty() && passWordConfirm.isNotEmpty() && email.isNotEmpty() && binding.etBirthday.text.isNotEmpty() && genre.isNotEmpty()) {
+        if (nomUser.isNotEmpty() && passWord.isNotEmpty() && passWordConfirm.isNotEmpty() && email.isNotEmpty() && binding.etBirthday.text.isNotEmpty() && genre.isNotEmpty() && genreSelected) {
             if (!isValidEmail(binding.etEmail.text.toString())) {
                 Toast.makeText(this, getString(R.string.write_valid_email), Toast.LENGTH_LONG)
                     .show()
