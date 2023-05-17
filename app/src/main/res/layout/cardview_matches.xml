@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardCornerRadius="6dp"
@@ -11,7 +11,7 @@
     app:strokeWidth="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:padding="15dp">
@@ -30,13 +30,14 @@
             android:id="@+id/tvUserNameMatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+
             android:layout_marginTop="8dp"
             android:fontFamily="@font/champagnebold"
             android:textColor="@color/light_gold"
-            app:layout_constraintEnd_toStartOf="@id/ivCrownPremium"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivAvatarMatch"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Maria" />
 
         <ImageView
