@@ -112,45 +112,45 @@
     <!--    <string name="mmaa_error">El MMAA ha de contener una \'/' entre años</string>-->
     <string name="plan_selected">Plan seleccionado: %1$s, %2$s</string>
     <string name="method_pay">cerrar</string>
-    <string name="method_pay_mm_aa">MM/AA</string>
-    <string name="method_pay_cvc">CVC</string>
+    <string name="method_pay_mm_aa" translatable="false">MM/AA</string>
+    <string name="method_pay_cvc" translatable="false">CVC</string>
     <string name="method_pay_card">card</string>
     <string name="method_pay_plan">Plan seleccionado : 1 mes, 21,99€</string>
     <string name="method_pay_buy">Comprar</string>
     <string name="chat_imagesetting">back</string>
-    <string name="chat_name">Maria</string>
-    <string name="login_facebook">loginfacebook</string>
-    <string name="login_instagram">login instagram</string>
-    <string name="login_google">login google</string>
-    <string name="_1234">1234</string>
-    <string name="login_linkedin">login linkedin</string>
-    <string name="login_adrian">adrian</string>
-    <string name="resume_logo">resume logo</string>
-    <string name="resume_match">resume match</string>
-    <string name="_80">80%</string>
-    <string name="_30">30%</string>
-    <string name="settings_23_km">23 km</string>
-    <string name="settings_18_27">18-27</string>
-    <string name="advertisement_btn">advertisement button</string>
+    <string name="chat_name" translatable="false">Maria</string>
+    <string name="login_facebook" translatable="false">loginfacebook</string>
+    <string name="login_instagram" translatable="false">login instagram</string>
+    <string name="login_google" translatable="false">login google</string>
+    <string name="_1234" translatable="false">1234</string>
+    <string name="login_linkedin" translatable="false">login linkedin</string>
+    <string name="login_adrian" translatable="false">adrian</string>
+    <string name="resume_logo" translatable="false">resume logo</string>
+    <string name="resume_match" translatable="false">resume match</string>
+    <string name="_80" translatable="false">80%</string>
+    <string name="_30" translatable="false">30%</string>
+    <string name="settings_23_km" translatable="false">23 km</string>
+    <string name="settings_18_27" translatable="false">18-27</string>
+    <string name="advertisement_btn" translatable="false">advertisement button</string>
     <string name="advertisement_access">¡HAZ CLICK PARA ACCEDER A LA PAGINA OFICIAL</string>
-    <string name="advertisement_flechas">⇈</string>
+    <string name="advertisement_flechas" translatable="false">⇈</string>
     <string name="advertisement_last">Accederas a la app despues del anuncio</string>
     <string name="advertisement_premium">¡Contrata premium para omitirlos!</string>
-    <string name="avatar_avatar">avatar</string>
+    <string name="avatar_avatar" translatable="false">avatar</string>
     <string name="hola_que_tal">Hola que tal</string>
-    <string name="match_crown">match crown</string>
-    <string name="match_avatar">match avatar</string>
+    <string name="match_crown" translatable="false">match crown</string>
+    <string name="match_avatar" translatable="false">match avatar</string>
     <string name="user_disconnect">El usuario se ha desconectado</string>
-    <string name="avatar_selected">avatar selected</string>
-    <string name="dialog_info_name">Agustin,27</string>
-    <string name="dialog_info_desc">Soy Agustin, el admin de toda esta app de la que vas a pagar perro</string>
-    <string name="main_gold_world">main gold world</string>
+    <string name="avatar_selected" translatable="false">avatar selected</string>
+    <string name="dialog_info_name" translatable="false">Agustin,27</string>
+    <string name="dialog_info_desc">Soy Agustin, el admin de toda esta app de la que vas a disfrutar</string>
+    <string name="main_gold_world" translatable="false">main gold world</string>
     <string name="main_click">¡Haz click para buscar partida!</string>
-    <string name="main_btn_logo">main btn logo</string>
-    <string name="premium_limited">premium limited</string>
-    <string name="premium_hide">premium hide</string>
-    <string name="premium_check">check</string>
-    <string name="profile_crownplane">profile crownplane</string>
+    <string name="main_btn_logo" translatable="false">main btn logo</string>
+    <string name="premium_limited" translatable="false">premium limited</string>
+    <string name="premium_hide" translatable="false">premium hide</string>
+    <string name="premium_check" translatable="false">check</string>
+    <string name="profile_crownplane" translatable="false">profile crownplane</string>
 
 
 </resources>

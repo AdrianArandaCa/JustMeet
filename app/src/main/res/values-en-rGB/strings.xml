@@ -87,4 +87,16 @@
     <string name="direccion_email">Email address</string>
 <!--    <string name="mmaa_error">The MMAA must contain a \'/\' between years</string>-->
     <string name="plan_selected">Selected plan: %1$s, %2$s</string>
+    <string name="method_pay">close</string>
+    <string name="method_pay_card">card</string>
+    <string name="method_pay_plan">Selected plan: 1 month, €21.99</string>
+    <string name="method_pay_buy">Buy</string>
+    <string name="chat_imagesetting">back</string>
+    <string name="advertisement_access">CLICK HERE TO ACCESS THE OFFICIAL WEBSITE</string>
+    <string name="advertisement_last">You will access the app after the announcement</string>
+    <string name="advertisement_premium">Hire premium to skip them!</string>
+    <string name="hola_que_tal">Hi how are things</string>
+    <string name="user_disconnect">The user has logged out</string>
+    <string name="dialog_info_desc">I am Agustin, the admin of all this app that you are going to enjoy</string>
+    <string name="main_click">Click to search game!</string>
 </resources>

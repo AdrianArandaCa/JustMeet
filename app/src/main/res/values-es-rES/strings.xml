@@ -88,4 +88,15 @@
 <!--    <string name="mmaa_error">El MMAA ha de contener una \'/\' entre años</string>-->
     <string name="plan_selected">Plan seleccionado: %1$s, %2$s</string>
     <string name="method_pay">cerrar</string>
+    <string name="method_pay_card">tarjeta</string>
+    <string name="method_pay_plan">Plan seleccionado : 1 mes, 21,99€</string>
+    <string name="method_pay_buy">Comprar</string>
+    <string name="chat_imagesetting">atras</string>
+    <string name="advertisement_access">¡HAZ CLICK PARA ACCEDER A LA PAGINA OFICIAL</string>
+    <string name="advertisement_last">Accederas a la app despues del anuncio</string>
+    <string name="advertisement_premium">¡Contrata premium para omitirlos!</string>
+    <string name="hola_que_tal">Hola que tal</string>
+    <string name="user_disconnect">El usuario se ha desconectado</string>
+    <string name="dialog_info_desc">Soy Agustin, el admin de toda esta app de la que vas a disfrutar</string>
+    <string name="main_click">¡Haz click para buscar partida!</string>
 </resources>

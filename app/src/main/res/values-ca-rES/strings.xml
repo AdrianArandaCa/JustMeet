@@ -87,4 +87,16 @@
     <string name="direccion_email">Adreça correu electrònic</string>
 <!--    <string name="mmaa_error">El MMAA ha de contenir una \'/\' entre anys</string>-->
     <string name="plan_selected">Pla seleccionat: %1$s, %2$s</string>
+    <string name="method_pay">tancar</string>
+    <string name="method_pay_card">targeta</string>
+    <string name="method_pay_plan">Pla seleccionat: 1 mes, 21,99€</string>
+    <string name="method_pay_buy">Comprar</string>
+    <string name="chat_imagesetting">darrera</string>
+    <string name="advertisement_access">FES CLICK PER ACCEDIR A LA PÀGINA OFICIAL</string>
+    <string name="advertisement_last">Accediràs a l\'app després de l\'anunci</string>
+    <string name="advertisement_premium">Contracta premium per ometre\'ls!</string>
+    <string name="hola_que_tal">Hola que tal</string>
+    <string name="user_disconnect">L\'usuari s\'ha desconnectat</string>
+    <string name="dialog_info_desc">Sóc Agustin, l\'admin de tota aquesta app de la que gaudiràs</string>
+    <string name="main_click">Fes clic per buscar partida!</string>
 </resources>
