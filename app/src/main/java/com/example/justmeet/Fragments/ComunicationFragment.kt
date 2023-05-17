@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.justmeet.API.CrudApi
+import com.example.justmeet.Adapters.AdapterAvatar
 import com.example.justmeet.Adapters.AdapterMatches
 import com.example.justmeet.Models.User
 import com.example.justmeet.Models.listUserMatches
@@ -45,7 +47,7 @@ class ComunicationFragment : Fragment(), CoroutineScope {
 
     private fun llansarLlista() {
         binding.recyclerMatches.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            GridLayoutManager(context, 2)
         binding.recyclerMatches.adapter = AdapterMatches(listUserMatches)
     }
 

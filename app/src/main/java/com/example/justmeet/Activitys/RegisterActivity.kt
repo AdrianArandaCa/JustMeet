@@ -12,6 +12,7 @@ import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.Location
 import com.example.justmeet.Models.Setting
 import com.example.justmeet.Models.User
+import com.example.justmeet.Models.userLog
 import com.example.justmeet.R
 import com.example.justmeet.databinding.ActivityRegisterBinding
 import kotlinx.coroutines.*
@@ -28,6 +29,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
     var locationPosted: Boolean = false
     var isMale: Boolean = false
     var isFemale: Boolean = true
+    private  var userExists : User? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -187,38 +189,48 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                     runBlocking {
                         val crudApi = CrudApi()
                         val corrutina = launch {
-                            userPosted = crudApi.addUserToAPI(user)
+                            userExists = crudApi.getOneUserByName(nomUser)
                         }
                         corrutina.join()
-                        if (userPosted) {
-                            Toast.makeText(
-                                applicationContext,
-                                getString(R.string.userregistredfine),
-                                Toast.LENGTH_LONG
-                            ).show()
-                            finish()
-
-
-                        } else {
-                            Toast.makeText(
-                                applicationContext,
-                                getString(R.string.userexistsbd),
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                        println("Usuari inserit: " + userPosted.toString())
+                    }
+                    if(userExists != null){
+                        Toast.makeText(
+                            applicationContext,
+                            getString(R.string.userexistsbd),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
                         runBlocking {
+                            val crudApi = CrudApi()
                             val corrutina = launch {
-                                val crudApi = CrudApi()
-                                var userName = crudApi.getOneUserByName(nomUser)
-                                var locationNewUser = Location(null, 0.0, 0.0, userName!!.idUser)
-                                locationPosted = crudApi.postLocation(locationNewUser)
+                                userPosted = crudApi.addUserToAPI(user)
                             }
                             corrutina.join()
-                        }
-                        println("Localització inserida " + locationPosted.toString())
+                            if (userPosted) {
+                                Toast.makeText(
+                                    applicationContext,
+                                    getString(R.string.userregistredfine),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                finish()
 
+
+                            }
+                            println("Usuari inserit: " + userPosted.toString())
+                            runBlocking {
+                                val corrutina = launch {
+                                    val crudApi = CrudApi()
+                                    var userName = crudApi.getOneUserByName(nomUser)
+                                    var locationNewUser = Location(null, 0.0, 0.0, userName!!.idUser)
+                                    locationPosted = crudApi.postLocation(locationNewUser)
+                                }
+                                corrutina.join()
+                            }
+                            println("Localització inserida " + locationPosted.toString())
+
+                        }
                     }
+
                 } else {
                     Toast.makeText(this, getString(R.string.differentpassword), Toast.LENGTH_LONG)
                         .show()
