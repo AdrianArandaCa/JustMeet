@@ -99,4 +99,9 @@
     <string name="user_disconnect">The user has logged out</string>
     <string name="dialog_info_desc">I am Agustin, the admin of all this app that you are going to enjoy</string>
     <string name="main_click">Click to search game!</string>
+    <string name="message_to_send">Enter a message to send!</string>
+    <string name="mmaa_restring">The MMAA must contain a bar!</string>
+    <string name="user_leave_game">The player has left the game</string>
+    <string name="premium_enable">You already have the premium purchased</string>
+    <string name="plan_enable">You have to select a plan!</string>
 </resources>

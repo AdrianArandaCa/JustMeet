@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.justmeet.Activitys.*
 import com.example.justmeet.Models.*
+import com.example.justmeet.R
 import com.example.justmeet.Socket.MessageListener
 import com.example.justmeet.Socket.WebSocketManager
 import com.example.justmeet.databinding.FragmentPlayBinding
@@ -174,7 +175,7 @@ class PlayFragment : Fragment(), MessageListener {
                     userGameLeave = true
                     Toast.makeText(
                         requireContext(),
-                        "El jugador ha abandonado la partida",
+                        getString(R.string.user_leave_game),
                         Toast.LENGTH_LONG
                     ).show()
                     val intent = Intent(requireContext(), BottomNavigationActivity::class.java)

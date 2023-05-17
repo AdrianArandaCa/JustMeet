@@ -54,13 +54,13 @@ class PremiumFragment : Fragment() {
 
         binding.btnBuyPremium.setOnClickListener {
             if (userLog!!.premium!!) {
-                Toast.makeText(requireContext(), "Ya tienes el premium comprado", Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(), getString(R.string.premium_enable), Toast.LENGTH_LONG)
                     .show()
             } else {
                 if (!binding.cardViewPremium1.isSelected && !binding.cardViewPremium2.isSelected) {
                     Toast.makeText(
                         requireContext(),
-                        "Tienes que seleccionar un plan!",
+                        getString(R.string.plan_enable),
                         Toast.LENGTH_LONG
                     ).show()
                 } else {

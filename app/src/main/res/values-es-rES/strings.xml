@@ -99,4 +99,9 @@
     <string name="user_disconnect">El usuario se ha desconectado</string>
     <string name="dialog_info_desc">Soy Agustin, el admin de toda esta app de la que vas a disfrutar</string>
     <string name="main_click">¡Haz click para buscar partida!</string>
+    <string name="message_to_send">Introduce un mensaje a enviar!</string>
+    <string name="mmaa_restring">El MMAA ha de contener una barra!</string>
+    <string name="user_leave_game">El jugador ha abandonado la partida</string>
+    <string name="premium_enable">Ya tienes el premium comprado</string>
+    <string name="plan_enable">Tienes que seleccionar un plan!</string>
 </resources>

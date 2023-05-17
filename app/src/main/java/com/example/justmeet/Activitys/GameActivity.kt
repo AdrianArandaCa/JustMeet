@@ -89,7 +89,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                             listUserAnswer += userAns
                         }
                     }
-                    println("estamos")
+                    println("ACABADO JUEGO, SE HACE POST DE LAS RESPUESTAS")
                     runBlocking {
                         val crudApi = CrudApi()
                         val corrutina = launch {
