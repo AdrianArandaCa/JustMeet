@@ -115,6 +115,13 @@ class ActivityVideoView : AppCompatActivity() {
                     "android.resource://" + this.packageName + "/" + R.raw.anunciokalise,
                     "https://www.kalise.com/",
                     R.drawable.kalise
+                ),
+                Advertisement(
+                    6,
+                    "Pokemon",
+                    "android.resource://" + this.packageName + "/" + R.raw.anunciopokemon,
+                    "https://www.pokemon.com/es",
+                    R.drawable.logopokemon
                 )
             )
         )
