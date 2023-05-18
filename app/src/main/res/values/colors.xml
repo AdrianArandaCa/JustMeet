@@ -11,4 +11,6 @@
     <color name="dark_gold">#bb9b57</color>
     <color name="brown_gold">#b78849</color>
     <color name="gold_dark_light">#CBB26A</color>
+    <color name="green_isconnected">#8BC34A</color>
+    <color name="red_disconnected">#E80536</color>
 </resources>

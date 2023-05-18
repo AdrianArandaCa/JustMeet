@@ -8,8 +8,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.justmeet.API.CrudApi
+import com.example.justmeet.Models.isConnectedChat
+import com.example.justmeet.Models.userLog
 import com.example.justmeet.R
 import com.example.justmeet.databinding.ActivityBottomNavigationBinding
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class BottomNavigationActivity : AppCompatActivity() {
 
@@ -45,5 +50,47 @@ class BottomNavigationActivity : AppCompatActivity() {
                         or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("ENTRANDO EN ON DESTROY")
+        userLog!!.isConnected = false
+        runBlocking {
+            val crudApi = CrudApi()
+            val corrutina = launch {
+                crudApi.modifyUserFromApi(userLog!!)
+            }
+            corrutina.join()
+        }
+        userLog = null
+    }
+
+    override fun onStop() {
+        println("ENTRNADO EN ONSTOP navigation")
+        super.onStop()
+
+        userLog!!.isConnected = isConnectedChat
+        runBlocking {
+            val crudApi = CrudApi()
+            val corrutina = launch {
+                crudApi.modifyUserFromApi(userLog!!)
+            }
+            corrutina.join()
+        }
+    }
+
+    override fun onResume() {
+        println("ENTRNADO EN ONRESUME navigation")
+        super.onResume()
+        isConnectedChat = false
+        userLog!!.isConnected = true
+        runBlocking {
+            val crudApi = CrudApi()
+            val corrutina = launch {
+                crudApi.modifyUserFromApi(userLog!!)
+            }
+            corrutina.join()
+        }
     }
 }

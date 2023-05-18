@@ -145,7 +145,15 @@ class PlayFragment : Fragment(), MessageListener {
                     builder.setTitle("Aviso")
                     builder.setMessage("La persona con la que se te ha emparejado no cumple los requisitos")
                     builder.setPositiveButton("Seguir buscando") { dialog, which ->
+                        if (focusAnimation.isRunning) {
+                            focusAnimation.cancel()
+                            focusAnimation.end()
+                            binding.btnPlay.alpha = 1.0f
+                            binding.btnPlay.scaleX = 1.0f
+                            binding.btnPlay.scaleY = 1.0f
+                            binding.btnPlay.rotation = 0.0f
 
+                        }
                     }
                     val dialog = builder.create()
                     dialog.show()
@@ -180,7 +188,6 @@ class PlayFragment : Fragment(), MessageListener {
                     ).show()
                     val intent = Intent(requireContext(), BottomNavigationActivity::class.java)
                     startActivity(intent)
-                    activity?.finish()
                 }
 
             } else {

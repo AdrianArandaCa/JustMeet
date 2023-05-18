@@ -125,6 +125,14 @@ class SettingsActivity : AppCompatActivity(), CoroutineScope {
             builder.setMessage(getString(R.string.confirm_close_session))
             builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
                 // Agrega aquí el código para cerrar sesión
+                userLog!!.isConnected = false
+                runBlocking {
+                    val crudApi = CrudApi()
+                    val corrutina = launch {
+                        crudApi.modifyUserFromApi(userLog!!)
+                    }
+                    corrutina.join()
+                }
                 userLog = null
                 val intento = Intent(this, LoginActivity::class.java)
                 startActivity(intento)

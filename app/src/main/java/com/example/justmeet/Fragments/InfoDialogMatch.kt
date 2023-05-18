@@ -33,7 +33,6 @@ class InfoDialogMatch(private var user: User) : DialogFragment() {
 
         val buttonOpenChat = dialogView.findViewById<AppCompatButton>(R.id.btnOpenChat)
         buttonOpenChat.setOnClickListener {
-
             val intento = Intent(requireContext(), ActivityChat::class.java)
             intento.putExtra("User", user as java.io.Serializable)
             startActivity(intento)

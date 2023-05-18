@@ -94,6 +94,14 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             }
 
             if (userLog != null) {
+                userLog!!.isConnected = true
+                runBlocking {
+                    val crudApi = CrudApi()
+                    val corrutina = launch {
+                        crudApi.modifyUserFromApi(userLog!!)
+                    }
+                    corrutina.join()
+                }
                 var passWord = encryptPassword(binding.etPassword.text.toString())
                 if (passWord.equals(userLog!!.password)) {
                     runOnUiThread {

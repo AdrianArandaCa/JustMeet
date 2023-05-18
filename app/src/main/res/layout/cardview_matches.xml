@@ -15,6 +15,17 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:padding="15dp">
+        <ImageView
+            android:id="@+id/ivStateConn"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:contentDescription="@string/match_avatar"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintEnd_toStartOf="@id/tvUserNameMatch"
+            android:src="@drawable/circle_notconnected"
+            app:layout_constraintTop_toBottomOf="@id/ivAvatarMatch"/>
 
         <ImageView
             android:id="@+id/ivAvatarMatch"
@@ -44,7 +55,7 @@
             android:id="@+id/ivCrownPremium"
             android:layout_width="12dp"
             android:layout_height="12dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/match_crown"
             android:scaleType="centerCrop"

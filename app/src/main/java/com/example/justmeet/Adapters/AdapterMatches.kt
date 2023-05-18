@@ -26,6 +26,7 @@ class AdapterMatches(val llista: ArrayList<User>) :
         var avatarUser = view.findViewById<ImageView>(R.id.ivAvatarMatch)
         var userName = view.findViewById<TextView>(R.id.tvUserNameMatch)
         var isPremium = view.findViewById<ImageView>(R.id.ivCrownPremium)
+        var isConnected = view.findViewById<ImageView>(R.id.ivStateConn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
@@ -35,6 +36,12 @@ class AdapterMatches(val llista: ArrayList<User>) :
 
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
+
+        if(llista[position].isConnected == true){
+            holder.isConnected.setImageResource(R.drawable.circle_isconnected)
+        } else {
+            holder.isConnected.setImageResource(R.drawable.circle_notconnected)
+        }
 
         if (llista[position].photo == "0") {
             Glide.with(holder.avatarUser.context)

@@ -43,7 +43,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
     }
 
     private fun startTimer() {
-        val countDownTimer = object : CountDownTimer(5000, 1000) {
+        val countDownTimer = object : CountDownTimer(timeForGame, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.tvTime.text = (millisUntilFinished / 1000).toString()
             }
@@ -128,6 +128,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
 
     override fun onStop() {
         super.onStop()
+        println("ENTRANDO CLOSE GAMEACTIVITY")
         WebSocketManager.sendMessage("CLOSE")
         finish()
     }

@@ -8,31 +8,33 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Adapters.AdapterChat
-import com.example.justmeet.Models.Chat
-import com.example.justmeet.Models.User
-import com.example.justmeet.Models.listChatUsers
-import com.example.justmeet.Models.userLog
+import com.example.justmeet.Models.*
 import com.example.justmeet.R
 import com.example.justmeet.Socket.MessageListener
 import com.example.justmeet.Socket.WebSocketManager
 import com.example.justmeet.databinding.ActivityChatBinding
 import com.google.gson.Gson
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
 class ActivityChat : AppCompatActivity(), MessageListener {
     private lateinit var binding: ActivityChatBinding
     private lateinit var adapter: AdapterChat
+    private lateinit var  userRecived : User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
-        val userRecived = intent.getSerializableExtra("User") as? User
+         userRecived = intent.getSerializableExtra("User") as User
         val serverUrl = "ws://172.16.24.24:45456/ws/${userLog!!.idUser}"
         thread {
             kotlin.run {
@@ -44,9 +46,26 @@ class ActivityChat : AppCompatActivity(), MessageListener {
             }
         }
         //sendList()
+
+            userLog!!.isConnected = true
+        isConnectedChat = true
+        println("CONNECTED TRUE IN CHAT")
+            runBlocking {
+                val crudApi = CrudApi()
+                val corrutina = launch {
+                    crudApi.modifyUserFromApi(userLog!!)
+                }
+                corrutina.join()
+            }
+
         Glide.with(this).load(userRecived?.photo!!).into(binding.ivAvatarChat)
         // binding.ivAvatarChat.setImageResource(userRecived?.photo!!)
         binding.tvNameUser.setText(userRecived.name)
+        if(userRecived.isConnected == true) {
+            binding.tvNameUser.setTextColor(ContextCompat.getColor(this,R.color.green_isconnected))
+        } else {
+            binding.tvNameUser.setTextColor(ContextCompat.getColor(this,R.color.red_disconnected))
+        }
         println("Usuario recibido: " + userRecived?.name)
         if (!listChatUsers.isEmpty()) {
             listChatUsers.clear()
@@ -160,10 +179,43 @@ class ActivityChat : AppCompatActivity(), MessageListener {
     override fun onDestroy() {
         super.onDestroy()
         WebSocketManager.sendMessage("CLOSE")
+//        userLog!!.isConnected = false
+//        runBlocking {
+//                val crudApi = CrudApi()
+//            val corrutina = launch {
+//                crudApi.modifyUserFromApi(userLog!!)
+//            }
+//            corrutina.join()
+//        }
+//        userLog = null
     }
 
     override fun onStop() {
+        println("ENTRNADO EN ONSTOP CHAT")
         super.onStop()
-        WebSocketManager.sendMessage("CLOSE")
+        if(isConnectedChat){
+            isConnectedChat = false
+            userLog!!.isConnected = isConnectedChat
+            runBlocking {
+                val crudApi = CrudApi()
+                val corrutina = launch {
+                    crudApi.modifyUserFromApi(userLog!!)
+                }
+                corrutina.join()
+            }
+        }
+
+    }
+    override fun onResume() {
+        println("ENTRNADO EN ONRESUME chat")
+        super.onResume()
+        userLog!!.isConnected = true
+        runBlocking {
+            val crudApi = CrudApi()
+            val corrutina = launch {
+                crudApi.modifyUserFromApi(userLog!!)
+            }
+            corrutina.join()
+        }
     }
 }

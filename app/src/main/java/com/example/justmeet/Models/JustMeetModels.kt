@@ -19,7 +19,8 @@ data class User(
     var premium: Boolean?,
     var idSetting: Int?,
     var idSettingNavigation: Setting?,
-    var location: Location?
+    var location: Location?,
+    var isConnected : Boolean?
 ) : java.io.Serializable
 
 data class Location(
@@ -109,7 +110,7 @@ lateinit var llistaUsers: ArrayList<User>
 lateinit var tmf: TrustManagerFactory
 lateinit var sslContext: SSLContext
 lateinit var algorithm: String
-var userLog: User? = User(null, null, null, null, null, null, null, null, null, null, null, null)
+var userLog: User? = User(null, null, null, null, null, null, null, null, null, null, null, null,false)
 var listQuestionAux: ArrayList<Question> = arrayListOf()
 lateinit var gameFromSocket: Game
 var gameFinishFromSocket = Game(null, null, null, null)
@@ -119,5 +120,7 @@ var listUserMatches: ArrayList<User> = arrayListOf()
 var listChatUsers: ArrayList<Chat> = arrayListOf()
 var userGameLeave: Boolean = false
 var isSucces: Boolean = false
+var isConnectedChat : Boolean = false
+var timeForGame : Long = 11000
 
 
