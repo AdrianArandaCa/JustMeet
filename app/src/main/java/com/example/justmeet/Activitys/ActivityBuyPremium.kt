@@ -1,8 +1,11 @@
 package com.example.justmeet.Activitys
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.userLog
@@ -29,6 +32,55 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
                 priceSelected
             )
         )
+        binding.etTargetNumber.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.etTargetNumber.windowToken, 0)
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
+        binding.etNameSurNameTarget.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.etNameSurNameTarget.windowToken, 0)
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
+        binding.etMMAA.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.etMMAA.windowToken, 0)
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
+        binding.etCVC.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.etCVC.windowToken, 0)
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
+
+        binding.etPostalCode.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.etPostalCode.windowToken, 0)
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
+        binding.etEmail.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.etEmail.windowToken, 0)
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
         binding.btnConfirmBuyPremium.setOnClickListener {
             var numberTarget = binding.etTargetNumber.text.toString()
             var nameSurnameTarget = binding.etNameSurNameTarget.text.toString()

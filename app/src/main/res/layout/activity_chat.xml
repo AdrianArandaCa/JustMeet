@@ -71,7 +71,7 @@
         <EditText
             android:id="@+id/etSendMessage"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:maxLines="1"
+
             android:text="@string/send_message"
             android:textColor="@color/black" />
 

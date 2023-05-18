@@ -57,7 +57,6 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         binding.btnSendMessage.setOnClickListener {
             var message = binding.etSendMessage.text.toString()
             if (message.isEmpty()) {
-                Toast.makeText(this, getString(R.string.message_to_send), Toast.LENGTH_LONG).show()
                 val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 val duration: Long = 200 //
                 if (vibrator.hasVibrator()) {
