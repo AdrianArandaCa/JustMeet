@@ -101,7 +101,7 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
         }
         val latLongUser = LatLng(locationByUser!!.latitud!!, locationByUser!!.longitud!!)
         map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(latLongUser, 18f), 5000, null
+            CameraUpdateFactory.newLatLngZoom(latLongUser, 14f), 5000, null
         )
     }
 
