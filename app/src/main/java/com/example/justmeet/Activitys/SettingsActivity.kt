@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Models.Setting
+import com.example.justmeet.Models.isDebug
 import com.example.justmeet.Models.userLog
 import com.example.justmeet.R
 import com.example.justmeet.databinding.ActivitySettingsBinding
@@ -25,13 +26,18 @@ class SettingsActivity : AppCompatActivity(), CoroutineScope {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
-        runBlocking {
-            val corrutina = launch {
-                val crudapi = CrudApi()
-                userSetting = crudapi.getSettingById(userLog!!.idSetting!!)
+        if (!isDebug) {
+            runBlocking {
+                val corrutina = launch {
+                    val crudapi = CrudApi()
+                    userSetting = crudapi.getSettingById(userLog!!.idSetting!!)!!
+                }
+                corrutina.join()
             }
-            corrutina.join()
+        } else {
+            userSetting = userLog!!.idSettingNavigation!!
         }
+
         binding.seekbarDistancia.progress = userSetting.maxDistance
         binding.tvKM.setText(userSetting.maxDistance.toString() + "km")
         binding.seekBarMin.progress = userSetting.minAge

@@ -43,6 +43,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var locationModified: Boolean = false
     val urlapi = "https://api.openrouteservice.org/"
+    var contDebug = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +79,43 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             }
             return@setOnKeyListener false
         }
+        binding.ivLogoLogin.setOnClickListener {
+            contDebug++
+            if(contDebug == 5) {
+                if (!isDebug){
+                    binding.btnDebug.visibility = View.VISIBLE
+                    isDebug = true
+                } else {
+                    binding.btnDebug.visibility = View.GONE
+                    isDebug = false
+                    userLog = null
+                }
+                contDebug = 0
+            }
+
+
+
+        }
+        binding.btnDebug.setOnClickListener {
+            userLog = User(
+                1,
+                "Debug",
+                "1",
+                "debug@gmail.com",
+                22,
+                "M",
+                "https://cdn.create.vista.com/api/media/medium/471120374/stock-vector-beauty-gold-plated-metalic-icon?token=",
+                "",
+                false,
+                1,
+                Setting(1, 10, 18, 30, "M", 2, null),
+                Location(1, 0.0, 0.0, 1),false
+            )
+            val intento = Intent(this, BottomNavigationActivity::class.java)
+            startActivity(intento)
+            finish()
+
+        }
 
         binding.btnLogin.setOnClickListener {
             isPressed = true
@@ -103,7 +141,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                     corrutina.join()
                 }
                 var passWord = encryptPassword(binding.etPassword.text.toString())
-                if (passWord.equals(userLog!!.password)) {
+                if (passWord.equals(userLog!!.password) && userName.isNotEmpty()) {
                     runOnUiThread {
                         Toast.makeText(this, getString(R.string.correct_login), Toast.LENGTH_LONG)
                             .show()

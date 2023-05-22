@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.justmeet.API.CrudApi
+import com.example.justmeet.Models.isDebug
 import com.example.justmeet.Models.userLog
 import com.example.justmeet.R
 import com.example.justmeet.databinding.ActivityLocationBinding
@@ -77,7 +78,7 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
         runBlocking {
             var corrutina = launch {
                 val crudApi = CrudApi()
-                allLocationsList = crudApi.getAllLocationsFromAPI()
+                allLocationsList = crudApi.getAllLocationsFromAPI()!!
             }
             corrutina.join()
         }

@@ -11,6 +11,7 @@ import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Adapters.AdapterAvatar
 import com.example.justmeet.Adapters.AdapterMatches
 import com.example.justmeet.Models.User
+import com.example.justmeet.Models.isDebug
 import com.example.justmeet.Models.listUserMatches
 import com.example.justmeet.Models.userLog
 import com.example.justmeet.databinding.FragmentComunicationBinding
@@ -32,14 +33,16 @@ class ComunicationFragment : Fragment(), CoroutineScope {
         // Inflate the layout for this fragment
         binding = FragmentComunicationBinding.inflate(inflater, container, false)
 
-        runBlocking {
-            val corrutina = launch {
-                var crudApi = CrudApi()
-                listUserMatches = crudApi.getUsersMatches(userLog!!.idUser!!) as ArrayList<User>
+        if(!isDebug){
+            runBlocking {
+                val corrutina = launch {
+                    var crudApi = CrudApi()
+                    listUserMatches = crudApi.getUsersMatches(userLog!!.idUser!!) as ArrayList<User>
+                }
+                corrutina.join()
             }
-            corrutina.join()
+            llansarLlista()
         }
-        llansarLlista()
 
         return binding.root
     }

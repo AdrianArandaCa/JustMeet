@@ -122,5 +122,6 @@ var userGameLeave: Boolean = false
 var isSucces: Boolean = false
 var isConnectedChat : Boolean = false
 var timeForGame : Long = 11000
+var isDebug : Boolean = false
 
 

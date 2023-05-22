@@ -145,6 +145,7 @@ class PlayFragment : Fragment(), MessageListener {
                     builder.setTitle("Aviso")
                     builder.setMessage("La persona con la que se te ha emparejado no cumple los requisitos")
                     builder.setPositiveButton("Seguir buscando") { dialog, which ->
+                        binding.tvStateGame.setText("¡Haz click para buscar partida!")
                         if (focusAnimation.isRunning) {
                             focusAnimation.cancel()
                             focusAnimation.end()
@@ -152,8 +153,9 @@ class PlayFragment : Fragment(), MessageListener {
                             binding.btnPlay.scaleX = 1.0f
                             binding.btnPlay.scaleY = 1.0f
                             binding.btnPlay.rotation = 0.0f
-
                         }
+                        isFinding = false
+
                     }
                     val dialog = builder.create()
                     dialog.show()

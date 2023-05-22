@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.justmeet.API.CrudApi
 import com.example.justmeet.Adapters.AdapterAvatar
 import com.example.justmeet.Models.Avatar
+import com.example.justmeet.Models.isDebug
 import com.example.justmeet.Models.userLog
 import com.example.justmeet.R
 import com.example.justmeet.databinding.ActivitySelectAvatarBinding
@@ -31,31 +32,37 @@ class ActivitySelectAvatar : AppCompatActivity(), CoroutineScope {
         sendList()
 
         binding.btnGuardarAvatar.setOnClickListener {
-            isSelected = false
-            for (i in 0..avatarList.size - 1) {
-                if (avatarList[i].selected == 1) {
-                    userLog!!.photo = avatarList[i].resourcePhoto
-                    isSelected = true
-                }
-            }
-            if (!isSelected) {
-                Toast.makeText(this, getString(R.string.select_an_avatar), Toast.LENGTH_LONG).show()
-            } else {
-                runBlocking {
-                    val corrutina = launch {
-                        val crudApi = CrudApi()
-                        userModified = crudApi.modifyUserFromApi(userLog!!)
+            if (!isDebug){
+                isSelected = false
+                for (i in 0..avatarList.size - 1) {
+                    if (avatarList[i].selected == 1) {
+                        userLog!!.photo = avatarList[i].resourcePhoto
+                        isSelected = true
                     }
-                    corrutina.join()
                 }
-                if (userModified) {
-                    val intento = Intent(this, BottomNavigationActivity::class.java)
-                    startActivity(intento)
+                if (!isSelected) {
+                    Toast.makeText(this, getString(R.string.select_an_avatar), Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(this, getString(R.string.insert_error_avatar), Toast.LENGTH_LONG)
-                        .show()
+                    runBlocking {
+                        val corrutina = launch {
+                            val crudApi = CrudApi()
+                            userModified = crudApi.modifyUserFromApi(userLog!!)
+                        }
+                        corrutina.join()
+                    }
+                    if (userModified) {
+                        val intento = Intent(this, BottomNavigationActivity::class.java)
+                        startActivity(intento)
+                    } else {
+                        Toast.makeText(this, getString(R.string.insert_error_avatar), Toast.LENGTH_LONG)
+                            .show()
+                    }
                 }
+            } else {
+                val intento = Intent(this, BottomNavigationActivity::class.java)
+                startActivity(intento)
             }
+
         }
 
     }

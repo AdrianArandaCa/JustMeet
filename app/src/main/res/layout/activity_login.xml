@@ -184,6 +184,16 @@
             android:contentDescription="@string/login_instagram"
             android:scaleType="centerCrop"
             android:src="@drawable/instagramlogogold" />
+        <ImageButton
+            android:id="@+id/btnDebug"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/login_instagram"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:src="@drawable/asset_settings" />
 
 
     </LinearLayout>

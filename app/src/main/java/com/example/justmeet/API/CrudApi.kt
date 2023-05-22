@@ -1,5 +1,6 @@
 package com.example.justmeet.API
 
+import android.util.Log
 import com.example.justmeet.Models.*
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
@@ -21,6 +22,7 @@ class CrudApi() : CoroutineScope {
     private var job: Job = Job()
 
     suspend fun getAllUsersFromAPI(): ArrayList<User> {
+
         val response = getRetrofit().create(APIService::class.java).getUsuaris().body()
         return response!!
     }
@@ -42,13 +44,29 @@ class CrudApi() : CoroutineScope {
             .build()
 
     suspend fun addUserToAPI(usuari: User): Boolean {
-        val call = getRetrofit().create(APIService::class.java).insertUsuari(usuari)
-        return call.isSuccessful
+        try {
+            if(isDebug){
+                return false
+            }
+            val call = getRetrofit().create(APIService::class.java).insertUsuari(usuari)
+            return call.isSuccessful
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return false
+        }
     }
 
     suspend fun modifyUserFromApi(user: User): Boolean {
-        val call = getRetrofit().create(APIService::class.java).updateUser(user.idUser!!, user)
-        return call.isSuccessful
+        try {
+            if(isDebug){
+                return false
+            }
+            val call = getRetrofit().create(APIService::class.java).updateUser(user.idUser!!, user)
+            return call.isSuccessful
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return false
+        }
     }
 
     suspend fun deleteUserFromAPI(codi: Int): Boolean {
@@ -56,63 +74,140 @@ class CrudApi() : CoroutineScope {
         return call.isSuccessful
     }
 
-    suspend fun getOneUser(codi: Int): User {
-        val call = getRetrofit().create(APIService::class.java).getOneUser(codi)
-        return call!!
+    suspend fun getOneUser(codi: Int): User? {
+        try {
+            val call = getRetrofit().create(APIService::class.java).getOneUser(codi)
+            return call!!
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return null
+        }
     }
 
     suspend fun getOneUserByName(name: String): User? {
-        val call = getRetrofit().create(APIService::class.java).getOneUserByName(name)
-        return if (call?.isSuccessful == true) call.body() else null
+        try {
+            if(isDebug){
+                return null
+            }
+            val call = getRetrofit().create(APIService::class.java).getOneUserByName(name)
+            return if (call?.isSuccessful == true) call.body() else null
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return null
+        }
     }
 
     //Settings Request
 
-    suspend fun getSettingById(idSetting: Int): Setting {
-        val call = getRetrofit().create(APIService::class.java).getSettingById(idSetting)
-        return call
+    suspend fun getSettingById(idSetting: Int): Setting? {
+        try {
+            if(isDebug){
+                return null
+            }
+            val call = getRetrofit().create(APIService::class.java).getSettingById(idSetting)
+            return call
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return null
+        }
     }
 
     suspend fun modifySettingFromApi(set: Setting): Boolean {
-        val call = getRetrofit().create(APIService::class.java).updateSetting(set.idSetting!!, set)
-        return call.isSuccessful
+        try {
+            if(isDebug){
+                return false
+            }
+            val call = getRetrofit().create(APIService::class.java).updateSetting(set.idSetting!!, set)
+            return call.isSuccessful
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return false
+        }
     }
 
     // UserAnswersRequets
     suspend fun addUserAnswerToAPI(listUserAnswer: List<UserAnswer>): Boolean {
-        val call = getRetrofit().create(APIService::class.java).insertUserAnswerList(listUserAnswer)
-        println(call.message())
-        return call.isSuccessful
+        try {
+            if(isDebug){
+                return false
+            }
+            val call = getRetrofit().create(APIService::class.java).insertUserAnswerList(listUserAnswer)
+            println(call.message())
+            return call.isSuccessful
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return false
+        }
     }
 
     //UserMatchesRequets
-    suspend fun getUsersMatches(idUser: Int): List<User> {
-
-        val call = getRetrofit().create(APIService::class.java).getUsersMatch(idUser)
-        return call
+    suspend fun getUsersMatches(idUser: Int): List<User>? {
+        try {
+            if(isDebug){
+                return null
+            }
+            val call = getRetrofit().create(APIService::class.java).getUsersMatch(idUser)
+            return call
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return null
+        }
     }
 
     //Location Requests
 
     suspend fun modifyLocationUser(location: Location): Boolean {
-        val call = getRetrofit().create(APIService::class.java)
-            .putLocationOnUser(location.idLocation!!, location)
-        return call.isSuccessful
+        try {
+            if(isDebug){
+                return false
+            }
+            val call = getRetrofit().create(APIService::class.java)
+                .putLocationOnUser(location.idLocation!!, location)
+            return call.isSuccessful
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return false
+        }
     }
 
-    suspend fun getAllLocationsFromAPI(): ArrayList<Location> {
-        val response = getRetrofit().create(APIService::class.java).getAllLocations()
-        return response!!
+    suspend fun getAllLocationsFromAPI(): ArrayList<Location>? {
+        try {
+            if(isDebug){
+                return null
+            }
+            val response = getRetrofit().create(APIService::class.java).getAllLocations()
+            return response!!
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return null
+        }
     }
 
-    suspend fun getOneLocationByUserFromAPI(id: Int): Location {
-        val response = getRetrofit().create(APIService::class.java).getLocationByUser(id)
-        return response!!
+    suspend fun getOneLocationByUserFromAPI(id: Int): Location? {
+
+        try {
+            if(isDebug){
+                return null
+            }
+            val response = getRetrofit().create(APIService::class.java).getLocationByUser(id)
+            return response!!
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return null
+        }
     }
 
     suspend fun postLocation(location: Location): Boolean {
-        val response = getRetrofit().create(APIService::class.java).insertLocation(location)
-        return response.isSuccessful
+        try {
+            if(isDebug){
+                return false
+            }
+            val response = getRetrofit().create(APIService::class.java).insertLocation(location)
+            return response.isSuccessful
+        } catch (e : Exception) {
+            Log.d("Expection", "Web Service Tancat")
+            return false
+        }
     }
 
     override val coroutineContext: CoroutineContext
