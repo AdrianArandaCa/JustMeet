@@ -104,4 +104,7 @@
     <string name="user_leave_game">El jugador ha abandonat la partida</string>
     <string name="premium_enable">Ja tens el premium comprat</string>
     <string name="plan_enable">Has de seleccionar un pla!</string>
+    <string name="warning">Avís</string>
+    <string name="no_coincidence">La persona amb qui has estat aparellat no compleix els requisits.</string>
+    <string name="keep_looking">Seguir buscant</string>
 </resources>

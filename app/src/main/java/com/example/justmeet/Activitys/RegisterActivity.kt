@@ -170,6 +170,12 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                     .show()
             } else {
                 if (passWord.equals(passWordConfirm)) {
+                    var genreAJugar = ""
+                    if (genre == "M") {
+                        genreAJugar = "F"
+                    } else {
+                        genreAJugar = "M"
+                    }
                     //Guardas usuario
                     var passWordEncrypt = encryptPassword(passWord)
                     var user = User(
@@ -183,7 +189,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                         "",
                         false,
                         null,
-                        Setting(null, 10, 18, 30, genre, 2, null),
+                        Setting(null, 10, 18, 30, genreAJugar, 2, null),
                         Location(null, 0.0, 0.0, null),false
                     )
                     runBlocking {

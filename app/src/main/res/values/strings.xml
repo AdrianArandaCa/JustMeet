@@ -156,6 +156,9 @@
     <string name="premium_hide" translatable="false">premium hide</string>
     <string name="premium_check" translatable="false">check</string>
     <string name="profile_crownplane" translatable="false">profile crownplane</string>
+    <string name="warning">Aviso</string>
+    <string name="no_coincidence">La persona con la que se te ha emparejado no cumple los requisitos</string>
+    <string name="keep_looking">Seguir buscando</string>
 
 
 </resources>

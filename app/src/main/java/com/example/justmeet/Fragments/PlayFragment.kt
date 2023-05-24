@@ -69,7 +69,7 @@ class PlayFragment : Fragment(), MessageListener {
                 }
                 activity?.runOnUiThread {
                     binding.tvStateGame.isVisible = true
-                    binding.tvStateGame.setText("Buscando partida...")
+                    binding.tvStateGame.setText(getString(R.string.finding_game))
                     // binding.btnBuscarPartida.setText(getString(R.string.finding_game))
                     // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
                     isFinding = true
@@ -77,7 +77,7 @@ class PlayFragment : Fragment(), MessageListener {
                 }
             } else {
                 WebSocketManager.sendMessage("CLOSE")
-                binding.tvStateGame.setText("¡Haz click para buscar partida!")
+                binding.tvStateGame.setText(getString(R.string.main_click))
                 // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
                 isFinding = false
                 if (focusAnimation.isRunning) {
@@ -142,10 +142,10 @@ class PlayFragment : Fragment(), MessageListener {
                 activity?.runOnUiThread {
                     // Crea una instancia de AlertDialog.Builder
                     val builder = AlertDialog.Builder(context)
-                    builder.setTitle("Aviso")
-                    builder.setMessage("La persona con la que se te ha emparejado no cumple los requisitos")
-                    builder.setPositiveButton("Seguir buscando") { dialog, which ->
-                        binding.tvStateGame.setText("¡Haz click para buscar partida!")
+                    builder.setTitle(getString(R.string.warning))
+                    builder.setMessage(getString(R.string.no_coincidence))
+                    builder.setPositiveButton(getString(R.string.keep_looking)) { dialog, which ->
+                        binding.tvStateGame.setText(getString(R.string.main_click))
                         if (focusAnimation.isRunning) {
                             focusAnimation.cancel()
                             focusAnimation.end()
