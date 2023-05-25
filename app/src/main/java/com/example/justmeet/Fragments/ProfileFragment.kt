@@ -25,10 +25,8 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         Glide.with(requireContext()).load(userLog!!.photo!!).into(binding.ivProfile)
-        //binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvNomEdad.setText("${userLog!!.name!!},${userLog!!.birthday!!}")
         binding.tvSobreMiContent.setText("${userLog!!.description!!}")
         if (userLog!!.premium!!) {
@@ -53,7 +51,6 @@ class ProfileFragment : Fragment() {
 
     fun updateData() {
         Glide.with(requireContext()).load(userLog!!.photo!!).into(binding.ivProfile)
-        //binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvNomEdad.setText("${userLog!!.name!!},${userLog!!.birthday!!}")
         binding.tvSobreMiContent.setText("${userLog!!.description!!}")
     }

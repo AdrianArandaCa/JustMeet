@@ -67,6 +67,21 @@ class ActivitySelectAvatar : AppCompatActivity(), CoroutineScope {
 
     }
 
+    private fun sendList() {
+        binding.recyclerAvatares.layoutManager = GridLayoutManager(this, 2)
+        binding.recyclerAvatares.adapter = AdapterAvatar(avatarList)
+    }
+
+    fun putFullScreen() {
+        this.supportActionBar?.hide()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                )
+    }
+    // Load avatar list
     private fun listAvatarInitializer() {
         avatarList = arrayListOf()
         avatarList.addAll(
@@ -109,21 +124,6 @@ class ActivitySelectAvatar : AppCompatActivity(), CoroutineScope {
                 ),
             )
         )
-    }
-
-    private fun sendList() {
-        binding.recyclerAvatares.layoutManager = GridLayoutManager(this, 2)
-        binding.recyclerAvatares.adapter = AdapterAvatar(avatarList)
-    }
-
-    fun putFullScreen() {
-        this.supportActionBar?.hide()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                )
     }
 
     override val coroutineContext: CoroutineContext

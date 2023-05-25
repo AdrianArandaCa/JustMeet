@@ -34,7 +34,8 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
-         userRecived = intent.getSerializableExtra("User") as User
+        // Init WebSocket
+        userRecived = intent.getSerializableExtra("User") as User
         val serverUrl = "ws://172.16.24.24:45456/ws/${userLog!!.idUser}"
         thread {
             kotlin.run {
@@ -45,11 +46,9 @@ class ActivityChat : AppCompatActivity(), MessageListener {
                 WebSocketManager.sendMessage("CHAT${userRecived?.idUser.toString()}")
             }
         }
-        //sendList()
-
-            userLog!!.isConnected = true
+        // Update user connection
+        userLog!!.isConnected = true
         isConnectedChat = true
-        println("CONNECTED TRUE IN CHAT")
             runBlocking {
                 val crudApi = CrudApi()
                 val corrutina = launch {
@@ -59,29 +58,30 @@ class ActivityChat : AppCompatActivity(), MessageListener {
             }
 
         Glide.with(this).load(userRecived?.photo!!).into(binding.ivAvatarChat)
-        // binding.ivAvatarChat.setImageResource(userRecived?.photo!!)
         binding.tvNameUser.setText(userRecived.name)
         if(userRecived.isConnected == true) {
             binding.tvNameUser.setTextColor(ContextCompat.getColor(this,R.color.green_isconnected))
         } else {
             binding.tvNameUser.setTextColor(ContextCompat.getColor(this,R.color.red_disconnected))
         }
-        println("Usuario recibido: " + userRecived?.name)
         if (!listChatUsers.isEmpty()) {
             listChatUsers.clear()
         }
+        // Configure RecyclerView
         adapter = AdapterChat(listChatUsers)
         binding.recyclerChat.layoutManager = LinearLayoutManager(this)
         binding.recyclerChat.adapter = adapter
         binding.btnSendMessage.setOnClickListener {
             var message = binding.etSendMessage.text.toString()
             if (message.isEmpty()) {
+                // Vibration smartphone when user send a empty messsage
                 val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 val duration: Long = 200 //
                 if (vibrator.hasVibrator()) {
                     vibrator.vibrate(duration)
                 }
             } else {
+                // If message is not empty, then add message to list of recyclerview
                 WebSocketManager.sendMessage(message)
                 var chat = Chat(message, 1)
                 listChatUsers.add(chat)
@@ -105,12 +105,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
             return@setOnKeyListener false
         }
     }
-
-    private fun sendList() {
-        binding.recyclerChat.layoutManager = LinearLayoutManager(this)
-        binding.recyclerChat.adapter = AdapterChat(listChatUsers)
-    }
-
+    // Full screen window
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -121,6 +116,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
                 )
     }
 
+    // Overrides WebSockets
     override fun onConnectSuccess() {
         println("CONNECT SUCCES CHAT")
     }
@@ -133,6 +129,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         println("CONNECT CLOSE CHAT")
     }
 
+    // Manage message WebSocket
     override fun onMessage(text: String?) {
         val gson = Gson()
 
@@ -170,28 +167,20 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         }
     }
 
+    // Automatic scroll when user send a message in chat window.
     private fun scrollToBottom() {
         binding.recyclerChat.postDelayed({
             binding.recyclerChat.smoothScrollToPosition(adapter.itemCount - 1)
         }, 100)
     }
-
+    // Check when user close/finish the activity
     override fun onDestroy() {
         super.onDestroy()
         WebSocketManager.sendMessage("CLOSE")
-//        userLog!!.isConnected = false
-//        runBlocking {
-//                val crudApi = CrudApi()
-//            val corrutina = launch {
-//                crudApi.modifyUserFromApi(userLog!!)
-//            }
-//            corrutina.join()
-//        }
-//        userLog = null
     }
 
+    // Check user connect in lifecycle
     override fun onStop() {
-        println("ENTRNADO EN ONSTOP CHAT")
         super.onStop()
         if(isConnectedChat){
             isConnectedChat = false
@@ -206,6 +195,7 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         }
 
     }
+    // Check user reconnect in lifecycle
     override fun onResume() {
         println("ENTRNADO EN ONRESUME chat")
         super.onResume()

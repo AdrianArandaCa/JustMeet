@@ -22,6 +22,7 @@ object WebSocketManager {
     private lateinit var mWebSocket: WebSocket
     private var isConnect = false
     private var connectNum = 0
+    // Init a WebSocket Manager connection
     fun init(url: String, _messageListener: MessageListener) {
         client = OkHttpClient.Builder()
             .writeTimeout(5, TimeUnit.SECONDS)
@@ -31,10 +32,6 @@ object WebSocketManager {
         request = Request.Builder().url(url).build()
         messageListener = _messageListener
     }
-
-    /**
-     * connect
-     */
     fun connect() {
         if (isConnect()) {
             Log.i(TAG, "web socket connected")
@@ -42,10 +39,6 @@ object WebSocketManager {
         }
         client.newWebSocket(request, createListener())
     }
-
-    /**
-     * Reconnection
-     */
     fun reconnect() {
         if (connectNum <= MAX_NUM) {
             try {
@@ -62,10 +55,6 @@ object WebSocketManager {
             )
         }
     }
-
-    /**
-     * Whether to connect
-     */
     fun isConnect(): Boolean {
         return isConnect
     }

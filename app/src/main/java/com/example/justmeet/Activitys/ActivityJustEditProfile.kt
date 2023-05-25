@@ -23,7 +23,6 @@ class ActivityJustEditProfile : AppCompatActivity() {
         setContentView(binding.root)
         putFullScreen()
         Glide.with(this).load(userLog!!.photo!!).into(binding.ivProfile)
-        //binding.ivProfile.setImageResource(userLog!!.photo!!)
         binding.tvSobreMiContent.setText(userLog!!.description)
         binding.tvCambiarAvatar.setOnClickListener {
             val intento = Intent(this, ActivitySelectAvatar::class.java)
@@ -59,11 +58,11 @@ class ActivityJustEditProfile : AppCompatActivity() {
             if (!binding.tvSobreMiContent.text.toString()
                     .equals(userLog!!.description) && !changeSaved
             ) {
+                // When user want to leave a activity without save changes
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle(getString(R.string.go_out_profile))
                 builder.setMessage(getString(R.string.confirm_go_out_profile))
                 builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
-                    // Agrega aquí el código para cerrar sesión
                     onBackPressed()
                     finish()
                 }
@@ -76,6 +75,7 @@ class ActivityJustEditProfile : AppCompatActivity() {
         }
     }
 
+    // Full screen window
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

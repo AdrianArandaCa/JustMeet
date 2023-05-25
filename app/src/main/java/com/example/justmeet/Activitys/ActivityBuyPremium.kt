@@ -32,6 +32,7 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
                 priceSelected
             )
         )
+        // Hidden Keyboard when user press ENTER
         binding.etTargetNumber.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -81,6 +82,7 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
             }
             return@setOnKeyListener false
         }
+        // Check when user buy premium
         binding.btnConfirmBuyPremium.setOnClickListener {
             var numberTarget = binding.etTargetNumber.text.toString()
             var nameSurnameTarget = binding.etNameSurNameTarget.text.toString()
@@ -124,6 +126,7 @@ class ActivityBuyPremium : AppCompatActivity(), CoroutineScope {
         }
     }
 
+    // Full screen window
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

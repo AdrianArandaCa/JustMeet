@@ -55,6 +55,7 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
         mapFragment.getMapAsync(this)
     }
 
+    // When map is open check permissions
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
@@ -73,6 +74,7 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
         map.addMarker(MarkerOptions().position(ubi).title(getString(R.string.current_position)))
     }
 
+    // Create marker for all users of application
     private fun createMarker() {
         var locationByUser: com.example.justmeet.Models.Location? = null
         runBlocking {
@@ -165,9 +167,6 @@ class ActivityLocation : AppCompatActivity(), OnMapReadyCallback, CoroutineScope
             permisosGarantits = true
             map.isMyLocationEnabled = true
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-
-//                ubicacioActualLatitud = location!!.latitude
-//                ubicacioActualLongitud = location!!.longitude
             }
         }
     }

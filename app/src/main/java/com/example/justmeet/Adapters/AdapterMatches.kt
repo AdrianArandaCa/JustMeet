@@ -47,11 +47,9 @@ class AdapterMatches(val llista: ArrayList<User>) :
             Glide.with(holder.avatarUser.context)
                 .load("https://cdn.create.vista.com/api/media/small/471012004/stock-vector-arab-gold-plated-metalic-icon")
                 .into(holder.avatarUser)
-            //  holder.avatarUser.setImageResource(R.drawable.logousernamegold)
         } else {
             Glide.with(holder.avatarUser.context).load(llista[position].photo!!)
                 .into(holder.avatarUser)
-            //holder.avatarUser.setImageResource(llista[position].photo!!)
         }
         holder.userName.setText(llista[position].name)
         if (llista[position].premium!!) {

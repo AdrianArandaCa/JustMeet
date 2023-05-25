@@ -63,11 +63,11 @@ class SettingsActivity : AppCompatActivity(), CoroutineScope {
             if ((binding.seekbarDistancia.progress != userSetting.maxDistance || binding.seekBarMin.progress != userSetting.minAge ||
                         binding.seekBarMax.progress != userSetting.maxAge) && !changeSaved
             ) {
+                // When user want to leave a activity without save changes
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle(getString(R.string.go_out_settings))
                 builder.setMessage(getString(R.string.confirm_go_out_settings))
                 builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
-                    // Agrega aquí el código para cerrar sesión
                     onBackPressed()
                     finish()
                 }
@@ -130,7 +130,6 @@ class SettingsActivity : AppCompatActivity(), CoroutineScope {
             builder.setTitle(getString(R.string.close_session))
             builder.setMessage(getString(R.string.confirm_close_session))
             builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
-                // Agrega aquí el código para cerrar sesión
                 userLog!!.isConnected = false
                 runBlocking {
                     val crudApi = CrudApi()
@@ -151,27 +150,24 @@ class SettingsActivity : AppCompatActivity(), CoroutineScope {
             dialog.show()
         }
 
+        // Check seekbar values
         val seekBarChangeListener = object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                // Obtiene los valores actuales de ambas SeekBar
                 val minValue = binding.seekBarMin.progress
                 val maxValue = binding.seekBarMax.progress
                 val maxDistanca = binding.seekbarDistancia.progress
 
                 if (seekBar == binding.seekBarMin) {
-                    // Limita el valor máximo de la seekBarMin al valor actual de la seekBarMax
                     if (minValue > maxValue) {
                         binding.seekBarMin.progress = maxValue
                     }
                 } else if (seekBar == binding.seekBarMax) {
-                    // Limita el valor mínimo de la seekBarMax al valor actual de la seekBarMin
                     if (maxValue < minValue) {
                         binding.seekBarMax.progress = minValue
                     }
                 } else if (seekBar == binding.seekbarDistancia) {
                     binding.seekbarDistancia.progress = maxDistanca
                 }
-                // Actualiza los valores en algún otro elemento de la interfaz de usuario, como un TextView
                 if (maxValue > minValue && minValue < maxValue) {
                     binding.tvEdadMinMax.text = "$minValue-$maxValue"
                 }
@@ -179,15 +175,12 @@ class SettingsActivity : AppCompatActivity(), CoroutineScope {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                // Este método se llama cuando el usuario comienza a interactuar con la SeekBar
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // Este método se llama cuando el usuario deja de interactuar con la SeekBar
             }
         }
 
-// Asigna el objeto de tipo OnSeekBarChangeListener a ambas SeekBar
         binding.seekBarMin.setOnSeekBarChangeListener(seekBarChangeListener)
         binding.seekBarMax.setOnSeekBarChangeListener(seekBarChangeListener)
         binding.seekbarDistancia.setOnSeekBarChangeListener(seekBarChangeListener)

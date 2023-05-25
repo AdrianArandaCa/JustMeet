@@ -24,7 +24,6 @@ class AdapterAnswer(var list: java.util.ArrayList<Answer>) :
         return viewholder(layout.inflate(R.layout.cardviewanswer, parent, false))
     }
 
-    //Enllaça cadascun dels elements individuals (cardview) amb els elements de la list
     override fun onBindViewHolder(holder: viewholder, position: Int) {
         holder.answer.setText("${list[position].answer1}")
         holder.view.setOnClickListener {

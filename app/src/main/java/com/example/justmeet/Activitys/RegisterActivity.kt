@@ -35,9 +35,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         putFullScreen()
-//        binding.etBirthday.setOnClickListener {
-//            showDatePicker()
-//        }
         binding.btnBackRegister.setOnClickListener {
             onBackPressed()
         }
@@ -54,9 +51,9 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         binding.btnRegister.setOnClickListener {
             registerUser()
         }
+        // Hide keyboard when user press ENTER
         binding.etUserName.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                // Ocultar el teclado
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.etUserName.windowToken, 0)
                 return@setOnKeyListener true
@@ -65,7 +62,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         }
         binding.etPassword.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                // Ocultar el teclado
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.etPassword.windowToken, 0)
                 return@setOnKeyListener true
@@ -74,7 +70,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         }
         binding.etPasswordConfirm.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                // Ocultar el teclado
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.etPasswordConfirm.windowToken, 0)
                 return@setOnKeyListener true
@@ -83,7 +78,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         }
         binding.etEmail.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                // Ocultar el teclado
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.etEmail.windowToken, 0)
                 return@setOnKeyListener true
@@ -92,7 +86,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         }
         binding.etBirthday.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                // Ocultar el teclado
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.etBirthday.windowToken, 0)
                 return@setOnKeyListener true
@@ -100,25 +93,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
             return@setOnKeyListener false
         }
     }
-    //    fun showDatePicker() {
-//        // Se crea un Calendar con la fecha actual
-//        val calendar = Calendar.getInstance()
-//        val year = calendar.get(Calendar.YEAR)
-//        val month = calendar.get(Calendar.MONTH)
-//        val day = calendar.get(Calendar.DAY_OF_MONTH)
-//        val dateFormat = DateTimeFormatter.ofPattern("yyyy-M-dd")
-//        // Se crea el DatePickerDialog
-//        val datePickerDialog =
-//            DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDayOfMonth ->
-//                // Se establece la fecha seleccionada en el EditText
-//                val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDayOfMonth"
-//                val sdf = LocalDate.parse(selectedDate,dateFormat)
-//                binding.etBirthday.setText(sdf.toString())
-//            }, year, month, day)
-//
-//        // Se muestra el DatePickerDialog
-//        datePickerDialog.show()
-//    }
     fun encryptPassword(input: String): String {
         return try {
             val md = MessageDigest.getInstance("SHA-256")
@@ -144,6 +118,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                 )
     }
 
+    // Check user register
     fun registerUser() {
         var genreSelected : Boolean = false
         if (binding.etBirthday.text.toString() < "18" || binding.etBirthday.text.toString() > "99") {
@@ -155,7 +130,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         var passWordConfirm = binding.etPasswordConfirm.text.toString()
         var email = binding.etEmail.text.toString()
         var dateOfBirthday = binding.etBirthday.text.toString()
-        //val sqlDate = java.sql.Date(dateOfBirthday.time)
         var genre = ""
         if (isMale) {
             genre = "M"
@@ -222,7 +196,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
 
 
                             }
-                            println("Usuari inserit: " + userPosted.toString())
                             runBlocking {
                                 val corrutina = launch {
                                     val crudApi = CrudApi()
@@ -232,7 +205,6 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
                                 }
                                 corrutina.join()
                             }
-                            println("Localització inserida " + locationPosted.toString())
 
                         }
                     }
@@ -247,6 +219,7 @@ class RegisterActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
+    // Check email format
     fun isValidEmail(email: String): Boolean {
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         return pattern.matcher(email).matches()

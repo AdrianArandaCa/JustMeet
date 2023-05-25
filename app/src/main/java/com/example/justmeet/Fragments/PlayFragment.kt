@@ -40,24 +40,10 @@ class PlayFragment : Fragment(), MessageListener {
         // Inflate the layout for this fragment
         binding = FragmentPlayBinding.inflate(inflater, container, false)
         val serverUrl = "ws://172.16.24.24:45456/ws/${userLog!!.idUser}"
-//        binding.btnBuscarPartida.setOnClickListener {
-//            thread {
-//                kotlin.run {
-//                    WebSocketManager.init(serverUrl, this)
-//                    WebSocketManager.connect()
-//                    val randomDelay = Random.nextInt(400, 500)
-//                    Thread.sleep(randomDelay.toLong())
-//                    WebSocketManager.sendMessage("STARTGAME")
-//                }
-//            }
-//            activity?.runOnUiThread {
-//                binding.btnBuscarPartida.setText(getString(R.string.finding_game))
-//                binding.btnPlay.setImageResource(R.drawable.stopbuttontop)
-//            }
-//        }
         binding.btnPlay.setOnClickListener {
 
             if (!isFinding) {
+                // Find game
                 thread {
                     kotlin.run {
                         WebSocketManager.init(serverUrl, this)
@@ -70,16 +56,15 @@ class PlayFragment : Fragment(), MessageListener {
                 activity?.runOnUiThread {
                     binding.tvStateGame.isVisible = true
                     binding.tvStateGame.setText(getString(R.string.finding_game))
-                    // binding.btnBuscarPartida.setText(getString(R.string.finding_game))
-                    // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
                     isFinding = true
                     animatePlayButton()
                 }
             } else {
+                // Cancel a game
                 WebSocketManager.sendMessage("CLOSE")
                 binding.tvStateGame.setText(getString(R.string.main_click))
-                // binding.btnPlay.setImageResource(R.drawable.buttonjustmeetheart)
                 isFinding = false
+                // Reset button animation
                 if (focusAnimation.isRunning) {
                     focusAnimation.cancel()
                     focusAnimation.end()
@@ -93,7 +78,6 @@ class PlayFragment : Fragment(), MessageListener {
         }
 
         binding.btnIntentLocation.setOnClickListener {
-
             val intento = Intent(requireContext(), ActivityLocation::class.java)
             startActivity(intento)
         }
@@ -121,6 +105,7 @@ class PlayFragment : Fragment(), MessageListener {
         val gson = Gson()
 
         if (text != null) {
+            // Return message from Web Socket to close connection
             if (text.startsWith("CLOSE")) {
                 if (text == "CLOSEMATCH") {
                     println("CLOSEMATCH")
@@ -133,19 +118,20 @@ class PlayFragment : Fragment(), MessageListener {
                 } else if (text == "CLOSEDISTANCE") {
                     println("CLOSEDISTANCE")
                 }
-                //    hideProgressBar()
+                // Close web socket connection
                 thread {
                     kotlin.run {
                         WebSocketManager.sendMessage("CLOSE")
                     }
                 }
+                // Dialog to show a message when user dont accomplish the requirements
                 activity?.runOnUiThread {
-                    // Crea una instancia de AlertDialog.Builder
                     val builder = AlertDialog.Builder(context)
                     builder.setTitle(getString(R.string.warning))
                     builder.setMessage(getString(R.string.no_coincidence))
                     builder.setPositiveButton(getString(R.string.keep_looking)) { dialog, which ->
                         binding.tvStateGame.setText(getString(R.string.main_click))
+                        // Reset animation
                         if (focusAnimation.isRunning) {
                             focusAnimation.cancel()
                             focusAnimation.end()
@@ -160,26 +146,25 @@ class PlayFragment : Fragment(), MessageListener {
                     val dialog = builder.create()
                     dialog.show()
                 }
+                // When Game is finish, web socket send a GameResult and us check if true or not
             } else if (text.startsWith("GAMERESULT")) {
                 var textSubstring = text.substring(10)
                 val gameType = object : TypeToken<Game>() {}.type
                 gameFinishFromSocket = gson.fromJson(textSubstring, gameType)
-                println("GAME RESULT :" + gameFinishFromSocket.idGame)
                 if (gameFinishFromSocket.match == true) {
                     val intento = Intent(requireContext(), ActivityResumeIsMatch::class.java)
                     startActivity(intento)
                 } else {
-                    //WebSocketManager.sendMessage("close")
-                    //WebSocketManager.close()
                     val intento = Intent(requireContext(), ActivityResumeNotMatch::class.java)
                     startActivity(intento)
                 }
+                // Socket send a number of game when game started
             } else if (text.startsWith("Game", false)) {
                 var textSubstring = text.substring(4)
                 val listType = object : TypeToken<Game>() {}.type
                 gameFromSocket = gson.fromJson(textSubstring, listType)
-                println("ID GAME INICIO :" + gameFromSocket.idGame)
                 addText(" Receive message: $text \n ")
+                // When user leave a game, web socket send a message
             } else if (text.startsWith("USERGAMELEAVE", false)) {
                 activity?.runOnUiThread {
                     userGameLeave = true
@@ -193,6 +178,7 @@ class PlayFragment : Fragment(), MessageListener {
                 }
 
             } else {
+                // Web socket send a list of questions with answers and init the game
                 val listType = object : TypeToken<ArrayList<Question>>() {}.type
                 listQuestion = gson.fromJson(text, listType)
                 isSucces = true
@@ -211,13 +197,11 @@ class PlayFragment : Fragment(), MessageListener {
     }
 
     override fun onDestroy() {
-        // WebSocketManager.sendMessage("CLOSE")
         super.onDestroy()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        //WebSocketManager.sendMessage("CLOSE")
     }
 
     override fun onStop() {
@@ -227,20 +211,17 @@ class PlayFragment : Fragment(), MessageListener {
         }
     }
 
+    // Button animation when find a game
     fun animatePlayButton() {
         val scaleDownX = ObjectAnimator.ofFloat(binding.btnPlay, "scaleX", 2.0f)
         val scaleDownY = ObjectAnimator.ofFloat(binding.btnPlay, "scaleY", 2.0f)
         scaleDownX.duration = 2500
         scaleDownY.duration = 2500
-//        val fadeOut = ObjectAnimator.ofFloat(binding.btnPlay, "alpha", 0.5f)
-//        fadeOut.duration = 1000
 
         val scaleUpX = ObjectAnimator.ofFloat(binding.btnPlay, "scaleX", 10f)
         val scaleUpY = ObjectAnimator.ofFloat(binding.btnPlay, "scaleY", 10f)
         scaleUpX.duration = 1000
         scaleUpY.duration = 1000
-//        val fadeIn = ObjectAnimator.ofFloat(binding.btnPlay, "alpha", 1f)
-//        fadeIn.duration = 1000
         focusAnimation = AnimatorSet()
         focusAnimation.play(scaleDownX).with(scaleDownY)
         focusAnimation.play(scaleUpX).with(scaleUpY).after(scaleDownX)
@@ -248,10 +229,8 @@ class PlayFragment : Fragment(), MessageListener {
         focusAnimation.interpolator = AccelerateDecelerateInterpolator()
         scaleDownX.repeatCount = ValueAnimator.INFINITE
         scaleDownY.repeatCount = ValueAnimator.INFINITE
-        // fadeOut.repeatCount = ValueAnimator.INFINITE
         scaleUpX.repeatCount = ValueAnimator.INFINITE
         scaleUpY.repeatCount = ValueAnimator.INFINITE
-        // fadeIn.repeatCount = ValueAnimator.INFINITE
 
         focusAnimation.start()
     }

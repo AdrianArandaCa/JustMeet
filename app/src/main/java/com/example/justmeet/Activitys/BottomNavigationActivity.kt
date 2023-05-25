@@ -55,7 +55,6 @@ class BottomNavigationActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        println("ENTRANDO EN ON DESTROY")
         userLog!!.isConnected = false
         runBlocking {
             val crudApi = CrudApi()
@@ -68,7 +67,6 @@ class BottomNavigationActivity : AppCompatActivity() {
     }
 
     override fun onStop() {
-        println("ENTRNADO EN ONSTOP navigation")
         super.onStop()
 
         if(!isDebug) {
@@ -85,7 +83,6 @@ class BottomNavigationActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        println("ENTRNADO EN ONRESUME navigation")
         super.onResume()
         if(!isDebug) {
             isConnectedChat = false

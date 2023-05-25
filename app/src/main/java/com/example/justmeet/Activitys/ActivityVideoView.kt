@@ -57,16 +57,12 @@ class ActivityVideoView : AppCompatActivity() {
         binding.vvAnuncio.start()
     }
 
+    // Open a website
     private fun openAdvertiserWebsite(website: String) {
         val advertiserUri = Uri.parse(website)
         val intent = Intent(Intent.ACTION_VIEW, advertiserUri)
         startActivity(intent)
     }
-
-    //    override fun onTouchEvent(event: MotionEvent?): Boolean {
-//        // Evitar interacción táctil en toda la pantalla
-//        return true
-//    }
     fun putFullScreen() {
         this.supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -77,6 +73,7 @@ class ActivityVideoView : AppCompatActivity() {
                 )
     }
 
+    // Load advertisement
     private fun listVideoViewsInitializer() {
         advertisementList = arrayListOf()
         advertisementList.addAll(

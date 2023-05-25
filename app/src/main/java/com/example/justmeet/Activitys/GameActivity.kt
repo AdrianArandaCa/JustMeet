@@ -34,6 +34,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
+    // Init and refresh recyclerview
     private fun setupViews() {
         binding.numberQuestion.text = "Pregunta ${(currentQuestionIndex + 1)}/${listQuestion.size}"
         binding.txtQuestion.text = listQuestion[currentQuestionIndex].question1
@@ -42,12 +43,15 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
         binding.rvAnswers.layoutManager = LinearLayoutManager(this)
     }
 
+    // Start timer when game its initalitzed
     private fun startTimer() {
+        // timeForGame =  Time for question
         val countDownTimer = object : CountDownTimer(timeForGame, 1000) {
+            // Every second updated timer / textview
             override fun onTick(millisUntilFinished: Long) {
                 binding.tvTime.text = (millisUntilFinished / 1000).toString()
             }
-
+            // If countdowntimer its 0/finish, reload the recyclerview with another question and reset timer
             override fun onFinish() {
                 currentQuestionIndex++
                 if (currentQuestionIndex < listQuestion.size) {
@@ -59,12 +63,11 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                         "Pregunta ${(currentQuestionIndex + 1)}/${listQuestion.size}"
                     startTimer()
                 } else {
-                    println("ELSE")
+                    // Add answers selected into new list
                     for (question in listQuestion) {
                         answerSelected = false
                         for (answer in question.answers) {
                             if (answer.selected == 1) {
-                                println("Respuesta  seleccionada")
                                 answerSelected = true
                                 var userAns = UserAnswer(
                                     gameFromSocket.idGame!!,
@@ -73,13 +76,10 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                                     answer.idAnswer
                                 )
                                 listUserAnswer += userAns
-
-                                println("Pregunta " + question.question1)
-                                println("Respuesta seleccionada" + answer.answer1)
                             }
                         }
+                        // If user dont select an answer, then idAnswer is null
                         if (!answerSelected) {
-                            println("Respuesta no seleccionada")
                             var userAns = UserAnswer(
                                 gameFromSocket.idGame!!,
                                 userLog!!.idUser!!,
@@ -89,7 +89,7 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                             listUserAnswer += userAns
                         }
                     }
-                    println("ACABADO JUEGO, SE HACE POST DE LAS RESPUESTAS")
+                    // Add userAnswers to API
                     runBlocking {
                         val crudApi = CrudApi()
                         val corrutina = launch {
@@ -97,13 +97,11 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
                         }
                         corrutina.join()
                     }
-                    println("USER ANSWER INSERIT!!!")
+                    // Sleep main thread for avoid a collision with WebSocket
                     val randomDelay = Random.nextInt(600, 800)
                     Thread.sleep(randomDelay.toLong())
                     WebSocketManager.sendMessage("GAMERESULT${gameFromSocket.idGame}")
-                    println("FINAL WEBSOCKET")
                     WebSocketManager.sendMessage("CLOSE")
-                    println("PASSA POR CLOSE")
 
                 }
             }
@@ -128,7 +126,6 @@ class GameActivity : AppCompatActivity(), CoroutineScope {
 
     override fun onStop() {
         super.onStop()
-        println("ENTRANDO CLOSE GAMEACTIVITY")
         WebSocketManager.sendMessage("CLOSE")
         finish()
     }

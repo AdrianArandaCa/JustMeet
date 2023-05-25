@@ -30,7 +30,6 @@ class ComunicationFragment : Fragment(), CoroutineScope {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentComunicationBinding.inflate(inflater, container, false)
 
         if(!isDebug){

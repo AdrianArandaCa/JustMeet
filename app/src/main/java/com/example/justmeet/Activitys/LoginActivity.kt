@@ -59,26 +59,25 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
             val intento = Intent(this, RegisterActivity::class.java)
             startActivity(intento)
         }
-
+        // Hide keyboard when user press ENTER
         binding.etUserName.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                // Ocultar el teclado
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.etUserName.windowToken, 0)
                 return@setOnKeyListener true
             }
             return@setOnKeyListener false
         }
-
+        // Hide keyboard when user press ENTER
         binding.etPassword.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                // Ocultar el teclado
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.etPassword.windowToken, 0)
                 return@setOnKeyListener true
             }
             return@setOnKeyListener false
         }
+        // When user click 5 times, active debug mode
         binding.ivLogoLogin.setOnClickListener {
             contDebug++
             if(contDebug == 5) {
@@ -92,10 +91,8 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                 }
                 contDebug = 0
             }
-
-
-
         }
+        // When debug is actived
         binding.btnDebug.setOnClickListener {
             userLog = User(
                 1,
@@ -119,10 +116,8 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
 
         binding.btnLogin.setOnClickListener {
             isPressed = true
-//            val intento = Intent(this, BottomNavigationActivity::class.java)
-//            startActivity(intento)
             var userName = binding.etUserName.text.toString()
-
+            // Check user exists
             runBlocking {
                 val crudApi = CrudApi()
                 val corrutina = launch {
@@ -130,9 +125,10 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                 }
                 corrutina.join()
             }
-
+            // If user exists
             if (userLog != null) {
                 userLog!!.isConnected = true
+                // Update user connection state
                 runBlocking {
                     val crudApi = CrudApi()
                     val corrutina = launch {
@@ -140,12 +136,14 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                     }
                     corrutina.join()
                 }
+                // Encrypt password
                 var passWord = encryptPassword(binding.etPassword.text.toString())
                 if (passWord.equals(userLog!!.password) && userName.isNotEmpty()) {
                     runOnUiThread {
                         Toast.makeText(this, getString(R.string.correct_login), Toast.LENGTH_LONG)
                             .show()
                     }
+                    // If user dont have a photo
                     if (userLog!!.photo == "0") {
                         getLocationPermission(isPressed)
                         val intento = Intent(this, ActivitySelectAvatar::class.java)
@@ -153,11 +151,13 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                         finish()
                     } else {
                         getLocationPermission(isPressed)
+                        // If user have a photo and premium go in
                         if (userLog!!.premium!!) {
                             val intento = Intent(this, BottomNavigationActivity::class.java)
                             startActivity(intento)
                             finish()
                         } else {
+                            // If user have a photo and dont have premium, user watch a adverstiment after login
                             val intento = Intent(this, ActivityVideoView::class.java)
                             startActivity(intento)
                             finish()
@@ -196,6 +196,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                 )
     }
 
+    // Get permission for connect to API
     fun getPermissionsApi() {
         //   val inputStream: InputStream = resources.openRawResource(R.raw.certificadoserver) //Server PC ADRI
         val inputStream: InputStream =
@@ -220,6 +221,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
+    // Encrypt the password in SHA-256
     fun encryptPassword(input: String): String {
         return try {
             val md = MessageDigest.getInstance("SHA-256")
@@ -235,6 +237,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
+    // Check location permissions
     fun demanarPermisos() {
         if (
             (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -284,7 +287,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
 
     }
-
+    // Get user Location
     fun getLocationPermission(isPressed: Boolean) {
         var locationByUser: com.example.justmeet.Models.Location? = null
         if (
@@ -327,9 +330,6 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                         if (locationModified) {
                             println("LOCALIZACION USUARIO MODIFICADA")
                         }
-                        //FALTA CORRUTINA
-                        // PUT LOCATION
-                        // Hacer lo mismo pero con POST en el Register
                     }
                 }
             }
@@ -353,6 +353,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
+    // Open a app social networks
     private fun openAdvertiserWebsite(website: String) {
         val advertiserUri = Uri.parse(website)
         val intent = Intent(Intent.ACTION_VIEW, advertiserUri)

@@ -16,13 +16,13 @@ import com.example.justmeet.R
 
 class InfoDialogMatch(private var user: User) : DialogFragment() {
 
+    // Create a dialog user description
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val inflater = requireActivity().layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_infomatch, null)
 
         val photoUser = dialogView.findViewById<ImageView>(R.id.ivDetalleMatch)
         Glide.with(requireContext()).load(user.photo!!).into(photoUser)
-        //photoUser.setImageResource(user.photo!!)
 
         val nameAgeUser = dialogView.findViewById<TextView>(R.id.tvNameEdadMatch)
         nameAgeUser.text = "${user.name!!},${user.birthday}"

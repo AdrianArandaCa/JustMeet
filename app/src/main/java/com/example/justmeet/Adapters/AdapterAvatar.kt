@@ -26,7 +26,6 @@ class AdapterAvatar(val llista : ArrayList<Avatar>) : RecyclerView.Adapter<Adapt
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
         Glide.with(holder.img.context).load(llista[position].resourcePhoto).into(holder.img)
-        //holder.img.setImageResource(llista[position].resourcePhoto)
         holder.view.setOnClickListener {
             for (i in 0..llista.size - 1) {
                 if (i == position) {

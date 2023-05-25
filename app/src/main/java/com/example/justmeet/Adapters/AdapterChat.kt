@@ -24,8 +24,6 @@ class AdapterChat(var list: java.util.ArrayList<Chat>) :
         }
         return viewholder(layout.inflate(R.layout.cardviewanswer, parent, false))
     }
-
-    //Enllaça cadascun dels elements individuals (cardview) amb els elements de la list
     override fun onBindViewHolder(holder: viewholder, position: Int) {
         holder.message.setText("${list[position].message}")
     }
