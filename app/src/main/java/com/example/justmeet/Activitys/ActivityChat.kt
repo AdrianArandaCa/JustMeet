@@ -48,8 +48,8 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         }
         // Update user connection
         userLog!!.isConnected = true
-        isConnectedChat = true
             runBlocking {
+                isConnectedChat = true
                 val crudApi = CrudApi()
                 val corrutina = launch {
                     crudApi.modifyUserFromApi(userLog!!)
