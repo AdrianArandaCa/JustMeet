@@ -1,5 +1,6 @@
 package com.example.justmeet.Activitys
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +29,6 @@ class ActivityChat : AppCompatActivity(), MessageListener {
     private lateinit var binding: ActivityChatBinding
     private lateinit var adapter: AdapterChat
     private lateinit var  userRecived : User
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
@@ -48,8 +48,8 @@ class ActivityChat : AppCompatActivity(), MessageListener {
         }
         // Update user connection
         userLog!!.isConnected = true
+        isConnectedChat = true
             runBlocking {
-                isConnectedChat = true
                 val crudApi = CrudApi()
                 val corrutina = launch {
                     crudApi.modifyUserFromApi(userLog!!)

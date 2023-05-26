@@ -61,6 +61,7 @@
             android:textAlignment="center"
             android:textColor="@color/dark_gold"
             android:textColorHint="@color/dark_gold"
+            android:maxLength="11"
             android:textSize="18sp" />
     </LinearLayout>
 
